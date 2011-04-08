@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		503FC3C0134ED461006083A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503FC3BF134ED461006083A1 /* UIKit.framework */; };
+		503FC3C2134ED461006083A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503FC3C1134ED461006083A1 /* Foundation.framework */; };
+		503FC3C4134ED461006083A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503FC3C3134ED461006083A1 /* CoreGraphics.framework */; };
+		503FC3CA134ED461006083A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 503FC3C8134ED461006083A1 /* InfoPlist.strings */; };
+		503FC3CD134ED461006083A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 503FC3CC134ED461006083A1 /* main.m */; };
+		503FC3D0134ED461006083A1 /* TroyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 503FC3CF134ED461006083A1 /* TroyAppDelegate.m */; };
+		503FC3D4134ED461006083A1 /* TroyAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 503FC3D3134ED461006083A1 /* TroyAppDelegate_iPhone.m */; };
+		503FC3D7134ED461006083A1 /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 503FC3D5134ED461006083A1 /* MainWindow_iPhone.xib */; };
+		503FC3DB134ED461006083A1 /* TroyAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 503FC3DA134ED461006083A1 /* TroyAppDelegate_iPad.m */; };
+		503FC3DE134ED461006083A1 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 503FC3DC134ED461006083A1 /* MainWindow_iPad.xib */; };
+		508AAC8D134EDC7F005E0AB4 /* CommunicationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 508AAC8C134EDC7F005E0AB4 /* CommunicationCenter.m */; };
+		508AAC98134EDDB8005E0AB4 /* TACommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 508AAC97134EDDB8005E0AB4 /* TACommand.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		503FC3BB134ED461006083A1 /* Troy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Troy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		503FC3BF134ED461006083A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		503FC3C1134ED461006083A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		503FC3C3134ED461006083A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		503FC3C7134ED461006083A1 /* Troy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Troy-Info.plist"; sourceTree = "<group>"; };
+		503FC3C9134ED461006083A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		503FC3CB134ED461006083A1 /* Troy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Troy-Prefix.pch"; sourceTree = "<group>"; };
+		503FC3CC134ED461006083A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		503FC3CE134ED461006083A1 /* TroyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TroyAppDelegate.h; sourceTree = "<group>"; };
+		503FC3CF134ED461006083A1 /* TroyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TroyAppDelegate.m; sourceTree = "<group>"; };
+		503FC3D2134ED461006083A1 /* TroyAppDelegate_iPhone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TroyAppDelegate_iPhone.h; path = iPhone/TroyAppDelegate_iPhone.h; sourceTree = "<group>"; };
+		503FC3D3134ED461006083A1 /* TroyAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TroyAppDelegate_iPhone.m; path = iPhone/TroyAppDelegate_iPhone.m; sourceTree = "<group>"; };
+		503FC3D6134ED461006083A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		503FC3D9134ED461006083A1 /* TroyAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TroyAppDelegate_iPad.h; path = iPad/TroyAppDelegate_iPad.h; sourceTree = "<group>"; };
+		503FC3DA134ED461006083A1 /* TroyAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TroyAppDelegate_iPad.m; path = iPad/TroyAppDelegate_iPad.m; sourceTree = "<group>"; };
+		503FC3DD134ED461006083A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
+		508AAC8B134EDC7F005E0AB4 /* CommunicationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicationCenter.h; sourceTree = "<group>"; };
+		508AAC8C134EDC7F005E0AB4 /* CommunicationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationCenter.m; sourceTree = "<group>"; };
+		508AAC96134EDDB8005E0AB4 /* TACommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TACommand.h; sourceTree = "<group>"; };
+		508AAC97134EDDB8005E0AB4 /* TACommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TACommand.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		503FC3B8134ED461006083A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				503FC3C0134ED461006083A1 /* UIKit.framework in Frameworks */,
+				503FC3C2134ED461006083A1 /* Foundation.framework in Frameworks */,
+				503FC3C4134ED461006083A1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		503FC3B0134ED461006083A1 = {
+			isa = PBXGroup;
+			children = (
+				503FC3C5134ED461006083A1 /* Troy */,
+				503FC3BE134ED461006083A1 /* Frameworks */,
+				503FC3BC134ED461006083A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		503FC3BC134ED461006083A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				503FC3BB134ED461006083A1 /* Troy.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		503FC3BE134ED461006083A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				503FC3BF134ED461006083A1 /* UIKit.framework */,
+				503FC3C1134ED461006083A1 /* Foundation.framework */,
+				503FC3C3134ED461006083A1 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		503FC3C5134ED461006083A1 /* Troy */ = {
+			isa = PBXGroup;
+			children = (
+				503FC3CE134ED461006083A1 /* TroyAppDelegate.h */,
+				503FC3CF134ED461006083A1 /* TroyAppDelegate.m */,
+				503FC3D1134ED461006083A1 /* iPhone */,
+				503FC3D8134ED461006083A1 /* iPad */,
+				503FC3C6134ED461006083A1 /* Supporting Files */,
+			);
+			path = Troy;
+			sourceTree = "<group>";
+		};
+		503FC3C6134ED461006083A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				503FC3C7134ED461006083A1 /* Troy-Info.plist */,
+				503FC3C8134ED461006083A1 /* InfoPlist.strings */,
+				503FC3CB134ED461006083A1 /* Troy-Prefix.pch */,
+				503FC3CC134ED461006083A1 /* main.m */,
+				508AAC8B134EDC7F005E0AB4 /* CommunicationCenter.h */,
+				508AAC8C134EDC7F005E0AB4 /* CommunicationCenter.m */,
+				508AAC96134EDDB8005E0AB4 /* TACommand.h */,
+				508AAC97134EDDB8005E0AB4 /* TACommand.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		503FC3D1134ED461006083A1 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				503FC3D2134ED461006083A1 /* TroyAppDelegate_iPhone.h */,
+				503FC3D3134ED461006083A1 /* TroyAppDelegate_iPhone.m */,
+				503FC3D5134ED461006083A1 /* MainWindow_iPhone.xib */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		503FC3D8134ED461006083A1 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				503FC3D9134ED461006083A1 /* TroyAppDelegate_iPad.h */,
+				503FC3DA134ED461006083A1 /* TroyAppDelegate_iPad.m */,
+				503FC3DC134ED461006083A1 /* MainWindow_iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		503FC3BA134ED461006083A1 /* Troy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 503FC3E1134ED461006083A1 /* Build configuration list for PBXNativeTarget "Troy" */;
+			buildPhases = (
+				503FC3B7134ED461006083A1 /* Sources */,
+				503FC3B8134ED461006083A1 /* Frameworks */,
+				503FC3B9134ED461006083A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Troy;
+			productName = Troy;
+			productReference = 503FC3BB134ED461006083A1 /* Troy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		503FC3B2134ED461006083A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Clink Apps";
+			};
+			buildConfigurationList = 503FC3B5134ED461006083A1 /* Build configuration list for PBXProject "Troy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 503FC3B0134ED461006083A1;
+			productRefGroup = 503FC3BC134ED461006083A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				503FC3BA134ED461006083A1 /* Troy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		503FC3B9134ED461006083A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				503FC3CA134ED461006083A1 /* InfoPlist.strings in Resources */,
+				503FC3D7134ED461006083A1 /* MainWindow_iPhone.xib in Resources */,
+				503FC3DE134ED461006083A1 /* MainWindow_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		503FC3B7134ED461006083A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				503FC3CD134ED461006083A1 /* main.m in Sources */,
+				503FC3D0134ED461006083A1 /* TroyAppDelegate.m in Sources */,
+				503FC3D4134ED461006083A1 /* TroyAppDelegate_iPhone.m in Sources */,
+				503FC3DB134ED461006083A1 /* TroyAppDelegate_iPad.m in Sources */,
+				508AAC8D134EDC7F005E0AB4 /* CommunicationCenter.m in Sources */,
+				508AAC98134EDDB8005E0AB4 /* TACommand.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		503FC3C8134ED461006083A1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				503FC3C9134ED461006083A1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		503FC3D5134ED461006083A1 /* MainWindow_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				503FC3D6134ED461006083A1 /* en */,
+			);
+			name = MainWindow_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		503FC3DC134ED461006083A1 /* MainWindow_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				503FC3DD134ED461006083A1 /* en */,
+			);
+			name = MainWindow_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		503FC3DF134ED461006083A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		503FC3E0134ED461006083A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		503FC3E2134ED461006083A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Troy/Troy-Prefix.pch";
+				INFOPLIST_FILE = "Troy/Troy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		503FC3E3134ED461006083A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Troy/Troy-Prefix.pch";
+				INFOPLIST_FILE = "Troy/Troy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		503FC3B5134ED461006083A1 /* Build configuration list for PBXProject "Troy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				503FC3DF134ED461006083A1 /* Debug */,
+				503FC3E0134ED461006083A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		503FC3E1134ED461006083A1 /* Build configuration list for PBXNativeTarget "Troy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				503FC3E2134ED461006083A1 /* Debug */,
+				503FC3E3134ED461006083A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 503FC3B2134ED461006083A1 /* Project object */;
+}

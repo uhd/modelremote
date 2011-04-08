@@ -1,0 +1,217 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		509F5FB8134EE34D0036C676 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509F5FB7134EE34D0036C676 /* main.cpp */; };
+		509F5FBA134EE34D0036C676 /* Abed.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 509F5FB9134EE34D0036C676 /* Abed.1 */; };
+		509F5FC3134EE3A50036C676 /* TACommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509F5FC1134EE3A50036C676 /* TACommand.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		509F5FB1134EE34D0036C676 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				509F5FBA134EE34D0036C676 /* Abed.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		509F5FB3134EE34D0036C676 /* Abed */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Abed; sourceTree = BUILT_PRODUCTS_DIR; };
+		509F5FB7134EE34D0036C676 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		509F5FB9134EE34D0036C676 /* Abed.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Abed.1; sourceTree = "<group>"; };
+		509F5FC1134EE3A50036C676 /* TACommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TACommand.cpp; sourceTree = "<group>"; };
+		509F5FC2134EE3A50036C676 /* TACommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TACommand.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		509F5FB0134EE34D0036C676 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		509F5FA8134EE34D0036C676 = {
+			isa = PBXGroup;
+			children = (
+				509F5FB6134EE34D0036C676 /* Abed */,
+				509F5FB4134EE34D0036C676 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		509F5FB4134EE34D0036C676 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				509F5FB3134EE34D0036C676 /* Abed */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		509F5FB6134EE34D0036C676 /* Abed */ = {
+			isa = PBXGroup;
+			children = (
+				509F5FB7134EE34D0036C676 /* main.cpp */,
+				509F5FB9134EE34D0036C676 /* Abed.1 */,
+				509F5FC0134EE3900036C676 /* Supporting Files */,
+			);
+			path = Abed;
+			sourceTree = "<group>";
+		};
+		509F5FC0134EE3900036C676 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				509F5FC2134EE3A50036C676 /* TACommand.h */,
+				509F5FC1134EE3A50036C676 /* TACommand.cpp */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		509F5FB2134EE34D0036C676 /* Abed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 509F5FBD134EE34D0036C676 /* Build configuration list for PBXNativeTarget "Abed" */;
+			buildPhases = (
+				509F5FAF134EE34D0036C676 /* Sources */,
+				509F5FB0134EE34D0036C676 /* Frameworks */,
+				509F5FB1134EE34D0036C676 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Abed;
+			productName = Abed;
+			productReference = 509F5FB3134EE34D0036C676 /* Abed */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		509F5FAA134EE34D0036C676 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Clink Apps";
+			};
+			buildConfigurationList = 509F5FAD134EE34D0036C676 /* Build configuration list for PBXProject "Abed" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 509F5FA8134EE34D0036C676;
+			productRefGroup = 509F5FB4134EE34D0036C676 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				509F5FB2134EE34D0036C676 /* Abed */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		509F5FAF134EE34D0036C676 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509F5FB8134EE34D0036C676 /* main.cpp in Sources */,
+				509F5FC3134EE3A50036C676 /* TACommand.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		509F5FBB134EE34D0036C676 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		509F5FBC134EE34D0036C676 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		509F5FBE134EE34D0036C676 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		509F5FBF134EE34D0036C676 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		509F5FAD134EE34D0036C676 /* Build configuration list for PBXProject "Abed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509F5FBB134EE34D0036C676 /* Debug */,
+				509F5FBC134EE34D0036C676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		509F5FBD134EE34D0036C676 /* Build configuration list for PBXNativeTarget "Abed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509F5FBE134EE34D0036C676 /* Debug */,
+				509F5FBF134EE34D0036C676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 509F5FAA134EE34D0036C676 /* Project object */;
+}
