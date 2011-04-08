@@ -7,10 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AsyncSocket.h"
 
+@protocol CommunicationCenterDelegate <NSObject>
+- (void)didReceiveMessage:(NSData *)message;
+@end
 
 @interface CommunicationCenter : NSObject {
     
+    AsyncSocket *socket;
+    
 }
+
+- (void)connectToHost:(NSString *)hostAddress;
+- (BOOL)sendMessage:(NSData *)message;
 
 @end
