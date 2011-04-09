@@ -19,10 +19,11 @@
 		503FC3DE134ED461006083A1 /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 503FC3DC134ED461006083A1 /* MainWindow_iPad.xib */; };
 		508AAC8D134EDC7F005E0AB4 /* CommunicationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 508AAC8C134EDC7F005E0AB4 /* CommunicationCenter.m */; };
 		508AAC98134EDDB8005E0AB4 /* TACommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 508AAC97134EDDB8005E0AB4 /* TACommand.m */; };
+		50A75744135018BC0075357F /* iPadControlPadBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A75743135018BC0075357F /* iPadControlPadBackground.png */; };
 		50CF06CC134FCF91002A0468 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06CB134FCF91002A0468 /* AsyncSocket.m */; };
 		50CF06DB134FD105002A0468 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50CF06DA134FD105002A0468 /* CFNetwork.framework */; };
-		50CF06DF134FD804002A0468 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06DD134FD804002A0468 /* RootViewController.m */; };
-		50CF06E0134FD804002A0468 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CF06DE134FD804002A0468 /* RootViewController.xib */; };
+		50CF06DF134FD804002A0468 /* TouchpadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06DD134FD804002A0468 /* TouchpadViewController.m */; };
+		50CF06E0134FD804002A0468 /* TouchpadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CF06DE134FD804002A0468 /* TouchpadViewController.xib */; };
 		50CF06E4134FDB17002A0468 /* TouchpadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06E3134FDB17002A0468 /* TouchpadView.m */; };
 /* End PBXBuildFile section */
 
@@ -47,12 +48,13 @@
 		508AAC8C134EDC7F005E0AB4 /* CommunicationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationCenter.m; sourceTree = "<group>"; };
 		508AAC96134EDDB8005E0AB4 /* TACommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TACommand.h; sourceTree = "<group>"; };
 		508AAC97134EDDB8005E0AB4 /* TACommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TACommand.m; sourceTree = "<group>"; };
+		50A75743135018BC0075357F /* iPadControlPadBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPadControlPadBackground.png; sourceTree = "<group>"; };
 		50CF06CA134FCF91002A0468 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		50CF06CB134FCF91002A0468 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		50CF06DA134FD105002A0468 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		50CF06DC134FD804002A0468 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		50CF06DD134FD804002A0468 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		50CF06DE134FD804002A0468 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		50CF06DC134FD804002A0468 /* TouchpadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = TouchpadViewController.h; sourceTree = "<group>"; };
+		50CF06DD134FD804002A0468 /* TouchpadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchpadViewController.m; sourceTree = "<group>"; };
+		50CF06DE134FD804002A0468 /* TouchpadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouchpadViewController.xib; sourceTree = "<group>"; };
 		50CF06E2134FDB17002A0468 /* TouchpadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchpadView.h; sourceTree = "<group>"; };
 		50CF06E3134FDB17002A0468 /* TouchpadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchpadView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +111,7 @@
 				503FC3D8134ED461006083A1 /* iPad */,
 				503FC3C6134ED461006083A1 /* Supporting Files */,
 				50CF06E1134FD873002A0468 /* NIBs */,
+				50A7573D135015A80075357F /* Images */,
 			);
 			path = Troy;
 			sourceTree = "<group>";
@@ -126,8 +129,8 @@
 				508AAC97134EDDB8005E0AB4 /* TACommand.m */,
 				50CF06CA134FCF91002A0468 /* AsyncSocket.h */,
 				50CF06CB134FCF91002A0468 /* AsyncSocket.m */,
-				50CF06DC134FD804002A0468 /* RootViewController.h */,
-				50CF06DD134FD804002A0468 /* RootViewController.m */,
+				50CF06DC134FD804002A0468 /* TouchpadViewController.h */,
+				50CF06DD134FD804002A0468 /* TouchpadViewController.m */,
 				50CF06E2134FDB17002A0468 /* TouchpadView.h */,
 				50CF06E3134FDB17002A0468 /* TouchpadView.m */,
 			);
@@ -152,12 +155,20 @@
 			name = iPad;
 			sourceTree = "<group>";
 		};
+		50A7573D135015A80075357F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				50A75743135018BC0075357F /* iPadControlPadBackground.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		50CF06E1134FD873002A0468 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
 				503FC3D5134ED461006083A1 /* MainWindow_iPhone.xib */,
 				503FC3DC134ED461006083A1 /* MainWindow_iPad.xib */,
-				50CF06DE134FD804002A0468 /* RootViewController.xib */,
+				50CF06DE134FD804002A0468 /* TouchpadViewController.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -215,7 +226,8 @@
 				503FC3CA134ED461006083A1 /* InfoPlist.strings in Resources */,
 				503FC3D7134ED461006083A1 /* MainWindow_iPhone.xib in Resources */,
 				503FC3DE134ED461006083A1 /* MainWindow_iPad.xib in Resources */,
-				50CF06E0134FD804002A0468 /* RootViewController.xib in Resources */,
+				50CF06E0134FD804002A0468 /* TouchpadViewController.xib in Resources */,
+				50A75744135018BC0075357F /* iPadControlPadBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +245,7 @@
 				508AAC8D134EDC7F005E0AB4 /* CommunicationCenter.m in Sources */,
 				508AAC98134EDDB8005E0AB4 /* TACommand.m in Sources */,
 				50CF06CC134FCF91002A0468 /* AsyncSocket.m in Sources */,
-				50CF06DF134FD804002A0468 /* RootViewController.m in Sources */,
+				50CF06DF134FD804002A0468 /* TouchpadViewController.m in Sources */,
 				50CF06E4134FDB17002A0468 /* TouchpadView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
