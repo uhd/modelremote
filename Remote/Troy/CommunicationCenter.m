@@ -10,6 +10,8 @@
 
 @implementation CommunicationCenter
 
+@synthesize  delegate;
+
 static CommunicationCenter *instance;
 
 //Static host/port for now
@@ -34,9 +36,7 @@ const NSString *kHostName = @"192.168.1.113";
     if (self) {
         // Initialization code here.
         
-        socket = [[AsyncSocket alloc] initWithDelegate:self];
-        NSError *error;
-        
+        socket = [[AsyncSocket alloc] initWithDelegate:self];        
 
     }
     
@@ -59,6 +59,9 @@ const NSString *kHostName = @"192.168.1.113";
 }
 
 - (BOOL)sendMessage:(NSData *)message {
+    
+    
+    return YES;
     
 }
 

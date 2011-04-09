@@ -16,10 +16,13 @@
 @interface CommunicationCenter : NSObject {
     
     AsyncSocket *socket;
+    id delgate;
     
 }
 
 - (void)connectToHost:(NSString *)hostAddress;
 - (BOOL)sendMessage:(NSData *)message;
+
+@property (nonatomic, retain) id<CommunicationCenterDelegate> delegate;
 
 @end
