@@ -20,6 +20,7 @@
     
 }
 
++ (CommunicationCenter *)sharedCommunicationCenter;
 - (void)connectToHost:(NSString *)hostAddress;
 - (BOOL)sendMessage:(NSData *)message;
 
