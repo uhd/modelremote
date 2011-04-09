@@ -55,11 +55,9 @@ int main ()
         return 1;
     }
 
-    while (true) {
-        
-        TACommand command;
-        read(newsocket, &command, sizeof(command));
-        
+    TACommand command;
+    while (read(newsocket, &command, sizeof(command))) {
+    
         
         printf("COMMAND: %i, %i, %i\n", command.type, command.xDifference, command.yDifference);
 
