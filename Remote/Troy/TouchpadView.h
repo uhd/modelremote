@@ -10,7 +10,7 @@
 
 @protocol TouchpadDelegate <NSObject>
 
-- (void)touchpadDidMoveToPoint:(CGPoint)point;
+- (void)touchpadDidTouchPoint:(CGPoint)point;
 
 @end
 

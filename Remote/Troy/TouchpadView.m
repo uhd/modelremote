@@ -44,20 +44,19 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
 	CGPoint point = [[touches anyObject] locationInView:nil];
-    [delegate touchpadDidMoveToPoint:point];
+    [delegate touchpadDidTouchPoint:point];
     
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	
 	CGPoint point = [[touches anyObject] locationInView:nil];
-    [delegate touchpadDidMoveToPoint:point];
+    [delegate touchpadDidTouchPoint:point];
 	
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	
-	//[delegate didEndOnPoint:[[touches anyObject] locationInView:self.superview] sendingItem:self];
 	
 }
 
