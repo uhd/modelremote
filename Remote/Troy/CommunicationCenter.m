@@ -16,7 +16,7 @@ static CommunicationCenter *instance;
 
 //Static host/port for now
 const NSUInteger kPortNumber = 1254;
-const NSString *kHostName = @"192.168.1.113";
+const NSString *kHostName = @"192.168.0.200";
 
 + (CommunicationCenter *)sharedCommunicationCenter {
 	
@@ -36,7 +36,8 @@ const NSString *kHostName = @"192.168.1.113";
     if (self) {
         // Initialization code here.
         
-        socket = [[AsyncSocket alloc] initWithDelegate:self];        
+        socket = [[AsyncSocket alloc] initWithDelegate:self];    
+        [self connectToHost:kHostName];
 
     }
     
@@ -60,7 +61,12 @@ const NSString *kHostName = @"192.168.1.113";
 
 - (BOOL)sendMessage:(NSData *)message {
     
-    
+    if ([socket isConnected]) {
+        [socket writeData:message withTimeout:30 tag:0];
+    } else {
+        NSLog(@"Not connected");
+        //[self connectToHost:kHostName];
+    }
     return YES;
     
 }
