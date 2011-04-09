@@ -9,9 +9,15 @@
 //Port: 1254
 
 #include <iostream>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <netdb.h>
+
 using namespace std;
 
 const int PORT_NUMBER = 1254;
@@ -34,7 +40,7 @@ int main ()
     bzero((char*) &serverAddress, sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_addr.s_addr = INADDR_ANY;
-    serverAddress.sin_port = PORT_NUMBER;
+    serverAddress.sin_port = htons(PORT_NUMBER);// PORT_NUMBER;
     if (bind(socketDesc, (struct sockaddr *) &serverAddress, sizeof(serverAddress)) < 0)
     {
         cout<<"Failure on port bind.  Ending.";
