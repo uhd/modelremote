@@ -18,7 +18,6 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        self.userInteractionEnabled = YES;
     }
     
     return self;
@@ -35,8 +34,9 @@
 
 - (void)configure {
 
-    self.backgroundColor = [UIColor grayColor];
+    self.image = [UIImage imageNamed:@"iPadControlPadBackground.png"];
     self.userInteractionEnabled = YES;
+    self.multipleTouchEnabled = YES;
 
 }
 
@@ -50,6 +50,7 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	
+    NSLog(@"%i", [touches count]);
 	CGPoint point = [[touches anyObject] locationInView:nil];
     [delegate touchpadDidTouchPoint:point];
 	
