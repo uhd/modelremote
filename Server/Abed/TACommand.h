@@ -22,8 +22,8 @@ typedef enum {
 typedef struct TACommand {
     
     TACommandType type;
-    int xCoordinate;
-    int yCoordinate;
+    int xDifference;
+    int yDifference;
     
 } TACommand;
 

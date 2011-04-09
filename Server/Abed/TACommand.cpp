@@ -12,8 +12,8 @@ TACommand TACommandMake(TACommandType commandType, int x, int y) {
     
     TACommand newCommand;
     newCommand.type = commandType;
-    newCommand.xCoordinate = x;
-    newCommand.yCoordinate = y;
+    newCommand.xDifference = x;
+    newCommand.yDifference = y;
     
     return newCommand;
 }
