@@ -8,10 +8,11 @@
 
 #import "TACommand.h"
 
-TACommand TACommandMake(TACommandType commandType, int x, int y) {
+TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int x, int y) {
     
     TACommand newCommand;
     newCommand.type = commandType;
+    newCommand.touch = touchType;
     newCommand.xDifference = x;
     newCommand.yDifference = y;
     
@@ -19,5 +20,5 @@ TACommand TACommandMake(TACommandType commandType, int x, int y) {
 }
 
 NSString *NSStringFromTACommand(TACommand command) {
-    return [NSString stringWithFormat:@"%i, %i, %i", command.type, command.xDifference, command.yDifference];
+    return [NSString stringWithFormat:@"%i, %i, %i, %i", command.type, command.touch, command.xDifference, command.yDifference];
 }
