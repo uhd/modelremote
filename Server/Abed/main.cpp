@@ -17,7 +17,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
-
+#include "TACommand.h"
 using namespace std;
 
 const int PORT_NUMBER = 1254;
@@ -54,13 +54,19 @@ int main ()
         cout<<"Failed to accept client.  Ending.";
         return 1;
     }
-    bzero(buffer, BUFFER_SIZE);
-    data = read(newsocket, buffer, BUFFER_SIZE);
+
+    TACommand test;
+    read(newsocket, &test, sizeof(test));
+
+        
+    printf("COMMAND: %i, %i, %i\n", test.type, test.xDifference, test.yDifference);
+    
+
+    
     if (data < 0)
     {
         cout<<"Failed to read data from client.";
     }
-    cout<<data;
     
     close(newsocket);
     close(socketDesc);
