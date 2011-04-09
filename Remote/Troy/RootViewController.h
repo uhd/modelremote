@@ -3,13 +3,13 @@
 //  Troy
 //
 //  Created by Max Goedjen on 4/8/11.
-//  Copyright 2011 Clink Apps. All rights reserved.
+//  UHD
 //
 
 #import <UIKit/UIKit.h>
+#import "TouchpadView.h"
 
-
-@interface RootViewController : UIViewController {
+@interface RootViewController : UIViewController <TouchpadDelegate> {
     
 }
 
