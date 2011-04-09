@@ -8,9 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol TouchpadDelegate <NSObject>
+
+- (void)touchpadDidTouchPoint:(CGPoint)point;
+
+@end
 
 @interface TouchpadView : UIImageView {
     
+    id delegate;
+    
 }
+
+@property (nonatomic, retain) id<TouchpadDelegate> delegate;
+
+- (void)configure;
 
 @end
