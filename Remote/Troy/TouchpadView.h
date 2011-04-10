@@ -13,7 +13,9 @@
 - (void)touchpadDidBeginTouchPoint:(CGPoint)point;
 - (void)touchpadDidTouchPoint:(CGPoint)point;
 - (void)touchpadDidEndTouchPoint:(CGPoint)point;
+- (void)touchpadDidBeginPinch;
 - (void)touchpadDidPinchWithScale:(float)scale;
+- (void)touchpadDidEndPinch;
 
 @end
 

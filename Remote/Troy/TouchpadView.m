@@ -47,36 +47,53 @@
 #pragma mark touch interpretation
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
-	CGPoint point = [[touches anyObject] locationInView:nil];
-    [delegate touchpadDidBeginTouchPoint:point];
-    
+    if ([[touches allObjects] count] == 1) {
+        CGPoint point = [[touches anyObject] locationInView:nil];
+        [delegate touchpadDidBeginTouchPoint:point];
+    }
+        
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	
     if ([touches count] == 1) {
-
         CGPoint point = [[touches anyObject] locationInView:nil];
         [delegate touchpadDidTouchPoint:point];
-
     }
 	
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	
-    CGPoint point = [[touches anyObject] locationInView:nil];
-    [delegate touchpadDidEndTouchPoint:point];
-
+    if ([[touches allObjects] count] == 1) {
+        CGPoint point = [[touches anyObject] locationInView:nil];
+        [delegate touchpadDidEndTouchPoint:point];
+    }
+    
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-		
+
 }
 
 - (void)twoFingerPinch:(UIPinchGestureRecognizer *)recognizer {
     
-    [delegate touchpadDidPinchWithScale:recognizer.scale];
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            [delegate touchpadDidBeginPinch];
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+            [delegate touchpadDidPinchWithScale:recognizer.scale];
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+            [delegate touchpadDidEndPinch];
+            break;
+            
+        default:
+            break;
+    }
     
 }
 
