@@ -65,6 +65,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark touch handling
 - (void)touchpadDidBeginTouchPoint:(CGPoint)point {
     
     TACommand command = TACommandMake(TACommandTypePan, TACommandTouchStart, (point.x - 384), (point.y - 512));
@@ -87,9 +88,24 @@
 
 }
 
+#pragma mark pinch handling
+- (void)touchpadDidBeginPinch {
+    
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchStart, 0, 0);
+    [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
+    
+}
+
 - (void)touchpadDidPinchWithScale:(float)scale {
 
     TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchMove, 0, scale);
+    [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
+
+}
+
+- (void)touchpadDidEndPinch {
+    
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchEnd, 0, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
