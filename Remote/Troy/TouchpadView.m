@@ -18,6 +18,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+
     }
     
     return self;
@@ -37,6 +38,9 @@
     self.image = [UIImage imageNamed:@"iPadControlPadBackground.png"];
     self.userInteractionEnabled = YES;
     self.multipleTouchEnabled = YES;
+    UIPinchGestureRecognizer *twoFingerPinch = 
+    [[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(twoFingerPinch:)] autorelease];
+    [self addGestureRecognizer:twoFingerPinch];
 
 }
 
@@ -44,25 +48,36 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
 	CGPoint point = [[touches anyObject] locationInView:nil];
-    [delegate touchpadDidTouchPoint:point];
+    [delegate touchpadDidBeginTouchPoint:point];
     
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	
-    NSLog(@"%i", [touches count]);
-	CGPoint point = [[touches anyObject] locationInView:nil];
-    [delegate touchpadDidTouchPoint:point];
+    if ([touches count] == 1) {
+
+        CGPoint point = [[touches anyObject] locationInView:nil];
+        [delegate touchpadDidTouchPoint:point];
+
+    }
 	
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	
-	
+    CGPoint point = [[touches anyObject] locationInView:nil];
+    [delegate touchpadDidEndTouchPoint:point];
+
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
 		
+}
+
+- (void)twoFingerPinch:(UIPinchGestureRecognizer *)recognizer {
+    
+    [delegate touchpadDidPinchWithScale:recognizer.scale];
+    
 }
 
 @end

@@ -10,7 +10,10 @@
 
 @protocol TouchpadDelegate <NSObject>
 
+- (void)touchpadDidBeginTouchPoint:(CGPoint)point;
 - (void)touchpadDidTouchPoint:(CGPoint)point;
+- (void)touchpadDidEndTouchPoint:(CGPoint)point;
+- (void)touchpadDidPinchWithScale:(float)scale;
 
 @end
 
