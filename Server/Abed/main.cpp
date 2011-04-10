@@ -5,23 +5,15 @@
 //  Created by Max Goedjen on 4/8/11.
 //  UHD
 //
-//Port: 1254
 
 #include "server.h"
 
 int main ()
 {
-    server server;
+    Server server;
     
     server.initialize();
-    server.connectClient();
+    server.readData();
     
-    TACommand command;
-    while (server.readData(command)) 
-    {
-        printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
-    }
-    
-    server.closeServer("Successful close.");
     return 0;
 }

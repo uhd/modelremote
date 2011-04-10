@@ -10,7 +10,7 @@
 		509F5FB8134EE34D0036C676 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509F5FB7134EE34D0036C676 /* main.cpp */; };
 		509F5FBA134EE34D0036C676 /* Abed.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 509F5FB9134EE34D0036C676 /* Abed.1 */; };
 		509F5FC3134EE3A50036C676 /* TACommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509F5FC1134EE3A50036C676 /* TACommand.cpp */; };
-		D329452F13513E6900E298C0 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D329452D13513E6900E298C0 /* server.cpp */; };
+		50AEE2B713518EC700AB75E7 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AEE2B513518EC700AB75E7 /* Server.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,8 +32,8 @@
 		509F5FB9134EE34D0036C676 /* Abed.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Abed.1; sourceTree = "<group>"; };
 		509F5FC1134EE3A50036C676 /* TACommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TACommand.cpp; sourceTree = "<group>"; };
 		509F5FC2134EE3A50036C676 /* TACommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TACommand.h; sourceTree = "<group>"; };
-		D329452D13513E6900E298C0 /* server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = server.cpp; sourceTree = "<group>"; };
-		D329452E13513E6900E298C0 /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; path = server.h; sourceTree = "<group>"; };
+		50AEE2B513518EC700AB75E7 /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
+		50AEE2B613518EC700AB75E7 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				509F5FB7134EE34D0036C676 /* main.cpp */,
-				D329452D13513E6900E298C0 /* server.cpp */,
-				D329452E13513E6900E298C0 /* server.h */,
+				50AEE2B613518EC700AB75E7 /* Server.h */,
+				50AEE2B513518EC700AB75E7 /* Server.cpp */,
 				509F5FB9134EE34D0036C676 /* Abed.1 */,
 				509F5FC0134EE3900036C676 /* Supporting Files */,
 			);
@@ -136,7 +136,7 @@
 			files = (
 				509F5FB8134EE34D0036C676 /* main.cpp in Sources */,
 				509F5FC3134EE3A50036C676 /* TACommand.cpp in Sources */,
-				D329452F13513E6900E298C0 /* server.cpp in Sources */,
+				50AEE2B713518EC700AB75E7 /* Server.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
