@@ -1,5 +1,5 @@
 //
-//  server.cpp
+//  Server.cpp
 //  Abed
 //
 //  Created by Brian Holtkamp on 4/9/11.
@@ -8,7 +8,7 @@
 
 #include "server.h"
 
-void server::initialize()
+void Server::initialize()
 {
     socketDesc = socket(AF_INET, SOCK_STREAM, 0);
     if (socketDesc < 0)
@@ -23,9 +23,10 @@ void server::initialize()
     {
         closeServer("Failure on port bind.");
     }
+    connectClient();
 }
 
-void server::connectClient()
+void Server::connectClient()
 {
     listen(socketDesc, 5);
     client = sizeof(clientAddress);
@@ -37,16 +38,25 @@ void server::connectClient()
 
 }
 
-int server::readData(TACommand command)
+void Server::readData()
 {
-    return(read(newSocketDesc, &command, sizeof(command)));
+    
+    TACommand command;
+
+    while (read(newSocketDesc, &command, sizeof(command))) {
+
+        printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
+        //delegate.readCommand(command);
+
+    }
+    
+    closeServer("Client disconnected");
+    
 }
 
-void server::closeServer(string error)
+void Server::closeServer(string message)
 {
     close(socketDesc);
     close(newSocketDesc);
-    cout<<"Server closing: "<<error<<" Press enter to terminate.";
-    cin.get(); cin.get();
-    exit(1);
+    cout<<"Server closing: "<< message << "\n";
 }

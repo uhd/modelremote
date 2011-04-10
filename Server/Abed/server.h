@@ -1,5 +1,5 @@
 //
-//  server.h
+//  Server.h
 //  Abed
 //
 //  Created by Brian Holtkamp on 4/9/11.
@@ -15,16 +15,17 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include "TACommand.h"
+
 using namespace std;
 
 const int PORT_NUMBER = 1254;
 
-class server
+class Server
 {
     public:
     void initialize();
     void connectClient();
-    int readData(TACommand);
+    void readData();
     void closeServer(string);
     
     private:
