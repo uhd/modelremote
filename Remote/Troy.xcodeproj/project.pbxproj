@@ -80,7 +80,6 @@
 		503FC3B0134ED461006083A1 = {
 			isa = PBXGroup;
 			children = (
-				50A7574B135134620075357F /* CoreMotion.framework */,
 				503FC3C5134ED461006083A1 /* Troy */,
 				503FC3BE134ED461006083A1 /* Frameworks */,
 				503FC3BC134ED461006083A1 /* Products */,
@@ -98,6 +97,7 @@
 		503FC3BE134ED461006083A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50A7574B135134620075357F /* CoreMotion.framework */,
 				50CF06DA134FD105002A0468 /* CFNetwork.framework */,
 				503FC3BF134ED461006083A1 /* UIKit.framework */,
 				503FC3C1134ED461006083A1 /* Foundation.framework */,
