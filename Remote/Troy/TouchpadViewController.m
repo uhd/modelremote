@@ -18,13 +18,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        [CommunicationCenter sharedCommunicationCenter];
+        motionMonitor = [[MotionMonitor alloc] init];
+
     }
     return self;
 }
 
 - (void)dealloc
 {
+    [motionMonitor release];
     [super dealloc];
 }
 
@@ -47,7 +49,7 @@
     touchpad.delegate = self;
     [self.view addSubview:touchpad];
     [touchpad configure];
-
+    
 }
 
 - (void)viewDidUnload

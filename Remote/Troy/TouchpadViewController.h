@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "TouchpadView.h"
+#import "MotionMonitor.h"
 
 @interface TouchpadViewController : UIViewController <TouchpadDelegate> {
+    
+    MotionMonitor *motionMonitor;
     
 }
 
