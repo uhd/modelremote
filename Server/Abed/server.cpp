@@ -37,7 +37,7 @@ void server::connectClient()
 
 }
 
-int server::readPort(TACommand command)
+int server::readData(TACommand command)
 {
     return(read(newSocketDesc, &command, sizeof(command)));
 }

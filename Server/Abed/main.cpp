@@ -17,7 +17,7 @@ int main ()
     server.connectClient();
     
     TACommand command;
-    while (server.readPort(command)) 
+    while (server.readData(command)) 
     {
         printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     }

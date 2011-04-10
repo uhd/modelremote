@@ -24,7 +24,7 @@ class server
     public:
     void initialize();
     void connectClient();
-    int readPort(TACommand);
+    int readData(TACommand);
     void closeServer(string);
     
     private:
