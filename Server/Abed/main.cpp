@@ -59,7 +59,7 @@ int main ()
     while (read(newsocket, &command, sizeof(command))) {
     
         
-        printf("COMMAND: %i, %i, %i\n", command.type, command.xDifference, command.yDifference);
+        printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
 
     }
     
