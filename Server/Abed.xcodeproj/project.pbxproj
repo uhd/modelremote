@@ -11,6 +11,7 @@
 		509F5FBA134EE34D0036C676 /* Abed.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 509F5FB9134EE34D0036C676 /* Abed.1 */; };
 		509F5FC3134EE3A50036C676 /* TACommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509F5FC1134EE3A50036C676 /* TACommand.cpp */; };
 		50AEE2B713518EC700AB75E7 /* Server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AEE2B513518EC700AB75E7 /* Server.cpp */; };
+		50AEE2BA1351930700AB75E7 /* CommandInterpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AEE2B81351930700AB75E7 /* CommandInterpreter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		509F5FC2134EE3A50036C676 /* TACommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TACommand.h; sourceTree = "<group>"; };
 		50AEE2B513518EC700AB75E7 /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
 		50AEE2B613518EC700AB75E7 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		50AEE2B81351930700AB75E7 /* CommandInterpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandInterpreter.cpp; sourceTree = "<group>"; };
+		50AEE2B91351930700AB75E7 /* CommandInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandInterpreter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				509F5FB7134EE34D0036C676 /* main.cpp */,
 				50AEE2B613518EC700AB75E7 /* Server.h */,
 				50AEE2B513518EC700AB75E7 /* Server.cpp */,
+				50AEE2B91351930700AB75E7 /* CommandInterpreter.h */,
+				50AEE2B81351930700AB75E7 /* CommandInterpreter.cpp */,
 				509F5FB9134EE34D0036C676 /* Abed.1 */,
 				509F5FC0134EE3900036C676 /* Supporting Files */,
 			);
@@ -137,6 +142,7 @@
 				509F5FB8134EE34D0036C676 /* main.cpp in Sources */,
 				509F5FC3134EE3A50036C676 /* TACommand.cpp in Sources */,
 				50AEE2B713518EC700AB75E7 /* Server.cpp in Sources */,
+				50AEE2BA1351930700AB75E7 /* CommandInterpreter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
