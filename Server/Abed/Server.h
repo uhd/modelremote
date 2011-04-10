@@ -15,6 +15,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include "TACommand.h"
+#import "CommandInterpreter.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ class Server
     public:
     void initialize();
     void connectClient();
+    void setDelegate(CommandInterpreter dataDelegate);
     void readData();
     void closeServer(string);
     
@@ -34,4 +36,6 @@ class Server
     socklen_t client;
     struct sockaddr_in serverAddress;
     struct sockaddr_in clientAddress;    
+    CommandInterpreter delegate;
+    
 };

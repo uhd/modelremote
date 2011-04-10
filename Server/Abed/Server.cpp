@@ -6,7 +6,7 @@
 //  UHD
 //
 
-#include "server.h"
+#include "Server.h"
 
 void Server::initialize()
 {
@@ -38,6 +38,13 @@ void Server::connectClient()
 
 }
 
+void Server::setDelegate(CommandInterpreter dataDelegate)
+{
+    
+    delegate = dataDelegate;
+    
+}
+
 void Server::readData()
 {
     
@@ -45,8 +52,7 @@ void Server::readData()
 
     while (read(newSocketDesc, &command, sizeof(command))) {
 
-        printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
-        //delegate.readCommand(command);
+        delegate.handleCommand(command);
 
     }
     

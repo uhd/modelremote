@@ -6,13 +6,19 @@
 //  UHD
 //
 
-#include "server.h"
+#include "Server.h"
+#include "CommandInterpreter.h"
 
 int main ()
 {
     Server server;
-    
     server.initialize();
+    
+    CommandInterpreter interpreter;
+    interpreter.initialize();
+    
+    server.setDelegate(interpreter);
+    
     server.readData();
     
     return 0;
