@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AsyncSocket.h"
+#import "TACommand.h"
 
 @protocol CommunicationCenterDelegate <NSObject>
 - (void)didReceiveMessage:(NSData *)message;
@@ -23,6 +24,7 @@
 + (CommunicationCenter *)sharedCommunicationCenter;
 - (void)connectToHost:(NSString *)hostAddress;
 - (BOOL)sendMessage:(NSData *)message;
+- (BOOL)sendCommand:(TACommand)command;
 
 @property (nonatomic, retain) id<CommunicationCenterDelegate> delegate;
 

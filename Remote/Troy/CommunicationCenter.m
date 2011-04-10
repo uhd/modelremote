@@ -64,9 +64,17 @@ const NSString *kHostName = @"192.168.0.200";
     if ([socket isConnected]) {
         [socket writeData:message withTimeout:30 tag:0];
     } else {
-        NSLog(@"Not connected");
         //[self connectToHost:kHostName];
     }
+    return YES;
+    
+}
+
+- (BOOL)sendCommand:(TACommand)command {
+    
+    NSData *data = [NSData dataWithBytes:&command length:sizeof(command)];
+    [self sendMessage:data];
+    
     return YES;
     
 }
