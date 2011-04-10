@@ -63,16 +63,33 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)touchpadDidBeginTouchPoint:(CGPoint)point {
+    
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchStart, (point.x - 384), (point.y - 512));
+    [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
+
+}
+
+
 - (void)touchpadDidTouchPoint:(CGPoint)point {
     
-    NSLog(@"POINT: %@", NSStringFromCGPoint(point));
-    TACommand command = TACommandMake(TACommandTypeZoom, (point.x - 384), (point.y - 512));
-    NSLog(@"TACommand %@", NSStringFromTACommand(command));
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, (point.x - 384), (point.y - 512));
+    [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
-    NSData *data = [NSData dataWithBytes:&command length:sizeof(command)];
+}
 
-    [[CommunicationCenter sharedCommunicationCenter] sendMessage:data];
+- (void)touchpadDidEndTouchPoint:(CGPoint)point {
     
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, (point.x - 384), (point.y - 512));
+    [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
+
+}
+
+- (void)touchpadDidPinchWithScale:(float)scale {
+
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchMove, 0, scale);
+    [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
+
 }
 
 @end
