@@ -13,15 +13,11 @@
 
 @implementation TouchpadViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        motionMonitor = [[MotionMonitor alloc] init];
-
-    }
-    return self;
+- (void)loadView {
+    TouchpadView *touchpad = [[TouchpadView alloc] init];
+    touchpad.delegate = self;
+    [touchpad configure];
+    self.view = touchpad;
 }
 
 - (void)dealloc
@@ -43,12 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 
-    TouchpadView *touchpad = [[TouchpadView alloc] initWithFrame:self.view.frame];
-    touchpad.delegate = self;
-    [self.view addSubview:touchpad];
-    [touchpad configure];
+    motionMonitor = [[MotionMonitor alloc] init];
     
 }
 
