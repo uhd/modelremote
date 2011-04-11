@@ -10,6 +10,7 @@
 
 void Server::initialize()
 {
+    cout<<"Starting server...";
     socketDesc = socket(AF_INET, SOCK_STREAM, 0);
     if (socketDesc < 0)
     {
@@ -23,6 +24,7 @@ void Server::initialize()
     {
         closeServer("Failure on port bind.");
     }
+    
     connectClient();
 }
 
