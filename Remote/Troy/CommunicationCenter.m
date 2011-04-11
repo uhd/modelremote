@@ -16,7 +16,7 @@ static CommunicationCenter *instance;
 
 //Static host/port for now
 const NSUInteger kPortNumber = 1254;
-const NSString *kHostName = @"192.168.0.200";
+const NSString *kDefaultHost = @"192.168.0.200";
 
 + (CommunicationCenter *)sharedCommunicationCenter {
 	
@@ -37,7 +37,7 @@ const NSString *kHostName = @"192.168.0.200";
         // Initialization code here.
         
         socket = [[AsyncSocket alloc] initWithDelegate:self];    
-        [self connectToHost:kHostName];
+        [self connectToHost:kDefaultHost];
 
     }
     
@@ -54,8 +54,15 @@ const NSString *kHostName = @"192.168.0.200";
 #pragma mark control
 - (void)connectToHost:(NSString *)hostAddress {
     
+    NSLog(@"Attempting to connect to host %@", hostAddress);
     NSError *error;
     [socket connectToHost:hostAddress onPort:kPortNumber error:&error];
+    
+}
+
+- (void)connectToDefaultHost {
+    
+    [self connectToHost:kDefaultHost];
     
 }
 
@@ -64,7 +71,7 @@ const NSString *kHostName = @"192.168.0.200";
     if ([socket isConnected]) {
         [socket writeData:message withTimeout:30 tag:0];
     } else {
-        //[self connectToHost:kHostName];
+        //[self connectToHost:kDefaultHost];
     }
     return YES;
     
@@ -85,10 +92,15 @@ const NSString *kHostName = @"192.168.0.200";
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
     
     NSLog(@"Connected to %@ (%i)", host, port);
-    
-    //[socket writeData:[command tranportableCommandData] withTimeout:60 tag:0];
+    [delegate didConnectToHost:host];
     
 }
 
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock {
+    
+    NSLog(@"Disconnected");
+    [delegate didDisconnect];
+    
+}
 
 @end

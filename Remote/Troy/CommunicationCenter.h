@@ -11,6 +11,8 @@
 #import "TACommand.h"
 
 @protocol CommunicationCenterDelegate <NSObject>
+- (void)didConnectToHost:(NSString *)host;
+- (void)didDisconnect;
 - (void)didReceiveMessage:(NSData *)message;
 @end
 
@@ -23,6 +25,9 @@
 
 + (CommunicationCenter *)sharedCommunicationCenter;
 - (void)connectToHost:(NSString *)hostAddress;
+- (void)connectToDefaultHost;
+- (BOOL)isConnected;
+
 - (BOOL)sendMessage:(NSData *)message;
 - (BOOL)sendCommand:(TACommand)command;
 
