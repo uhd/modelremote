@@ -9,7 +9,6 @@
 #import "TouchpadViewController.h"
 #import "TouchpadView.h"
 #import "TACommand.h"
-#import "CommunicationCenter.h"
 
 @implementation TouchpadViewController
 
@@ -41,6 +40,24 @@
     [super viewDidLoad];
 
     motionMonitor = [[MotionMonitor alloc] init];
+    [[CommunicationCenter sharedCommunicationCenter] setDelegate:self];
+    
+    UIButton *connectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    connectionButton.frame = CGRectMake(0, CGRectGetHeight(self.view.frame) - 50, CGRectGetWidth(self.view.frame), 50);
+    [connectionButton addTarget:[CommunicationCenter sharedCommunicationCenter] action:@selector(connectToDefaultHost) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:connectionButton];
+    
+    
+    statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 30)];
+    [connectionButton addSubview:statusLabel];
+    [statusLabel setShadowColor:[UIColor whiteColor]];
+    [statusLabel setShadowOffset:CGSizeMake(0, 2)];
+    [statusLabel setBackgroundColor:[UIColor clearColor]];
+    [statusLabel setTextColor:[UIColor colorWithWhite:0.169 alpha:1.000]];
+    [statusLabel setTextAlignment:UITextAlignmentCenter];
+    [statusLabel setFont:[UIFont boldSystemFontOfSize:18]];
+    
+    statusLabel.text = @"Not Connected";
     
 }
 
@@ -100,6 +117,23 @@
     TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchEnd, 0, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
+}
+
+#pragma mark communication handling
+- (void)didConnectToHost:(NSString *)host {
+ 
+    statusLabel.text = @"Connected to UHD VizWall";
+
+}
+
+- (void)didDisconnect {
+    
+    statusLabel.text = @"Not Connected";
+
+}
+
+- (void)didReceiveMessage:(NSData *)message {
+    
 }
 
 @end

@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TouchpadView.h"
 #import "MotionMonitor.h"
+#import "CommunicationCenter.h"
 
-@interface TouchpadViewController : UIViewController <TouchpadDelegate> {
+@interface TouchpadViewController : UIViewController <TouchpadDelegate, CommunicationCenterDelegate> {
     
     MotionMonitor *motionMonitor;
+    UILabel *statusLabel;
     
 }
 
