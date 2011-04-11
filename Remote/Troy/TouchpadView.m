@@ -35,7 +35,12 @@
 
 - (void)configure {
 
-    self.image = [UIImage imageNamed:@"iPadControlPadBackground.png"];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.image = [UIImage imageNamed:@"iPadControlPadBackground.png"];
+    } else {
+        self.image = [UIImage imageNamed:@"iPhoneControlPadBackground.png"];
+    }
+    
     self.userInteractionEnabled = YES;
     self.multipleTouchEnabled = YES;
     UIPinchGestureRecognizer *twoFingerPinch = 
