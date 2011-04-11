@@ -16,7 +16,8 @@ static CommunicationCenter *instance;
 
 //Static host/port for now
 const NSUInteger kPortNumber = 1254;
-const NSString *kDefaultHost = @"192.168.0.200";
+const NSString *kDefaultHost = @"192.168.0.4";
+//const NSString *kDefaultHost = @"192.168.1.113";
 
 + (CommunicationCenter *)sharedCommunicationCenter {
 	
@@ -54,9 +55,13 @@ const NSString *kDefaultHost = @"192.168.0.200";
 #pragma mark control
 - (void)connectToHost:(NSString *)hostAddress {
     
-    NSLog(@"Attempting to connect to host %@", hostAddress);
-    NSError *error;
-    [socket connectToHost:hostAddress onPort:kPortNumber error:&error];
+    if (![self isConnected]) {
+     
+        NSLog(@"Attempting to connect to host %@", hostAddress);
+        NSError *error;
+        [socket connectToHost:hostAddress onPort:kPortNumber error:&error];
+
+    }
     
 }
 
@@ -66,9 +71,15 @@ const NSString *kDefaultHost = @"192.168.0.200";
     
 }
 
+- (BOOL)isConnected {
+    
+    return [socket isConnected];
+    
+}
+
 - (BOOL)sendMessage:(NSData *)message {
     
-    if ([socket isConnected]) {
+    if ([self isConnected]) {
         [socket writeData:message withTimeout:30 tag:0];
     } else {
         //[self connectToHost:kDefaultHost];
