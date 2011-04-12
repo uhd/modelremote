@@ -6,16 +6,18 @@
 //  UHD
 //
 
-#include "Server.h"
+#import "Server.h"
 
 void Server::initialize()
 {
-    cout<<"Starting server...";
+    printf("Starting server...");
+    
     socketDesc = socket(AF_INET, SOCK_STREAM, 0);
     if (socketDesc < 0)
     {
         closeServer("Failed to open socket.");
     }
+    
     bzero((char*) &serverAddress, sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_addr.s_addr = INADDR_ANY;
@@ -66,5 +68,6 @@ void Server::closeServer(string message)
 {
     close(socketDesc);
     close(newSocketDesc);
+    
     cout<<"Server closing: "<< message << "\n";
 }
