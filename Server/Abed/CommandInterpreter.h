@@ -7,6 +7,8 @@
 //
 
 #include "TACommand.h"
+#include <X11/Xlib.h>
+#include <X11/extensions/Xrandr.h>
 
 using namespace std;
 
@@ -15,6 +17,9 @@ class CommandInterpreter
 public:
     void initialize();
     void handleCommand(TACommand command);
+    void click(TACommand command);
+    void moveMouse(TACommand command);
+    void releaseMouse(TACommand command);
     
 private:
     
