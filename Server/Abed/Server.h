@@ -6,16 +6,15 @@
 //  UHD
 //
 
-#import <stdio.h>
-#import <string.h>
-#import <stdlib.h>
-#import <unistd.h>
-#import <sys/types.h>
-#import <sys/socket.h>
-#import <netinet/in.h>
-#import <netdb.h>
-#import "TACommand.h"
-#import "CommandInterpreter.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include "CommandInterpreter.h"
 
 using namespace std;
 

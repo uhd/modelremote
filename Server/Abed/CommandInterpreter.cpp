@@ -6,7 +6,7 @@
 //  UHD
 //
 
-#import "CommandInterpreter.h"
+#include "CommandInterpreter.h"
 
 void CommandInterpreter::initialize()
 {

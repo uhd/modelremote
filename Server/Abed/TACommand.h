@@ -6,8 +6,8 @@
 //  UHD
 //
 
-#import <iostream>
-#import <string>
+#include <iostream>
+#include <string>
 
 using namespace std;
 

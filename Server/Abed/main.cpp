@@ -6,8 +6,7 @@
 //  UHD
 //
 
-#import "Server.h"
-#import "CommandInterpreter.h"
+#include "Server.h"
 
 int main ()
 {
