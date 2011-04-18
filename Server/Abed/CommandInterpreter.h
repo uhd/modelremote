@@ -24,6 +24,7 @@ public:
     
 private:
     Display *display;
+    Window rootWindow;
     int xOrigin;
     int yOrigin;
 };

@@ -15,10 +15,10 @@ CommandInterpreter::CommandInterpreter()
     int numberSizes;
     Rotation originalRotation;
     
-    Window root = RootWindow(display, 0);
+    rootWindow = RootWindow(display, 0);
     XRRScreenSize *xrrs = XRRSizes(display, 0, &numberSizes);
     
-    XRRScreenConfiguration *configuration = XRRGetScreenInfo(display, root);
+    XRRScreenConfiguration *configuration = XRRGetScreenInfo(display, rootWindow);
     SizeID originalSize = XRRConfigCurrentConfiguration(configuration, &originalRotation);
     
     int width=xrrs[originalSize].width;
@@ -76,8 +76,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    Window root = DefaultRootWindow(display);
-    XWarpPointer (display, None, root, 0, 0, 0, 0, (xOrigin + command.xDifference), (yOrigin + command.yDifference));
+    XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, (xOrigin + command.xDifference), (yOrigin + command.yDifference));
     XFlush (display);
     usleep (1);
 }
