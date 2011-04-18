@@ -29,8 +29,6 @@ CommandInterpreter::CommandInterpreter()
     xOrigin = width / 2;
     yOrigin = height / 2;
     
-    cout<<"Server Started, Current Configuration: "<<endl<<"Width: "<<width<<" "<<"Height: "<<height;
-
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
