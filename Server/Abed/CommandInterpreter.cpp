@@ -8,7 +8,7 @@
 
 #include "CommandInterpreter.h"
 
-const int deviceScale = 1.5;
+const int deviceScale = 2.5;
 
 CommandInterpreter::CommandInterpreter()
 {
