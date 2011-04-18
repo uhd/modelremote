@@ -29,23 +29,23 @@ CommandInterpreter::CommandInterpreter()
     xOrigin = width / 2;
     yOrigin = height / 2;
     
-    cout<<"Server Started, Current Configuration: "<<endl<<"Width: "<<width<<endl<<"Height: "<<height;
+    cout<<"Server Started, Current Configuration: "<<endl<<"Width: "<<width<<" "<<"Height: "<<height;
 
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
 {
     
-    //printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
+    printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     moveMouse(command);
 
 }
 
 void CommandInterpreter::click(TACommand command)
 {
-    /*Event event;
+    XEvent event;
     memset (&event, 0, sizeof (event));
-    event.xbutton.button = command.;
+    event.xbutton.button = 4;
     event.xbutton.same_screen = True;
     event.xbutton.subwindow = DefaultRootWindow (display);
     while (event.xbutton.subwindow)
@@ -68,7 +68,7 @@ void CommandInterpreter::click(TACommand command)
     if (XSendEvent (display, PointerWindow, True, ButtonReleaseMask, &event) == 0)
         fprintf (stderr, "Error to send the event!\n");
     XFlush (display);
-    usleep (1);*/
+    usleep (1);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
