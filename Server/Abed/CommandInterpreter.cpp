@@ -24,6 +24,9 @@ CommandInterpreter::CommandInterpreter()
     int width=xrrs[originalSize].width;
     int height=xrrs[originalSize].height;
     
+    xOrigin = width / 2;
+    yOrigin = height / 2;
+    
     cout<<"Server Started, Current Configuration: "<<endl<<"Width: "<<width<<endl<<"Height: "<<height;
 
 }
@@ -38,7 +41,7 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {
-    /*XEvent event;
+    /*Event event;
     memset (&event, 0, sizeof (event));
     event.xbutton.button = command.;
     event.xbutton.same_screen = True;
@@ -73,5 +76,8 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    
+    XWarpPointer (display, None, None, 0,0,0,0, (xOrigin + command.xDifference), (yOrigin + command.yDifference));
+    XFlush (display);
+    usleep (1);
+
 }

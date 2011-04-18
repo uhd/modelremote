@@ -24,4 +24,6 @@ public:
     
 private:
     Display *display;
+    int xOrigin;
+    int yOrigin;
 };
