@@ -70,4 +70,7 @@ void Server::closeServer(string message)
     close(newSocketDesc);
     
     cout<<"Server closing: "<< message << "\n";
+    sleep(10);
+    initialize();
+    
 }
