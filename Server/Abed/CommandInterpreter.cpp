@@ -35,7 +35,7 @@ void CommandInterpreter::handleCommand(TACommand command)
 {
     
     printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
-    
+    moveMouse(command);
 
 }
 
