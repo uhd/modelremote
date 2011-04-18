@@ -76,7 +76,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    XWarpPointer (display, None, None, 0,0,0,0, (xOrigin + command.xDifference), (yOrigin + command.yDifference));
+    XWarpPointer (display, None, None, 0,0,0,0, (command.xDifference), (command.yDifference));
     XFlush (display);
     usleep (1);
 
