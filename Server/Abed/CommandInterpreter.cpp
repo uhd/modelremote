@@ -8,6 +8,8 @@
 
 #include "CommandInterpreter.h"
 
+const int deviceScale = 1.5;
+
 CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
@@ -34,7 +36,7 @@ CommandInterpreter::CommandInterpreter()
 void CommandInterpreter::handleCommand(TACommand command)
 {
     
-    printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
+    //printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     moveMouse(command);
 
 }
@@ -76,7 +78,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, (xOrigin + command.xDifference), (yOrigin + command.yDifference));
+    XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, (xOrigin + (deviceScale * command.xDifference)), (yOrigin + (deviceScale * command.yDifference)));
     XFlush (display);
     usleep (1);
 }
