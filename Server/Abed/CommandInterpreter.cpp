@@ -8,26 +8,23 @@
 
 #include "CommandInterpreter.h"
 
-void CommandInterpreter::initialize()
+CommandInterpreter::CommandInterpreter()
 {
-    Display *display = XOpenDisplay(NULL);
+    display = XOpenDisplay(NULL);
     
-    int num_sizes;
-    Rotation original_rotation;
+    int numberSizes;
+    Rotation originalRotation;
     
     Window root = RootWindow(display, 0);
-    XRRScreenSize *xrrs = XRRSizes(display, 0, &num_sizes);
+    XRRScreenSize *xrrs = XRRSizes(display, 0, &numberSizes);
     
-    XRRScreenConfiguration *conf = XRRGetScreenInfo(display, root);
-    short original_rate          = XRRConfigCurrentRate(conf);
-    SizeID original_size_id       = XRRConfigCurrentConfiguration(conf, &original_rotation);
+    XRRScreenConfiguration *configuration = XRRGetScreenInfo(display, root);
+    SizeID originalSize = XRRConfigCurrentConfiguration(configuration, &originalRotation);
     
-    int width=xrrs[original_size_id].width;
-    int height=xrrs[original_size_id].height;
+    int width=xrrs[originalSize].width;
+    int height=xrrs[originalSize].height;
     
-    cout<<width<<endl<<height;
-    
-    XCloseDisplay(display);
+    cout<<"Server Started, Current Configuration: "<<endl<<"Width: "<<width<<endl<<"Height: "<<height;
 
 }
 

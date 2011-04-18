@@ -15,12 +15,12 @@ using namespace std;
 class CommandInterpreter
 {
 public:
-    void initialize();
+    CommandInterpreter();
     void handleCommand(TACommand command);
     void click(TACommand command);
     void moveMouse(TACommand command);
     void releaseMouse(TACommand command);
     
 private:
-    
+    Display *display;
 };

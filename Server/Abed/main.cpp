@@ -14,7 +14,6 @@ int main ()
     server.initialize();
     
     CommandInterpreter interpreter;
-    interpreter.initialize();
     
     server.setDelegate(interpreter);
     
