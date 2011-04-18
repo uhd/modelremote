@@ -51,7 +51,7 @@ void CommandInterpreter::click(TACommand command)
 {
     XEvent event;
     memset (&event, 0, sizeof (event));
-    event.xbutton.button = 4;
+    event.xbutton.button = Button1;
     event.xbutton.same_screen = True;
     event.xbutton.subwindow = DefaultRootWindow (display);
     while (event.xbutton.subwindow)
@@ -65,6 +65,7 @@ void CommandInterpreter::click(TACommand command)
     }
     // Press
     event.type = ButtonPress;
+    printf("Click Start");
     if (XSendEvent (display, PointerWindow, True, ButtonPressMask, &event) == 0)
         fprintf (stderr, "Error to send the event!\n");
     XFlush (display);
