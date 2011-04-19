@@ -24,8 +24,8 @@ CommandInterpreter::CommandInterpreter()
     int width=xrrs[originalSize].width;
     int height=xrrs[originalSize].height;
     
-    xOrigin = width / 2;
-    yOrigin = height / 2;
+    xOrigin = (int)width / 2;
+    yOrigin = (int)height / 2;
     cout << "(" << xOrigin << ", " << yOrigin << ")";
     
 }
