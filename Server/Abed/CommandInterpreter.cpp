@@ -84,8 +84,12 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    int absX = (xOrigin + command.xDifference);
-    int absY = (yOrigin + command.yDifference);
+    int absX = xOrigin + command.xDifference;
+    int absY = yOrigin + command.yDifference;
+    cout << "(" << absX << ", " << absY << ") ";
+    cout << "(" << xOrigin << "+" << command.xDifference << ", ";
+    cout << yOrigin << "+" << command.yDifference << ")";
+    
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
