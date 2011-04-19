@@ -8,8 +8,6 @@
 
 #include "CommandInterpreter.h"
 
-const int deviceScale = 1;
-
 CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
@@ -86,9 +84,8 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    int absX = (xOrigin + (deviceScale * command.xDifference));
-    int absY = (yOrigin + (deviceScale * command.yDifference));
-    cout << "Moving to (" << absX << ", " << absY << ") " << command.yDifference << "\n";
+    int absX = (xOrigin + command.xDifference);
+    int absY = (yOrigin + command.yDifference);
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
