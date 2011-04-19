@@ -8,7 +8,7 @@
 
 #include "CommandInterpreter.h"
 
-const int deviceScale = 2.5;
+const int deviceScale = 1;
 
 CommandInterpreter::CommandInterpreter()
 {
@@ -86,7 +86,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, (xOrigin + (deviceScale * command.xDifference)), (yOrigin + (deviceScale * command.yDifference)));
+    XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, (int)(xOrigin + (deviceScale * command.xDifference)), (int)(yOrigin + (deviceScale * command.yDifference)));
     XFlush (display);
     usleep (1);
 }
