@@ -10,7 +10,7 @@
 
 void Server::initialize()
 {
-    printf("Starting server...");
+    cout << "Starting server\n";
     
     socketDesc = socket(AF_INET, SOCK_STREAM, 0);
     if (socketDesc < 0)
