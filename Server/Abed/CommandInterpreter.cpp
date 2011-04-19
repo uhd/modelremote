@@ -84,8 +84,6 @@ void CommandInterpreter::releaseMouse(TACommand command)
 void CommandInterpreter::moveMouse(TACommand command)
 {
     
-    cout << "(" << xOrigin << ", " << yOrigin << ")";
-
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     
