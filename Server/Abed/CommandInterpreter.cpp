@@ -26,7 +26,6 @@ CommandInterpreter::CommandInterpreter()
     
     xOrigin = (int)width / 2;
     yOrigin = (int)height / 2;
-    cout << "(" << xOrigin << ", " << yOrigin << ")";
     
 }
 
@@ -84,11 +83,11 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
+    
+    cout << "(" << xOrigin << ", " << yOrigin << ")";
+
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
-    cout << "(" << absX << ", " << absY << ") ";
-    cout << "(" << xOrigin << "+" << command.xDifference << ", ";
-    cout << yOrigin << "+" << command.yDifference << ")";
     
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
