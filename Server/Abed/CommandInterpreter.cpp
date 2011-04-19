@@ -28,6 +28,7 @@ CommandInterpreter::CommandInterpreter()
     
     xOrigin = width / 2;
     yOrigin = height / 2;
+    cout << "(" << xOrigin << ", " << yOrigin << ")";
     
 }
 
