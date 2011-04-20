@@ -16,6 +16,8 @@
     MotionMonitor *motionMonitor;
     UILabel *statusLabel;
     
+    float deviceScale;
+    
 }
 
 @end

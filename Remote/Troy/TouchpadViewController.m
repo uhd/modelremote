@@ -17,6 +17,17 @@
     touchpad.delegate = self;
     [touchpad configure];
     self.view = touchpad;
+ 
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        deviceScale = 2.0;
+        
+    } else {
+
+        deviceScale = 1.0;
+        
+    }
+
 }
 
 - (void)dealloc
@@ -77,7 +88,7 @@
 #pragma mark touch handling
 - (void)touchpadDidBeginTouchPoint:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchStart, (point.x - 384), (point.y - 512));
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchStart, (point.x - 384), (point.y - 512), deviceScale);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
@@ -85,14 +96,14 @@
 
 - (void)touchpadDidTouchPoint:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, (point.x - 384), (point.y - 512));
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, (point.x - 384), (point.y - 512), deviceScale);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
 
 - (void)touchpadDidEndTouchPoint:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, (point.x - 384), (point.y - 512));
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, (point.x - 384), (point.y - 512), deviceScale);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
@@ -100,21 +111,21 @@
 #pragma mark pinch handling
 - (void)touchpadDidBeginPinch {
     
-    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchStart, 0, 0);
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchStart, 0, 0, deviceScale);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
 
 - (void)touchpadDidPinchWithScale:(float)scale {
 
-    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchMove, 0, scale);
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchMove, 0, 0, deviceScale);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
 
 - (void)touchpadDidEndPinch {
     
-    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchEnd, 0, 0);
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchEnd, 0, 0, deviceScale);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
