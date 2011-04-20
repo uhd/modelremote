@@ -33,5 +33,5 @@ typedef struct TACommand {
     
 } TACommand;
 
-TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int x, int y);
+TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int x, int y, float scale);
 NSString *NSStringFromTACommand(TACommand command);
