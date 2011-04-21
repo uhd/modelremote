@@ -40,6 +40,9 @@ void CommandInterpreter::handleCommand(TACommand command)
         case TACommandTouchMove:
             moveMouse(command);
             break;
+        case TACommandTouchEnd:
+            releaseMouse(command);
+            break;
         default:
             break;
     }
