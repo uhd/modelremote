@@ -32,7 +32,7 @@ CommandInterpreter::CommandInterpreter()
 void CommandInterpreter::handleCommand(TACommand command)
 {
     
-    //printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
+    printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     switch (command.touch) {
         case TACommandTouchStart:
             click(command);
@@ -55,7 +55,7 @@ void CommandInterpreter::click(TACommand command)
     event.xbutton.button = Button1;
     event.xbutton.same_screen = True;
     event.xbutton.subwindow = DefaultRootWindow (display);
-    /*while (event.xbutton.subwindow)
+    while (event.xbutton.subwindow)
     {
         event.xbutton.window = event.xbutton.subwindow;
         XQueryPointer (display, event.xbutton.window,
@@ -63,7 +63,7 @@ void CommandInterpreter::click(TACommand command)
                        &event.xbutton.x_root, &event.xbutton.y_root,
                        &event.xbutton.x, &event.xbutton.y,
                        &event.xbutton.state);
-    }*/
+    }
     // Press
     event.type = ButtonPress;
 	
@@ -85,7 +85,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
     event.xbutton.button = Button1;
     event.xbutton.same_screen = True;
     event.xbutton.subwindow = DefaultRootWindow (display);
-	/*while (event.xbutton.subwindow)
+	while (event.xbutton.subwindow)
     {
         event.xbutton.window = event.xbutton.subwindow;
         XQueryPointer (display, event.xbutton.window,
@@ -93,7 +93,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
                        &event.xbutton.x_root, &event.xbutton.y_root,
                        &event.xbutton.x, &event.xbutton.y,
                        &event.xbutton.state);
-    }*/
+    }
     // Release
     event.type = ButtonRelease;
 	clicked = false;
