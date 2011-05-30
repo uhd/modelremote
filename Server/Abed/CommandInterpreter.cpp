@@ -35,7 +35,7 @@ CommandInterpreter::CommandInterpreter()
 void CommandInterpreter::handleCommand(TACommand command)
 {
     
-    printf("COMMAND: %i, %i, %i, %i, ClickTimeout = %i\n", command.type, command.touch, command.xDifference, command.yDifference, clickTimeout);
+    printf("COMMAND: %i, %i, %i, %i, Clicked = %i, ClickTimeout = %i\n", command.type, command.touch, command.xDifference, command.yDifference, clicked, clickTimeout);
     switch (command.touch) {
         case TACommandTouchStart:
             click(command);
@@ -66,7 +66,7 @@ void CommandInterpreter::click(TACommand command)
 	if ((clicked == true) && (clickTimeout < 100))
 	{
 		event.type = ButtonPress;
-		event.type = ButtonPress;
+		clickTimeout = 0;
 	}
 	clicked = true;
     XFlush (display);
