@@ -25,6 +25,7 @@ public:
 private:
     Display *display;
     Window rootWindow;
+	bool clicked;
     int xOrigin;
     int yOrigin;
 };

@@ -66,9 +66,7 @@ void CommandInterpreter::click(TACommand command)
     }
     // Press
     event.type = ButtonPress;
-    printf("Click Start");
-    if (XSendEvent (display, PointerWindow, True, ButtonPressMask, &event) == 0)
-        fprintf (stderr, "Error to send the event!\n");
+	clicked = true;
     XFlush (display);
     usleep (1);
 }
@@ -93,8 +91,6 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
     // Release
     event.type = ButtonRelease;
-    if (XSendEvent (display, PointerWindow, True, ButtonReleaseMask, &event) == 0)
-        fprintf (stderr, "Error to send the event!\n");
     XFlush (display);
     usleep (1);
 
