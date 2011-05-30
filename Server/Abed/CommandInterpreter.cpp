@@ -63,8 +63,9 @@ void CommandInterpreter::click(TACommand command)
     event.type = ButtonPress;
 	
 	// If the touch is held, this allows clicking within the window.
-	if ((clicked == true) && (clickTimeout < 15))
+	if ((clicked == true) && (clickTimeout < 100))
 	{
+		event.type = ButtonPress;
 		event.type = ButtonPress;
 	}
 	clicked = true;
