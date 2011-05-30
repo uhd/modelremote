@@ -57,7 +57,7 @@ void CommandInterpreter::click(TACommand command)
     event.xbutton.subwindow = DefaultRootWindow (display);
 	
     // Press
-    event.type = ButtonPress;
+    event.type = ButtonPressMask;
     XFlush (display);
     usleep (10);
 }
