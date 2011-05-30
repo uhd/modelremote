@@ -66,6 +66,12 @@ void CommandInterpreter::click(TACommand command)
     }*/
     // Press
     event.type = ButtonPress;
+	
+	// If the touch is held, this allows clicking within the window.
+	if (clicked == true)
+	{
+		event.type = ButtonPress;
+	}
 	clicked = true;
     XFlush (display);
     usleep (10);
