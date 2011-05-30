@@ -72,7 +72,7 @@ void CommandInterpreter::click(TACommand command)
     // Press
     event.type = ButtonPress;
 	clicked = true;
-    XFlush (display);
+    //XFlush (display);
     usleep (10);
 }
 
@@ -97,7 +97,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
     // Release
     event.type = ButtonRelease;
 	clicked = false;
-    XFlush (display);
+    //XFlush (display);
     usleep (10);
 
 }
