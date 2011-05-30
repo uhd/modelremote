@@ -23,9 +23,6 @@ CommandInterpreter::CommandInterpreter()
     
     int width=xrrs[originalSize].width;
     int height=xrrs[originalSize].height;
-	
-	clicked = false;
-	clickTimeout = 0;
     
     xOrigin = (int)width / 4;
     yOrigin = (int)height / 4;
@@ -35,7 +32,7 @@ CommandInterpreter::CommandInterpreter()
 void CommandInterpreter::handleCommand(TACommand command)
 {
     
-    printf("COMMAND: %i, %i, %i, %i, Clicked = %i, ClickTimeout = %i\n", command.type, command.touch, command.xDifference, command.yDifference, clicked, clickTimeout);
+    printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     switch (command.touch) {
         case TACommandTouchStart:
             click(command);
@@ -61,14 +58,6 @@ void CommandInterpreter::click(TACommand command)
 	
     // Press
     event.type = ButtonPress;
-	
-	// If the touch is held, this allows clicking within the window.
-	if ((clicked == true) && (clickTimeout < 100))
-	{
-		event.type = ButtonPress;
-		clickTimeout = 0;
-	}
-	clicked = true;
     XFlush (display);
     usleep (10);
 }
@@ -84,7 +73,6 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	
     // Release
     event.type = ButtonRelease;
-	clicked = false;
     XFlush (display);
     usleep (10);
 
@@ -95,9 +83,6 @@ void CommandInterpreter::moveMouse(TACommand command)
     
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
-	
-	if (clicked == true)
-		clickTimeout++;
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
