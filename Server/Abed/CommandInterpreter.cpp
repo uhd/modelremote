@@ -50,11 +50,6 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {
-	if (clicked == true)
-	{
-		return;
-	}
-	
     XEvent event;
     memset (&event, 0, sizeof (event));
     event.xbutton.button = Button1;
@@ -106,10 +101,9 @@ void CommandInterpreter::moveMouse(TACommand command)
 {
     
     int absX = xOrigin + command.xDifference;
-    int absY = yOrigin + command.yDifference;
-    
+    int absY = yOrigin + command.yDifference;	
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
-    XFlush (display);
+    //XFlush (display);
     usleep (10);
 }
