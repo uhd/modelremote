@@ -24,8 +24,8 @@ CommandInterpreter::CommandInterpreter()
     int width=xrrs[originalSize].width;
     int height=xrrs[originalSize].height;
     
-    xOrigin = (int)width / 2;
-    yOrigin = (int)height / 2;
+    xOrigin = (int)width / 4;
+    yOrigin = (int)height / 4;
     
 }
 
@@ -68,7 +68,7 @@ void CommandInterpreter::click(TACommand command)
     event.type = ButtonPress;
 	clicked = true;
     XFlush (display);
-    usleep (1);
+    usleep (10000000);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
@@ -105,5 +105,5 @@ void CommandInterpreter::moveMouse(TACommand command)
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
-    usleep (1);
+    usleep (10000000);
 }
