@@ -104,6 +104,6 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absY = yOrigin + command.yDifference;	
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
-    //XFlush (display);
+    XFlush (display);
     usleep (10);
 }
