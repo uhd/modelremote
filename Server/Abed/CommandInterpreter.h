@@ -26,6 +26,7 @@ private:
     Display *display;
     Window rootWindow;
 	bool clicked;
+	int clickTimeout;
     int xOrigin;
     int yOrigin;
 };

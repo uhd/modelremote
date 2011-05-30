@@ -23,6 +23,9 @@ CommandInterpreter::CommandInterpreter()
     
     int width=xrrs[originalSize].width;
     int height=xrrs[originalSize].height;
+	
+	clicked = false;
+	clickTimeout = 0;
     
     xOrigin = (int)width / 4;
     yOrigin = (int)height / 4;
@@ -55,20 +58,12 @@ void CommandInterpreter::click(TACommand command)
     event.xbutton.button = Button1;
     event.xbutton.same_screen = True;
     event.xbutton.subwindow = DefaultRootWindow (display);
-    /*while (event.xbutton.subwindow)
-    {
-        event.xbutton.window = event.xbutton.subwindow;
-        XQueryPointer (display, event.xbutton.window,
-                       &event.xbutton.root, &event.xbutton.subwindow,
-                       &event.xbutton.x_root, &event.xbutton.y_root,
-                       &event.xbutton.x, &event.xbutton.y,
-                       &event.xbutton.state);
-    }*/
+	
     // Press
     event.type = ButtonPress;
 	
 	// If the touch is held, this allows clicking within the window.
-	if (clicked == true)
+	if ((clicked == true) && (clickTimeout < 15))
 	{
 		event.type = ButtonPress;
 	}
@@ -85,15 +80,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
     event.xbutton.button = Button1;
     event.xbutton.same_screen = True;
     event.xbutton.subwindow = DefaultRootWindow (display);
-	/*while (event.xbutton.subwindow)
-    {
-        event.xbutton.window = event.xbutton.subwindow;
-        XQueryPointer (display, event.xbutton.window,
-                       &event.xbutton.root, &event.xbutton.subwindow,
-                       &event.xbutton.x_root, &event.xbutton.y_root,
-                       &event.xbutton.x, &event.xbutton.y,
-                       &event.xbutton.state);
-    }*/
+	
     // Release
     event.type = ButtonRelease;
 	clicked = false;
@@ -108,6 +95,8 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
 	
+	if (clicked == true)
+		clickTimeout++;
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
