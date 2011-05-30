@@ -68,7 +68,7 @@ void CommandInterpreter::click(TACommand command)
     event.type = ButtonPress;
 	clicked = true;
     XFlush (display);
-    usleep (10000000);
+    usleep (10);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
@@ -92,7 +92,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
     // Release
     event.type = ButtonRelease;
     XFlush (display);
-    usleep (1);
+    usleep (10);
 
 }
 
@@ -105,5 +105,5 @@ void CommandInterpreter::moveMouse(TACommand command)
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
-    usleep (10000000);
+    usleep (10);
 }
