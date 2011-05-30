@@ -54,10 +54,10 @@ void CommandInterpreter::click(TACommand command)
     memset (&event, 0, sizeof (event));
     event.xbutton.button = Button1;
     event.xbutton.same_screen = True;
-    event.xbutton.subwindow = DefaultRootWindow (display);
+    //event.xbutton.subwindow = DefaultRootWindow (display);
 	
     // Press
-    event.type = ButtonPressMask;
+    event.type = ButtonPress;
     XFlush (display);
     usleep (10);
 }
@@ -69,7 +69,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
     memset (&event, 0, sizeof (event));
     event.xbutton.button = Button1;
     event.xbutton.same_screen = True;
-    event.xbutton.subwindow = DefaultRootWindow (display);
+    //event.xbutton.subwindow = DefaultRootWindow (display);
 	
     // Release
     event.type = ButtonRelease;
