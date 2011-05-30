@@ -35,7 +35,7 @@ CommandInterpreter::CommandInterpreter()
 void CommandInterpreter::handleCommand(TACommand command)
 {
     
-    printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
+    printf("COMMAND: %i, %i, %i, %i, ClickTimeout = %i\n", command.type, command.touch, command.xDifference, command.yDifference, clickTimeout);
     switch (command.touch) {
         case TACommandTouchStart:
             click(command);
