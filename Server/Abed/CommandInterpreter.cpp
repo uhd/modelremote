@@ -50,6 +50,11 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {
+	if (clicked == true)
+	{
+		return;
+	}
+	
     XEvent event;
     memset (&event, 0, sizeof (event));
     event.xbutton.button = Button1;
@@ -91,6 +96,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
     // Release
     event.type = ButtonRelease;
+	clicked = false;
     XFlush (display);
     usleep (10);
 
