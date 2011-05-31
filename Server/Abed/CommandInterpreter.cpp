@@ -55,7 +55,7 @@ void CommandInterpreter::click(TACommand command)
 	
 	//Establishes this function to only do clicking.
 	event.type = ButtonPress;
-	event.xbutton.button = Button1;
+	event.xbutton.button = Button2;
 	event.xbutton.same_screen = True;
 	
 	//Grabs first pointer window.
@@ -69,6 +69,8 @@ void CommandInterpreter::click(TACommand command)
 		XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
     }
 	
+	event.
+	
 	XFlush(display);
 	usleep(10);
 }
@@ -80,7 +82,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 	//Establishes this function to only do releasing.
 	event.type = ButtonRelease;
-	event.xbutton.button = Button1;
+	event.xbutton.button = Button2;
 	event.xbutton.same_screen = True;
 	
 	//Grabs first pointer window.
