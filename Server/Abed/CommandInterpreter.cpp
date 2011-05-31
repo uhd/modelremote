@@ -50,33 +50,52 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {
-    XEvent event;
-    memset (&event, 0, sizeof (event));
-    event.xbutton.button = Button1;
-    event.xbutton.same_screen = True;
-    //event.xbutton.subwindow = DefaultRootWindow (display);
+	XEvent event;
+	memset (&event, 0, sizeof(event));
 	
-    // Press
-    event.type = ButtonPress;
-    XFlush (display);
-    usleep (10);
+	//Establishes this function to only do clicking.
+	event.type = ButtonPress;
+	event.xbutton.button = Button1;
+	event.xbutton.same_screen = True;
+	
+	//Grabs first pointer window.
+	XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
+	event.xbutton.subwindow = event.xbutton.window;
+	
+	//Repeats and updates the event window.
+	while (event.xbutton.subwindow)
+    {
+        event.xbutton.window = event.xbutton.subwindow;
+		XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
+    }
+	
+	XFlush(display);
+	usleep(10);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
- 
-    XEvent event;
-    memset (&event, 0, sizeof (event));
-    event.xbutton.button = Button1;
-    event.xbutton.same_screen = True;
-    //event.xbutton.subwindow = DefaultRootWindow (display);
-	
-    // Release
-    event.type = ButtonRelease;
-    XFlush (display);
-    usleep (10);
+	XEvent event;
+	memset (&event, 0, sizeof(event));
 
-}
+	//Establishes this function to only do releasing.
+	event.type = ButtonRelease;
+	event.xbutton.button = Button1;
+	event.xbutton.same_screen = True;
+	
+	//Grabs first pointer window.
+	XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
+	event.xbutton.subwindow = event.xbutton.window;
+	
+	//Repeats and updates the event window.
+	while (event.xbutton.subwindow)
+    {
+        event.xbutton.window = event.xbutton.subwindow;
+		XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
+    }
+	
+	XFlush(display);
+	usleep(10);}
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
