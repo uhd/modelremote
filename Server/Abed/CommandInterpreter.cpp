@@ -68,8 +68,10 @@ void CommandInterpreter::click(TACommand command)
     {
         event.xbutton.window = event.xbutton.subwindow;
 		XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
-		XSendEvent(display, PointerWindow, True, 0x100, &event);
     }
+	
+	XSendEvent(display, PointerWindow, True, 0x100, &event);
+
 		
 	XFlush(display);
 	usleep(10);
@@ -95,8 +97,10 @@ void CommandInterpreter::releaseMouse(TACommand command)
     {
         event.xbutton.window = event.xbutton.subwindow;
 		XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
-		XSendEvent(display, PointerWindow, True, 0x0, &event);
     }
+		
+	XSendEvent(display, PointerWindow, True, 0x0, &event);
+
 		
 	XFlush(display);
 	usleep(10);
