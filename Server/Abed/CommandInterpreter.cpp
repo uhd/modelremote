@@ -26,7 +26,8 @@ CommandInterpreter::CommandInterpreter()
     
     xOrigin = (int)width / 4;
     yOrigin = (int)height / 4;
-    
+	
+	memset(&event, 0x00, sizeof(event));
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -50,58 +51,42 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {
-	XEvent event;
-	memset (&event, 0, sizeof(event));
-	
-	//Establishes this function to only do clicking.
 	event.type = ButtonPress;
 	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
-	event.xbutton.state = 0x100;
 	
-	//Grabs first pointer window.
-	XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
+	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
-	//Repeats and updates the event window.
-	while (event.xbutton.subwindow)
-    {
-        event.xbutton.window = event.xbutton.subwindow;
-		XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
-    }
+	while(event.xbutton.subwindow)
+	{
+		event.xbutton.window = event.xbutton.subwindow;
+		XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	}
 	
-	XSendEvent(display, PointerWindow, True, 0x100, &event);
-
-		
+	XSendEvent(display, PointerWindow, True, 0xfff, &event); 
+	
 	XFlush(display);
 	usleep(10);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
-	XEvent event;
-	memset (&event, 0, sizeof(event));
-
-	//Establishes this function to only do releasing.
 	event.type = ButtonRelease;
 	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
-	event.xbutton.state = 0x0;
 	
-	//Grabs first pointer window.
-	XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
+	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
-	//Repeats and updates the event window.
-	while (event.xbutton.subwindow)
-    {
-        event.xbutton.window = event.xbutton.subwindow;
-		XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
-    }
-		
-	XSendEvent(display, PointerWindow, True, 0x0, &event);
-
-		
+	while(event.xbutton.subwindow)
+	{
+		event.xbutton.window = event.xbutton.subwindow;
+		XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	}
+	
+	XSendEvent(display, PointerWindow, True, 0xfff, &event); 
+	
 	XFlush(display);
 	usleep(10);
 }
