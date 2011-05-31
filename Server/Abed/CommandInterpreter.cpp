@@ -51,7 +51,7 @@ void CommandInterpreter::handleCommand(TACommand command)
 void CommandInterpreter::click(TACommand command)
 {
 	XEvent event;
-	memset (&event, 0x00, sizeof(event));
+	memset (&event, 0, sizeof(event));
 	
 	//Establishes this function to only do clicking.
 	event.type = ButtonPress;
@@ -70,7 +70,7 @@ void CommandInterpreter::click(TACommand command)
 		XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
     }
 	
-	
+	XSendEvent(display, PointerWindow, 0x0, 0xfff, &event);
 	
 	XFlush(display);
 	usleep(10);
@@ -79,7 +79,7 @@ void CommandInterpreter::click(TACommand command)
 void CommandInterpreter::releaseMouse(TACommand command)
 {
 	XEvent event;
-	memset (&event, 0x00, sizeof(event));
+	memset (&event, 0, sizeof(event));
 
 	//Establishes this function to only do releasing.
 	event.type = ButtonRelease;
@@ -97,6 +97,8 @@ void CommandInterpreter::releaseMouse(TACommand command)
         event.xbutton.window = event.xbutton.subwindow;
 		XQueryPointer (display, event.xbutton.window, &event.xbutton.root, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);	
     }
+	
+	XSendEvent(display, PointerWindow, 0x0, 0xfff, &event);
 	
 	XFlush(display);
 	usleep(10);
