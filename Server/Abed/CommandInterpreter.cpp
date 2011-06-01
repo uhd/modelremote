@@ -55,16 +55,16 @@ void CommandInterpreter::click(TACommand command)
 {	
 	cout<<"Attempting to click."<<endl;
 	event.type = ButtonPress;
-	event.xbutton.state = 0x0;
+	//event.xbutton.state = 0x0;
 	
 	XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
-	while (event.xbutton.subwindow)
+	/*while (event.xbutton.subwindow)
 	{
 		event.xbutton.window = event.xbutton.subwindow;
 		XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	}
+	}*/
 	
 	XSendEvent(display, rootWindow, True, 0xfff, &event);
 		
@@ -81,11 +81,11 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
-	while (event.xbutton.subwindow)
+	/*while (event.xbutton.subwindow)
 	{
 		event.xbutton.window = event.xbutton.subwindow;
 		XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	}
+	}*/
 	
 	XSendEvent(display, rootWindow, True, 0xfff, &event);
 		
