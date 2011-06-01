@@ -69,6 +69,7 @@ void CommandInterpreter::click(TACommand command)
 		printf("Error upon clicking.\n");
 		
 	XFlush(display);
+	usleep(100);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
@@ -94,6 +95,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 		printf("Error upon releasing.\n");
 		
 	XFlush(display);
+	usleep(100);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
@@ -104,4 +106,5 @@ void CommandInterpreter::moveMouse(TACommand command)
     
     XWarpPointer (display, None, rootWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
+	usleep(100);
 }
