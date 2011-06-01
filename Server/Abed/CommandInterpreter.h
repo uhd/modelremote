@@ -26,7 +26,6 @@ public:
 private:
     Display *display;
     Window rootWindow;
-	XEvent event;
     int xOrigin;
     int yOrigin;
 };
