@@ -60,12 +60,6 @@ void CommandInterpreter::click(TACommand command)
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
-	while (event.xbutton.subwindow)
-	{
-		event.xbutton.window = event.xbutton.subwindow;
-		XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	}
-	
 	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, 0xfff, &event);
 		
 	XFlush(display);
@@ -80,13 +74,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
-	
-	while (event.xbutton.subwindow)
-	{
-		event.xbutton.window = event.xbutton.subwindow;
-		XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	}
-	
+		
 	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, 0xfff, &event);
 		
 	XFlush(display);
