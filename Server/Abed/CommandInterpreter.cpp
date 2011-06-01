@@ -30,7 +30,6 @@ CommandInterpreter::CommandInterpreter()
 	memset(&event, 0x00, sizeof(event));
 	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
-	XSelectInput(display, RootWindow(display, DefaultScreen(display)), Button1Mask | ButtonPressMask | ButtonReleaseMask);
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
