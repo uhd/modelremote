@@ -26,13 +26,17 @@ CommandInterpreter::CommandInterpreter()
     
     xOrigin = (int)width / 4;
     yOrigin = (int)height / 4;
+	
+	memset(&event, 0x00, sizeof(event));
+	event.xbutton.button = Button1;
+	event.xbutton.same_screen = True;
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
 {
-    
     printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
-    switch (command.touch) {
+    switch (command.touch) 
+	{
         case TACommandTouchStart:
             click(command);
             break;
@@ -50,22 +54,19 @@ void CommandInterpreter::handleCommand(TACommand command)
 void CommandInterpreter::click(TACommand command)
 {	
 	printf("Attempting to click.\n");
-	XEvent event;
-	memset(&event, 0x00, sizeof(event));
 	event.type = ButtonPress;
-	event.xbutton.button = Button1;
-	event.xbutton.same_screen = True;
+
 	
-	XQueryPointer(display, PointerWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
 	while (event.xbutton.subwindow)
 	{
 		event.xbutton.window = event.xbutton.subwindow;
-		XQueryPointer(display, PointerWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+		XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	}
 	
-	if (XSendEvent(display, PointerWindow, True, 0xfff, &event) == 0)
+	if (XSendEvent(display, rootWindow, True, 0xfff, &event) == 0)
 		printf("Error upon clicking.\n");
 		
 	XFlush(display);
@@ -75,14 +76,10 @@ void CommandInterpreter::click(TACommand command)
 void CommandInterpreter::releaseMouse(TACommand command)
 {	
 	printf("Attempting to release.\n");
-	XEvent event;
-	memset(&event, 0x00, sizeof(event));
 	event.type = ButtonRelease;
 	event.xbutton.state = 0x100;
-	event.xbutton.button = Button1;
-	event.xbutton.same_screen = True;
 	
-	XQueryPointer(display, PointerWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
 	while (event.xbutton.subwindow)
@@ -91,7 +88,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 		XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	}
 	
-	if (XSendEvent(display, PointerWindow, True, 0xfff, &event) == 0)
+	if (XSendEvent(display, rootWindow, True, 0xfff, &event) == 0)
 		printf("Error upon releasing.\n");
 		
 	XFlush(display);
