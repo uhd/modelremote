@@ -22,10 +22,12 @@ public:
     void click(TACommand command);
     void moveMouse(TACommand command);
     void releaseMouse(TACommand command);
+	void grabWindowID(char* inputWindowID);
     
 private:
     Display *display;
     Window rootWindow;
+	long inputWindow;
 	XEvent event;
     int xOrigin;
     int yOrigin;

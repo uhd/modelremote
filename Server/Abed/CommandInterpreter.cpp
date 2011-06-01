@@ -26,10 +26,15 @@ CommandInterpreter::CommandInterpreter()
     
     xOrigin = (int)width / 4;
     yOrigin = (int)height / 4;
-	
+		
 	memset(&event, 0x00, sizeof(event));
 	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
+}
+
+void CommandInterpreter::grabWindowID(char *inputWindowID)
+{
+	inputWindow = atoi(inputWindowID);	
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -57,10 +62,10 @@ void CommandInterpreter::click(TACommand command)
 	event.type = ButtonPress;
 	//event.xbutton.state = 0x100;
 	
-	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	XQueryPointer(display, inputWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
-	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, 0xfff, &event);
+	XSendEvent(display, inputWindow, True, 0xfff, &event);
 		
 	XFlush(display);
 	usleep(100);
@@ -72,10 +77,10 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	event.type = ButtonRelease;
 	//event.xbutton.state = 0x0;
 	
-	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	XQueryPointer(display, inputWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 		
-	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, 0xfff, &event);
+	XSendEvent(display, inputWindow, True, 0xfff, &event);
 		
 	XFlush(display);
 	usleep(100);
@@ -87,7 +92,7 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     
-    XWarpPointer (display, None, RootWindow(display, DefaultScreen(display)), 0, 0, 0, 0, absX, absY);
+    XWarpPointer (display, None, inputWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
 	usleep(100);
 }

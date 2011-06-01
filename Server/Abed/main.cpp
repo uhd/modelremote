@@ -8,13 +8,14 @@
 
 #include "Server.h"
 
-int main ()
+int main (int argv, char *windowID[])
 {
     Server server;
     server.initialize();
     
     CommandInterpreter interpreter;
-    
+    interpreter.grabWindowID(*windowID);
+	
     server.setDelegate(interpreter);
     
     server.readData();
