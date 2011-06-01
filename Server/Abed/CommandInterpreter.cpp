@@ -53,7 +53,7 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {	
-	printf("Attempting to click.\n");
+	cout<<"Attempting to click."<<endl;
 	event.type = ButtonPress;
 	event.xbutton.state = 0x0;
 	
@@ -74,7 +74,7 @@ void CommandInterpreter::click(TACommand command)
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {	
-	printf("Attempting to release.\n");
+	cout<<"Attempting to release."<<endl;
 	event.type = ButtonRelease;
 	event.xbutton.state = 0x100;
 	
@@ -95,7 +95,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-	printf("Attempting to move.\n");
+	cout<<"Attempting to move the mouse."<<endl;
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     
