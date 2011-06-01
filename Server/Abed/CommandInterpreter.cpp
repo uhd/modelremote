@@ -56,13 +56,13 @@ void CommandInterpreter::click(TACommand command)
 	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
 	
-	XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	XQueryPointer(display, PointerWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
 	while (event.xbutton.subwindow)
 	{
 		event.xbutton.window = event.xbutton.subwindow;
-		XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+		XQueryPointer(display, PointerWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	}
 	
 	if (XSendEvent(display, PointerWindow, True, 0xfff, &event) == 0)
@@ -82,7 +82,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
 	
-	XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	XQueryPointer(display, PointerWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
 	while (event.xbutton.subwindow)
