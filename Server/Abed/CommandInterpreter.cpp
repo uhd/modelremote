@@ -64,7 +64,7 @@ void CommandInterpreter::click(TACommand command)
 	XSendEvent(display, PointerWindow, True, 0xfff, &event); 
 	
 	XFlush(display);
-	usleep(1;
+	usleep(1);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
