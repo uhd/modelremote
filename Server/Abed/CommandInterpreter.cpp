@@ -55,7 +55,7 @@ void CommandInterpreter::click(TACommand command)
 {	
 	printf("Attempting to click.\n");
 	event.type = ButtonPress;
-
+	event.xbutton.state = 0x0;
 	
 	XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
@@ -66,8 +66,7 @@ void CommandInterpreter::click(TACommand command)
 		XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	}
 	
-	if (XSendEvent(display, rootWindow, True, 0xfff, &event) == 0)
-		printf("Error upon clicking.\n");
+	XSendEvent(display, rootWindow, True, 0xfff, &event);
 		
 	XFlush(display);
 	usleep(100);
@@ -88,8 +87,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 		XQueryPointer(display, rootWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	}
 	
-	if (XSendEvent(display, rootWindow, True, 0xfff, &event) == 0)
-		printf("Error upon releasing.\n");
+	XSendEvent(display, rootWindow, True, 0xfff, &event);
 		
 	XFlush(display);
 	usleep(100);
