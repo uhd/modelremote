@@ -33,18 +33,18 @@ void CommandInterpreter::handleCommand(TACommand command)
     
     printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     switch (command.touch) {
-        case 0:
+        case TACommandTouchStart:
             click(command);
             break;
-        case 1:
+        case TACommandTouchMove:
             moveMouse(command);
             break;
-        case 2:
+        case TACommandTouchEnd:
             releaseMouse(command);
             break;
         default:
             break;
-    }
+	}
 }
 
 void CommandInterpreter::click(TACommand command)
