@@ -30,7 +30,7 @@ CommandInterpreter::CommandInterpreter()
 	memset(&event, 0x00, sizeof(event));
 	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
-	event.xbutton.state = 0x0;
+	//event.xbutton.state = 0x0;
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -55,10 +55,12 @@ void CommandInterpreter::handleCommand(TACommand command)
 void CommandInterpreter::click(TACommand command)
 {
 	event.type = ButtonPress;
-	event.xbutton.state = 0x100;
+	//event.xbutton.state = 0x100;
 	
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
+	
+	XSelectInput(display, PointerWindow, ButtonPressMask | ButtonReleaseMask);
 	
 	XSendEvent(display, PointerWindow, True, ButtonPressMask, &event); 
 	
@@ -69,10 +71,12 @@ void CommandInterpreter::click(TACommand command)
 void CommandInterpreter::releaseMouse(TACommand command)
 {
 	event.type = ButtonRelease;
-	event.xbutton.state = 0x0;
+	//event.xbutton.state = 0x0;
 	
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	event.xbutton.subwindow = event.xbutton.window;
+	event.xbutton.subwindow = event.xbutton.window;	
+	
+	XSelectInput(display, PointerWindow, ButtonPressMask | ButtonReleaseMask);
 	
 	XSendEvent(display, PointerWindow, True, ButtonReleaseMask, &event); 	
 	
