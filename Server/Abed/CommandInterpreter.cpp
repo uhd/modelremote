@@ -34,7 +34,9 @@ CommandInterpreter::CommandInterpreter()
 
 void CommandInterpreter::grabWindowID(char *inputWindowID)
 {
-	inputWindow = atoi(inputWindowID);	
+	unsigned long inputWindow;
+	inputWindow =  strtoul(inputWindowID, NULL, 16);	
+	CGLXWindow = inputWindow;
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -62,10 +64,10 @@ void CommandInterpreter::click(TACommand command)
 	event.type = ButtonPress;
 	//event.xbutton.state = 0x100;
 	
-	XQueryPointer(display, inputWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
-	XSendEvent(display, inputWindow, True, 0xfff, &event);
+	XSendEvent(display, CGLXWindow, True, 0xfff, &event);
 		
 	XFlush(display);
 	usleep(100);
@@ -77,10 +79,10 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	event.type = ButtonRelease;
 	//event.xbutton.state = 0x0;
 	
-	XQueryPointer(display, inputWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 		
-	XSendEvent(display, inputWindow, True, 0xfff, &event);
+	XSendEvent(display, CGLXWindow, True, 0xfff, &event);
 		
 	XFlush(display);
 	usleep(100);
@@ -92,7 +94,7 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     
-    XWarpPointer (display, None, inputWindow, 0, 0, 0, 0, absX, absY);
+    XWarpPointer (display, None, CGLXWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
 	usleep(100);
 }

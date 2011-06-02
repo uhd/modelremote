@@ -8,7 +8,7 @@
 
 #include "Server.h"
 
-int main (int argv, char *windowID[])
+int main (int argv, char **windowID)
 {
     Server server;
     server.initialize();
