@@ -17,12 +17,11 @@ using namespace std;
 class CommandInterpreter
 {
 public:
-    CommandInterpreter();
+    CommandInterpreter(char *inputWindowID);
     void handleCommand(TACommand command);
     void click(TACommand command);
     void moveMouse(TACommand command);
     void releaseMouse(TACommand command);
-	void grabWindowID(char *inputWindowID);
     
 private:
     Display *display;

@@ -13,8 +13,7 @@ int main (int argv, char **windowID)
     Server server;
     server.initialize();
     
-    CommandInterpreter interpreter;
-    interpreter.grabWindowID(*windowID);
+    CommandInterpreter interpreter(*windowID);
 	
     server.setDelegate(interpreter);
     

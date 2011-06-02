@@ -8,7 +8,7 @@
 
 #include "CommandInterpreter.h"
 
-CommandInterpreter::CommandInterpreter()
+CommandInterpreter::CommandInterpreter(char* inputWindowID)
 {
     display = XOpenDisplay(NULL);
     
@@ -30,10 +30,7 @@ CommandInterpreter::CommandInterpreter()
 	memset(&event, 0x00, sizeof(event));
 	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
-}
-
-void CommandInterpreter::grabWindowID(char *inputWindowID)
-{
+	
 	unsigned long inputWindow;
 	inputWindow =  strtoul(inputWindowID, NULL, 16);	
 	CGLXWindow = inputWindow;
