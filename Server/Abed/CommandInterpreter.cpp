@@ -34,6 +34,9 @@ CommandInterpreter::CommandInterpreter(char* inputWindowID)
 	inputWindow =  strtoul(inputWindowID, NULL, 16);	
 	CGLXWindow = inputWindow;
 	XSelectInput(display, CGLXWindow, Button1Mask);
+	XSelectInput(display, CGLXWindow, ButtonPressMask);
+	XSelectInput(display, CGLXWindow, ButtonReleaseMask);
+	XSelectInput(display, CGLXWindow, ButtonMotionMask);
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -59,8 +62,6 @@ void CommandInterpreter::click(TACommand command)
 {	
 	cout<<"Attempting to click."<<endl;
 	event.type = ButtonPress;
-	XSelectInput(display, CGLXWindow, ButtonPressMask);
-
 	//event.xbutton.state = 0x100;
 	
 	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
@@ -76,8 +77,6 @@ void CommandInterpreter::releaseMouse(TACommand command)
 {	
 	cout<<"Attempting to release."<<endl;
 	event.type = ButtonRelease;
-	XSelectInput(display, CGLXWindow, ButtonReleaseMask);
-
 	//event.xbutton.state = 0x0;
 	
 	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
@@ -94,8 +93,6 @@ void CommandInterpreter::moveMouse(TACommand command)
 	cout<<"Attempting to move the mouse."<<endl;
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
-	
-	XSelectInput(display, CGLXWindow, ButtonMotionMask);
     
     XWarpPointer (display, None, CGLXWindow, 0, 0, 0, 0, absX, absY);
     XFlush (display);
