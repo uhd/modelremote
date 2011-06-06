@@ -15,10 +15,9 @@ CommandInterpreter::CommandInterpreter(char* inputWindowID)
     int numberSizes;
     Rotation originalRotation;
     
-    rootWindow = RootWindow(display, 0);
     XRRScreenSize *xrrs = XRRSizes(display, 0, &numberSizes);
     
-    XRRScreenConfiguration *configuration = XRRGetScreenInfo(display, rootWindow);
+    XRRScreenConfiguration *configuration = XRRGetScreenInfo(display, RootWindow(display, 0));
     SizeID originalSize = XRRConfigCurrentConfiguration(configuration, &originalRotation);
     
     int width=xrrs[originalSize].width;
@@ -34,6 +33,9 @@ CommandInterpreter::CommandInterpreter(char* inputWindowID)
 	unsigned long inputWindow;
 	inputWindow =  strtoul(inputWindowID, NULL, 16);	
 	CGLXWindow = inputWindow;
+	XSelectInput(display, CGLXWindow, Button1Mask);
+	XSelectInput(display, CGLXWindow, ButtonPressMask);
+	XSelectInput(display, CGLXWindow, ButtonReleaseMask);
 }
 
 void CommandInterpreter::handleCommand(TACommand command)

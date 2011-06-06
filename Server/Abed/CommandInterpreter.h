@@ -25,7 +25,6 @@ public:
     
 private:
     Display *display;
-    Window rootWindow;
 	Window CGLXWindow;
 	XEvent event;
     int xOrigin;
