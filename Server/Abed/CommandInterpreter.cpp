@@ -56,14 +56,14 @@ void CommandInterpreter::click(TACommand command)
 	event.xbutton.button = ButtonPress;
 	event.xbutton.same_screen = True;
 	
-	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display), None, CurrentTime) == false)
+	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == False)
 	{
 		printf("Error on grabbing the pointer.");
 	}
 	
 	XAllowEvents(display, SyncBoth, CurrentTime);
 	printf("Sending click.\n");
-	XSendEvent(display, RootWindow(display, DefaultScreen(display), True, ButtonPressMask, &event);
+	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, &event);
 	XUngrabPointer(display, CurrentTime);
 	
 	XFlush(display);
@@ -76,14 +76,14 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	event.xbutton.button = ButtonRelease;
 	event.xbutton.same_screen = True;
 	
-	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display), None, CurrentTime) == false)
+	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == False)
 	{
 		printf("Error on grabbing the pointer.");
 	}
 	
 	XAllowEvents(display, SyncBoth, CurrentTime);
 	printf("Sending release click.\n");
-	XSendEvent(display, RootWindow(display, DefaultScreen(display), True, ButtonReleaseMask, &event);
+	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, &event);
 	XUngrabPointer(display, CurrentTime);
 	
 	XFlush(display);
