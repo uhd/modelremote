@@ -63,7 +63,7 @@ void CommandInterpreter::click(TACommand command)
 	
 	XSelectInput(display, CGLXWindow, Button1);
 	XMaskEvent(display, ButtonPressMask, &event);
-	XSendEvent(display, CGLXWindow, True, 0xfff, &event);
+	XSendEvent(display, CGLXWindow, True, ButtonPressMask, &event);
 		
 	XFlush(display);
 	usleep(100);
@@ -80,7 +80,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	
 	XSelectInput(display, CGLXWindow, Button1);
 	XMaskEvent(display, ButtonReleaseMask, &event);
-	XSendEvent(display, CGLXWindow, True, 0xfff, &event);
+	XSendEvent(display, CGLXWindow, True, ButtonReleaseMask, &event);
 		
 	XFlush(display);
 	usleep(100);
