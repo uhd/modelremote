@@ -27,6 +27,10 @@ CommandInterpreter::CommandInterpreter()
     yOrigin = (int)height / 4;
 		
 	memset(&event, 0x00, sizeof(event));
+	event.xbutton.same_screen = True;
+	event.xbutton.button = Button1;	
+	XGrabPointer(display, RootWindow(display, 0), True, ButtonPressMask | ButtonReleaseMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
+
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -51,11 +55,8 @@ void CommandInterpreter::handleCommand(TACommand command)
 void CommandInterpreter::click(TACommand command)
 {	
 	cout<<"Attempting to click."<<endl;
-	event.xbutton.button = Button1;
 	event.type = ButtonPress;
-	event.xbutton.state = 0x100;
-
-	XGrabPointer(display, RootWindow(display, 0), True, ButtonPressMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
+	//event.xbutton.state = 0x100;
 	
 	XSelectInput(display, RootWindow(display, 0), Button1);
 	XSendEvent(display, RootWindow(display, 0), True, ButtonPressMask, &event);
@@ -67,12 +68,9 @@ void CommandInterpreter::click(TACommand command)
 void CommandInterpreter::releaseMouse(TACommand command)
 {	
 	cout<<"Attempting to release."<<endl;
-	event.xbutton.button = Button1;
 	event.type = ButtonRelease;
-	event.xbutton.state = 0x0;
-	
-	XGrabPointer(display, RootWindow(display, 0), True, ButtonReleaseMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
-	
+	//event.xbutton.state = 0x0;
+		
 	XSelectInput(display, RootWindow(display, 0), Button1);
 	XSendEvent(display, RootWindow(display, 0), True, ButtonReleaseMask, &event);
 	
