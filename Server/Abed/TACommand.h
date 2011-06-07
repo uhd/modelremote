@@ -37,4 +37,4 @@ typedef struct TACommand {
 } TACommand;
 
 TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int x, int y);
-string StringFromTACommand(TACommand command);
+//string StringFromTACommand(TACommand command);
