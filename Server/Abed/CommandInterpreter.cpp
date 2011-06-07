@@ -61,10 +61,9 @@ void CommandInterpreter::click(TACommand command)
 		printf("Error on grabbing the pointer.");
 	}
 	
-	XAllowEvents(display, SyncBoth, CurrentTime);
+	//XAllowEvents(display, SyncBoth, CurrentTime);
 	printf("Sending click.\n");
 	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, &event);
-	printf("Releasing pointer\n");
 	
 	XFlush(display);
 }
@@ -81,7 +80,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 		printf("Error on grabbing the pointer.");
 	}*/
 	
-	XAllowEvents(display, SyncBoth, CurrentTime);
+	//XAllowEvents(display, SyncBoth, CurrentTime);
 	printf("Sending release click.\n");
 	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, &event);
 	printf("Releasing pointer\n");
