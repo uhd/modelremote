@@ -28,9 +28,9 @@ CommandInterpreter::CommandInterpreter(char* inputWindowID)
 		
 	memset(&event, 0x00, sizeof(event));
 	event.xbutton.button = Button1;
-	event.xbutton.same_screen = True;
 	
 	CGLXWindow =  strtoul(inputWindowID, NULL, 16);	
+	
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -58,8 +58,7 @@ void CommandInterpreter::click(TACommand command)
 	event.type = ButtonPress;
 	event.xbutton.state = 0x100;
 	
-	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	event.xbutton.subwindow = event.xbutton.window;
+	XGrabPointer(display, CGLXWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, CGLXWindow, True, CurrentTime);
 	
 	XSelectInput(display, CGLXWindow, Button1);
 	XMaskEvent(display, ButtonPressMask, &event);
@@ -75,8 +74,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	event.type = ButtonRelease;
 	event.xbutton.state = 0x0;
 	
-	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	event.xbutton.subwindow = event.xbutton.window;
+	XGrabPointer(display, CGLXWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, CGLXWindow, True, CurrentTime);
 	
 	XSelectInput(display, CGLXWindow, Button1);
 	XMaskEvent(display, ButtonReleaseMask, &event);
