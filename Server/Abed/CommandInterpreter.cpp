@@ -27,7 +27,6 @@ CommandInterpreter::CommandInterpreter()
     yOrigin = (int)height / 4;
 		
 	memset(&event, 0x00, sizeof(event));
-	event.xbutton.button = Button1;
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -52,16 +51,13 @@ void CommandInterpreter::handleCommand(TACommand command)
 void CommandInterpreter::click(TACommand command)
 {	
 	cout<<"Attempting to click."<<endl;
+	event.xbutton.button = Button1;
 	event.type = ButtonPress;
 	event.xbutton.state = 0x100;
-	
-	if (AlreadyGrabbed == False)
-	{
-		XGrabPointer(display, RootWindow(display, 0), True, ButtonPressMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
-	}
+
+	XGrabPointer(display, RootWindow(display, 0), True, ButtonPressMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
 	
 	XSelectInput(display, RootWindow(display, 0), Button1);
-	XMaskEvent(display, ButtonPressMask, &event);
 	XSendEvent(display, RootWindow(display, 0), True, ButtonPressMask, &event);
 		
 	XFlush(display);
@@ -71,13 +67,13 @@ void CommandInterpreter::click(TACommand command)
 void CommandInterpreter::releaseMouse(TACommand command)
 {	
 	cout<<"Attempting to release."<<endl;
+	event.xbutton.button = Button1;
 	event.type = ButtonRelease;
 	event.xbutton.state = 0x0;
 	
-	XGrabPointer(display, RootWindow(display, 0), True, ButtonPressMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
+	XGrabPointer(display, RootWindow(display, 0), True, ButtonReleaseMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
 	
 	XSelectInput(display, RootWindow(display, 0), Button1);
-	XMaskEvent(display, ButtonReleaseMask, &event);
 	XSendEvent(display, RootWindow(display, 0), True, ButtonReleaseMask, &event);
 	
 	XUngrabPointer(display, CurrentTime);
