@@ -56,7 +56,7 @@ void CommandInterpreter::click(TACommand command)
 	event.xbutton.button = ButtonPress;
 	event.xbutton.same_screen = True;
 	
-	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == False)
+	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
 	{
 		printf("Error on grabbing the pointer.");
 	}
@@ -64,6 +64,7 @@ void CommandInterpreter::click(TACommand command)
 	XAllowEvents(display, SyncBoth, CurrentTime);
 	printf("Sending click.\n");
 	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, &event);
+	printf("Releasing pointer\n");
 	XUngrabPointer(display, CurrentTime);
 	
 	XFlush(display);
@@ -76,7 +77,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	event.xbutton.button = ButtonRelease;
 	event.xbutton.same_screen = True;
 	
-	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == False)
+	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
 	{
 		printf("Error on grabbing the pointer.");
 	}
@@ -84,6 +85,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	XAllowEvents(display, SyncBoth, CurrentTime);
 	printf("Sending release click.\n");
 	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, &event);
+	printf("Releasing pointer\n");
 	XUngrabPointer(display, CurrentTime);
 	
 	XFlush(display);
@@ -94,7 +96,7 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     
-	printf("Sending move command.\n");
+	printf("Sending move command. X: %i Y: %i\n", absX, absY);
     XWarpPointer (display, None, RootWindow(display, 0), 0, 0, 0, 0, absX, absY);
     XFlush (display);
 	usleep(100);
