@@ -16,6 +16,7 @@ CommandInterpreter::CommandInterpreter()
 	{
 		printf("Error on grabbing the pointer.");
 	}
+	XAllowEvents(display, AsyncBoth, CurrentTime);
 }
 
 void CommandInterpreter::queryResolution()
@@ -28,11 +29,11 @@ void CommandInterpreter::queryResolution()
     XRRScreenConfiguration *configuration = XRRGetScreenInfo(display, RootWindow(display, 0));
     SizeID originalSize = XRRConfigCurrentConfiguration(configuration, &originalRotation);
     
-    int width=xrrs[originalSize].width;
-    int height=xrrs[originalSize].height;
+    int width = xrrs[originalSize].width;
+    int height = xrrs[originalSize].height;
     
-    xOrigin = (int)width / 4;
-    yOrigin = (int)height / 4;
+    xOrigin = (int)width / 2;
+    yOrigin = (int)height / 2;
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
