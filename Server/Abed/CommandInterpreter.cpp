@@ -12,7 +12,7 @@ CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
 	
-	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
+	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, GrabModeAsync, GrabModeAsync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
 	{
 		printf("Error on grabbing the pointer.");
 	}
