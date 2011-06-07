@@ -58,7 +58,10 @@ void CommandInterpreter::click(TACommand command)
 	event.type = ButtonPress;
 	event.xbutton.state = 0x100;
 	
-	XGrabPointer(display, CGLXWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, CGLXWindow, True, CurrentTime);
+	if (AlreadyGrabbed == False)
+	{
+		XGrabPointer(display, CGLXWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, CGLXWindow, True, CurrentTime);
+	}
 	
 	XSelectInput(display, CGLXWindow, Button1);
 	XMaskEvent(display, ButtonPressMask, &event);
@@ -79,9 +82,12 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	XSelectInput(display, CGLXWindow, Button1);
 	XMaskEvent(display, ButtonReleaseMask, &event);
 	XSendEvent(display, CGLXWindow, True, ButtonReleaseMask, &event);
-		
+	
+	XUngrabPointer(display, CurrentTime);
+				
 	XFlush(display);
 	usleep(100);
+	
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
