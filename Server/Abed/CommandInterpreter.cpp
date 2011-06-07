@@ -11,8 +11,11 @@
 CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
-    
-    int numberSizes;
+}
+
+void CommandInterpreter::queryResolution()
+{
+	int numberSizes;
     Rotation originalRotation;
     
     XRRScreenSize *xrrs = XRRSizes(display, 0, &numberSizes);
@@ -25,27 +28,21 @@ CommandInterpreter::CommandInterpreter()
     
     xOrigin = (int)width / 4;
     yOrigin = (int)height / 4;
-		
-	memset(&event, 0x00, sizeof(event));
-	event.xbutton.same_screen = True;
-	event.xbutton.button = Button1;	
-	XGrabPointer(display, RootWindow(display, 0), True, ButtonPressMask | ButtonReleaseMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
-
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
 {
-    printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
+    //printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     switch (command.touch) 
 	{
+		case TACommandTouchEnd:
+            releaseMouse(command);
+            break;
         case TACommandTouchStart:
             click(command);
             break;
         case TACommandTouchMove:
             moveMouse(command);
-            break;
-        case TACommandTouchEnd:
-            releaseMouse(command);
             break;
         default:
             break;
@@ -54,39 +51,50 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {	
-	cout<<"Attempting to click."<<endl;
-	event.type = ButtonPress;
-	//event.xbutton.state = 0x100;
+	XEvent event;
+	memset(&event, 0x00, sizeof(&event));
+	event.xbutton.button = ButtonPress;
+	event.xbutton.same_screen = True;
 	
-	XSelectInput(display, RootWindow(display, 0), Button1);
-	XSendEvent(display, RootWindow(display, 0), True, ButtonPressMask, &event);
-		
+	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display), None, CurrentTime) == false)
+	{
+		printf("Error on grabbing the pointer.");
+	}
+	
+	XAllowEvents(display, SyncBoth, CurrentTime);
+	printf("Sending click.\n");
+	XSendEvent(display, RootWindow(display, DefaultScreen(display), True, ButtonPressMask, &event);
+	XUngrabPointer(display, CurrentTime);
+	
 	XFlush(display);
-	usleep(100);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
-{	
-	cout<<"Attempting to release."<<endl;
-	event.type = ButtonRelease;
-	//event.xbutton.state = 0x0;
-		
-	XSelectInput(display, RootWindow(display, 0), Button1);
-	XSendEvent(display, RootWindow(display, 0), True, ButtonReleaseMask, &event);
+{
+	XEvent event;
+	memset(&event, 0x00, sizeof(&event));
+	event.xbutton.button = ButtonRelease;
+	event.xbutton.same_screen = True;
 	
+	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display), None, CurrentTime) == false)
+	{
+		printf("Error on grabbing the pointer.");
+	}
+	
+	XAllowEvents(display, SyncBoth, CurrentTime);
+	printf("Sending release click.\n");
+	XSendEvent(display, RootWindow(display, DefaultScreen(display), True, ButtonReleaseMask, &event);
 	XUngrabPointer(display, CurrentTime);
-				
-	XFlush(display);
-	usleep(100);
 	
+	XFlush(display);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-	cout<<"Attempting to move the mouse."<<endl;
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     
+	printf("Sending move command.\n");
     XWarpPointer (display, None, RootWindow(display, 0), 0, 0, 0, 0, absX, absY);
     XFlush (display);
 	usleep(100);

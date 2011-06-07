@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
+#include <X11/Xwindows.h>
 
 using namespace std;
 
@@ -18,13 +19,13 @@ class CommandInterpreter
 public:
     CommandInterpreter();
     void handleCommand(TACommand command);
+	void queryResolution();
     void click(TACommand command);
     void moveMouse(TACommand command);
     void releaseMouse(TACommand command);
     
 private:
     Display *display;
-	XEvent event;
     int xOrigin;
     int yOrigin;
 };
