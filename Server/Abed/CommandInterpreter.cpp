@@ -53,7 +53,7 @@ void CommandInterpreter::click(TACommand command)
 {	
 	XEvent event;
 	memset(&event, 0x00, sizeof(&event));
-	event.xbutton.button = ButtonPress;
+	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
 	
 	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
@@ -73,7 +73,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 {
 	XEvent event;
 	memset(&event, 0x00, sizeof(&event));
-	event.xbutton.button = ButtonRelease;
+	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
 	
 	/*if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
