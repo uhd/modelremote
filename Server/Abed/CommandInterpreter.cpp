@@ -56,7 +56,7 @@ void CommandInterpreter::click(TACommand command)
 {	
 	cout<<"Attempting to click."<<endl;
 	event.type = ButtonPress;
-	//event.xbutton.state = 0x100;
+	event.xbutton.state = 0x100;
 	
 	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
@@ -73,7 +73,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 {	
 	cout<<"Attempting to release."<<endl;
 	event.type = ButtonRelease;
-	//event.xbutton.state = 0x0;
+	event.xbutton.state = 0x0;
 	
 	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
