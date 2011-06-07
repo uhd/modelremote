@@ -16,7 +16,7 @@ using namespace std;
 class CommandInterpreter
 {
 public:
-    CommandInterpreter(char *inputWindowID);
+    CommandInterpreter();
     void handleCommand(TACommand command);
     void click(TACommand command);
     void moveMouse(TACommand command);
@@ -24,7 +24,6 @@ public:
     
 private:
     Display *display;
-	Window CGLXWindow;
 	XEvent event;
     int xOrigin;
     int yOrigin;

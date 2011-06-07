@@ -18,7 +18,7 @@ TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int
     
     return newCommand;
 }
-//string StringFromTACommand(TACommand command) {
+string StringFromTACommand(TACommand command) {
     
     //return [NSString stringWithFormat:@"%i, %i, %i, %i", command.type, command.touch, command.xDifference, command.yDifference];
-//}
+}

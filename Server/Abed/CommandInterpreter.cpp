@@ -8,7 +8,7 @@
 
 #include "CommandInterpreter.h"
 
-CommandInterpreter::CommandInterpreter(char* inputWindowID)
+CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
     
@@ -28,9 +28,6 @@ CommandInterpreter::CommandInterpreter(char* inputWindowID)
 		
 	memset(&event, 0x00, sizeof(event));
 	event.xbutton.button = Button1;
-	
-	CGLXWindow =  strtoul(inputWindowID, NULL, 16);	
-	
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -60,12 +57,12 @@ void CommandInterpreter::click(TACommand command)
 	
 	if (AlreadyGrabbed == False)
 	{
-		XGrabPointer(display, CGLXWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, CGLXWindow, True, CurrentTime);
+		XGrabPointer(display, RootWindow(display, 0), True, ButtonPressMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
 	}
 	
-	XSelectInput(display, CGLXWindow, Button1);
+	XSelectInput(display, RootWindow(display, 0), Button1);
 	XMaskEvent(display, ButtonPressMask, &event);
-	XSendEvent(display, CGLXWindow, True, ButtonPressMask, &event);
+	XSendEvent(display, RootWindow(display, 0), True, ButtonPressMask, &event);
 		
 	XFlush(display);
 	usleep(100);
@@ -77,11 +74,11 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	event.type = ButtonRelease;
 	event.xbutton.state = 0x0;
 	
-	XGrabPointer(display, CGLXWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, CGLXWindow, True, CurrentTime);
+	XGrabPointer(display, RootWindow(display, 0), True, ButtonPressMask, GrabModeAsync, GrabModeAsync, RootWindow(display, 0), True, CurrentTime);
 	
-	XSelectInput(display, CGLXWindow, Button1);
+	XSelectInput(display, RootWindow(display, 0), Button1);
 	XMaskEvent(display, ButtonReleaseMask, &event);
-	XSendEvent(display, CGLXWindow, True, ButtonReleaseMask, &event);
+	XSendEvent(display, RootWindow(display, 0), True, ButtonReleaseMask, &event);
 	
 	XUngrabPointer(display, CurrentTime);
 				
@@ -96,7 +93,7 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     
-    XWarpPointer (display, None, CGLXWindow, 0, 0, 0, 0, absX, absY);
+    XWarpPointer (display, None, RootWindow(display, 0), 0, 0, 0, 0, absX, absY);
     XFlush (display);
 	usleep(100);
 }

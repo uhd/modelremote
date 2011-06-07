@@ -8,12 +8,12 @@
 
 #include "Server.h"
 
-int main (int argv, char **windowID)
+int main ()
 {
     Server server;
     server.initialize();
     
-    CommandInterpreter interpreter(*windowID);
+    CommandInterpreter interpreter;
 	
     server.setDelegate(interpreter);
     
