@@ -30,13 +30,7 @@ CommandInterpreter::CommandInterpreter(char* inputWindowID)
 	event.xbutton.button = Button1;
 	event.xbutton.same_screen = True;
 	
-	unsigned long inputWindow;
-	inputWindow =  strtoul(inputWindowID, NULL, 16);	
-	CGLXWindow = inputWindow;
-	XSelectInput(display, CGLXWindow, Button1Mask);
-	XSelectInput(display, CGLXWindow, ButtonPressMask);
-	XSelectInput(display, CGLXWindow, ButtonReleaseMask);
-	XSelectInput(display, CGLXWindow, ButtonMotionMask);
+	CGLXWindow =  strtoul(inputWindowID, NULL, 16);	
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -67,6 +61,8 @@ void CommandInterpreter::click(TACommand command)
 	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
 	
+	XSelectInput(display, CGLXWindow, Button1);
+	XMaskEvent(display, ButtonPressMask, &event);
 	XSendEvent(display, CGLXWindow, True, 0xfff, &event);
 		
 	XFlush(display);
@@ -81,7 +77,9 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	
 	XQueryPointer(display, CGLXWindow, &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	event.xbutton.subwindow = event.xbutton.window;
-		
+	
+	XSelectInput(display, CGLXWindow, Button1);
+	XMaskEvent(display, ButtonReleaseMask, &event);
 	XSendEvent(display, CGLXWindow, True, 0xfff, &event);
 		
 	XFlush(display);
