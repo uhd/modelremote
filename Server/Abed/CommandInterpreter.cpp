@@ -12,10 +12,12 @@ CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
 	
-	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, GrabModeAsync, GrabModeAsync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
+	if (XGrabPointer(display, PointerWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, PointerWindow, None, CurrentTime) != GrabSuccess)
 	{
+		pointerGrabbed = false;
 		printf("Error on grabbing the pointer.");
 	}
+	pointerGrabbed = true;
 	XAllowEvents(display, AsyncBoth, CurrentTime);
 }
 
@@ -41,18 +43,29 @@ void CommandInterpreter::handleCommand(TACommand command)
     //printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     switch (command.touch) 
 	{
-		case TACommandTouchEnd:
-            releaseMouse(command);
-            break;
         case TACommandTouchStart:
             click(command);
+			if (pointerGrabbed == false)
+			{
+				if (XGrabPointer(display, PointerWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, PointerWindow, None, CurrentTime) != GrabSuccess)
+				{
+					pointerGrabbed = false;
+					printf("Error on grabbing the pointer.");
+				}
+			}
             break;
         case TACommandTouchMove:
             moveMouse(command);
             break;
+		case TACommandTouchEnd:
+            releaseMouse(command);
+			XUngrabPointer(display, CurrentTime);
+            break;
         default:
             break;
 	}
+	XFlush(display);
+	usleep(100);
 }
 
 void CommandInterpreter::click(TACommand command)
@@ -63,9 +76,7 @@ void CommandInterpreter::click(TACommand command)
 	event.xbutton.same_screen = True;
 
 	printf("Sending click.\n");
-	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, &event);
-	
-	XFlush(display);
+	XSendEvent(display, PointerWindow, True, ButtonPressMask, &event);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
@@ -75,16 +86,8 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	event.xbutton.button = ButtonRelease;
 	event.xbutton.same_screen = True;
 	
-	/*if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
-	{
-		printf("Error on grabbing the pointer.");
-	}*/
-	
-	//XAllowEvents(display, SyncBoth, CurrentTime);
 	printf("Sending release.\n");
-	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, &event);
-		
-	XFlush(display);
+	XSendEvent(display, PointerWindow, True, ButtonReleaseMask, &event);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
@@ -92,8 +95,6 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     
-	printf("Sending move command. X: %i Y: %i\n", absX, absY);
+	printf("Sending move command.\n");
     XWarpPointer (display, None, RootWindow(display, 0), 0, 0, 0, 0, absX, absY);
-    XFlush (display);
-	usleep(100);
 }

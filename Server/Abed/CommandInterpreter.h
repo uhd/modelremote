@@ -25,6 +25,7 @@ public:
     
 private:
     Display *display;
+	bool pointerGrabbed;
     int xOrigin;
     int yOrigin;
 };
