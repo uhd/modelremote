@@ -65,7 +65,6 @@ void CommandInterpreter::click(TACommand command)
 	printf("Sending click.\n");
 	XSendEvent(display, RootWindow(display, DefaultScreen(display)), True, ButtonPressMask, &event);
 	printf("Releasing pointer\n");
-	XUngrabPointer(display, CurrentTime);
 	
 	XFlush(display);
 }
@@ -77,10 +76,10 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	event.xbutton.button = ButtonRelease;
 	event.xbutton.same_screen = True;
 	
-	if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
+	/*if (XGrabPointer(display, RootWindow(display, DefaultScreen(display)), True, ButtonReleaseMask, GrabModeSync, GrabModeSync, RootWindow(display, DefaultScreen(display)), None, CurrentTime) == GrabNotViewable)
 	{
 		printf("Error on grabbing the pointer.");
-	}
+	}*/
 	
 	XAllowEvents(display, SyncBoth, CurrentTime);
 	printf("Sending release click.\n");
