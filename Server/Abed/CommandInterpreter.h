@@ -22,7 +22,6 @@ public:
     CommandInterpreter();
     void handleCommand(TACommand command);
 	void queryResolution();
-	//XKeyEvent createPointer(Display *display, Window &currentWindow, Window &rootDisplayWindow, bool press, int keycode, int modifiers);
     void click(TACommand command);
     void moveMouse(TACommand command);
     void releaseMouse(TACommand command);
