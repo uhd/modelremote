@@ -57,11 +57,12 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {	
+	printf("Attempting to click.\n");
 	XTestGrabControl(display, True);
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	XTestFakeButtonEvent(display, 2, True, CurrentTime);
-	XTestFakeButtonEvent(display, 2, False, CurrentTime);
+	XTestFakeButtonEvent(display, 1, True, CurrentTime);
+	XTestFakeButtonEvent(display, 1, False, CurrentTime);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
