@@ -34,8 +34,9 @@ void CommandInterpreter::queryResolution()
     yOrigin = (int)height / 2;
 }
 
-void CommandInterpreter::createPointer(XButtonEvent &event, bool press)
+XKeyEvent CommandInterpreter::createPointer(Display *display, Window &currentWindow, Window &rootDisplayWindow, bool press, int keycode, int modifiers)
 {
+	XKeyEvent event;
 	if (press)
 		event.type = ButtonPress;
 	else
@@ -43,11 +44,14 @@ void CommandInterpreter::createPointer(XButtonEvent &event, bool press)
 		
 	event.display = display;
 	event.window = currentWindow;
+	event.subwindow = None;
 	event.root = rootDisplayWindow;
 	event.time = CurrentTime;
 	event.same_screen = True;
-	event.button = Button1;
-	event.state = Button1Mask;
+	event.keycode = XKeysymToKeycode(display, keycode);
+	event.state = modifiers;
+	
+	return event;
 }
 
 void CommandInterpreter::handleCommand(TACommand command)
@@ -73,20 +77,16 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {	
-	XButtonEvent event;
 	XGetInputFocus(display, &currentWindow, RevertToNone);
-	createPointer(event, true);
-	
-	XSendEvent(display, event.window, True, ButtonPressMask,(XEvent *) &event);
+	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, true, CLICK, 0);
+	XSendEvent(display, currentWindow, True, ButtonPressMask, (XEvent *) &event);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
-	XButtonEvent event;
 	XGetInputFocus(display, &currentWindow, RevertToNone);
-	createPointer(event, false);
-	
-	XSendEvent(display, event.window, True, ButtonPressMask,(XEvent *) &event);
+	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, CLICK, 0);
+	XSendEvent(display, currentWindow, True, ButtonPressMask, (XEvent *) &event);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
