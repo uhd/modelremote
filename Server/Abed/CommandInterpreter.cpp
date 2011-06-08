@@ -35,6 +35,7 @@ void CommandInterpreter::queryResolution()
 XKeyEvent CommandInterpreter::createPointer(Display *display, Window &currentWindow, Window &rootDisplayWindow, bool press, int keycode, int modifiers)
 {
 	XKeyEvent event;
+	
 	if (press)
 		event.type = KeyPress;
 	else
@@ -88,7 +89,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	int revert;
 	XGetInputFocus(display, &currentWindow, &revert);
 	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, XK_Down, 0);
-	XSendEvent(display, currentWindow, True, KeyPressMask, (XEvent *) &event);
+	XSendEvent(display, currentWindow, True, KeyReleaseMask, (XEvent *) &event);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
