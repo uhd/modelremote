@@ -21,7 +21,7 @@ public:
     CommandInterpreter();
     void handleCommand(TACommand command);
 	void queryResolution();
-	void createPointer(XButtonEvent &event, string type);
+	void createPointer(XButtonEvent &event, bool press);
     void click(TACommand command);
     void moveMouse(TACommand command);
     void releaseMouse(TACommand command);

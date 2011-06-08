@@ -34,11 +34,11 @@ void CommandInterpreter::queryResolution()
     yOrigin = (int)height / 2;
 }
 
-void CommandInterpreter::createPointer(XButtonEvent &event, string type)
+void CommandInterpreter::createPointer(XButtonEvent &event, bool press)
 {
-	if (type == "click")
+	if (press)
 		event.type = ButtonPress;
-	if (type == "release")
+	else
 		event.type = ButtonRelease;
 		
 	event.display = display;
@@ -75,7 +75,7 @@ void CommandInterpreter::click(TACommand command)
 {	
 	XButtonEvent event;
 	XGetInputFocus(display, &currentWindow, RevertToNone);
-	createPointer(event, "click");
+	createPointer(event, true);
 	
 	XSendEvent(display, event.window, True, ButtonPressMask,(XEvent *) &event);
 }
@@ -84,7 +84,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 {
 	XButtonEvent event;
 	XGetInputFocus(display, &currentWindow, RevertToNone);
-	createPointer(event, "release");
+	createPointer(event, false);
 	
 	XSendEvent(display, event.window, True, ButtonPressMask,(XEvent *) &event);
 }
