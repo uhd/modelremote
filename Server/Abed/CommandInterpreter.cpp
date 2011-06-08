@@ -75,6 +75,7 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {	
+	printf("Trying to click\n");
 	int revert;
 	XGetInputFocus(display, &currentWindow, &revert);
 	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, true, XK_Down, 0);
@@ -83,6 +84,7 @@ void CommandInterpreter::click(TACommand command)
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
+	printf("Trying to release.\n");
 	int revert;
 	XGetInputFocus(display, &currentWindow, &revert);
 	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, XK_Up, 0);
