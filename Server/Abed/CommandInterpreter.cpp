@@ -78,13 +78,13 @@ void CommandInterpreter::click(TACommand command)
 {	
 	printf("Clicking.\n");
 	XTestGrabControl(display, True);
-	XTestFakeKeyEvent(display, XK_Pointer_Button1, True, 0);
+	XTestFakeButtonEvent(display, XK_Pointer_Button1, True, 0);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
 	printf("Releasing.\n");
-	XTestFakeKeyEvent(display, XK_Pointer_Button1, False, 0);
+	XTestFakeButtonEvent(display, XK_Pointer_Button1, False, 0);
 	XSync(display, False);
 	XTestGrabControl(display, False);
 }
