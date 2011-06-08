@@ -57,20 +57,20 @@ void CommandInterpreter::handleCommand(TACommand command)
     printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     switch (command.touch) 
 	{
-        case 0:
+        case TACommandTouchStart:
             click(command);
             break;
-        case 1:
+        case TACommandTouchMove:
             moveMouse(command);
             break;
-		case 2:
+		case TACommandTouchEnd:
             releaseMouse(command);
             break;
         default:
             break;
 	}
 	XFlush(display);
-
+	usleep(100);
 }
 
 void CommandInterpreter::click(TACommand command)
@@ -87,7 +87,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	printf("Trying to release.\n");
 	int revert;
 	XGetInputFocus(display, &currentWindow, &revert);
-	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, XK_Up, 0);
+	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, XK_Down, 0);
 	XSendEvent(display, currentWindow, True, KeyPressMask, (XEvent *) &event);
 }
 
