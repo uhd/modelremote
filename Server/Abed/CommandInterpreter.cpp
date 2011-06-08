@@ -56,6 +56,7 @@ void CommandInterpreter::queryResolution()
 void CommandInterpreter::handleCommand(TACommand command)
 {
     //printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
+	XTestGrabControl(display, True);
     switch (command.touch) 
 	{
         case TACommandTouchStart:
@@ -70,6 +71,8 @@ void CommandInterpreter::handleCommand(TACommand command)
         default:
             break;
 	}
+	XTestGrabControl(display, False);
+
 	XFlush(display);
 	usleep(100);
 }
@@ -77,7 +80,6 @@ void CommandInterpreter::handleCommand(TACommand command)
 void CommandInterpreter::click(TACommand command)
 {	
 	printf("Clicking.\n");
-	XTestGrabControl(display, True);
 	XTestFakeButtonEvent(display, XK_Pointer_Button1, True, 0);
 }
 
@@ -85,8 +87,6 @@ void CommandInterpreter::releaseMouse(TACommand command)
 {
 	printf("Releasing.\n");
 	XTestFakeButtonEvent(display, XK_Pointer_Button1, False, 0);
-	XSync(display, False);
-	XTestGrabControl(display, False);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
