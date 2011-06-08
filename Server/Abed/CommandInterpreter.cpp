@@ -7,18 +7,14 @@
 //
 
 #include "CommandInterpreter.h"
+#define CLICK XK_Pointer_Button1
+#define DRAG XK_Pointer_Drag1
 
 CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
 	
-	if (XGrabPointer(display, PointerWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, PointerWindow, None, CurrentTime) != GrabSuccess)
-	{
-		pointerGrabbed = false;
-		printf("Error on grabbing the pointer.");
-	}
-	pointerGrabbed = true;
-	XAllowEvents(display, AsyncBoth, CurrentTime);
+	rootDisplayWindow = XDefaultRootWindow(display);
 }
 
 void CommandInterpreter::queryResolution()
@@ -38,6 +34,22 @@ void CommandInterpreter::queryResolution()
     yOrigin = (int)height / 2;
 }
 
+void CommandInterpreter::createPointer(XButtonEvent &event, string type)
+{
+	if (type == "click")
+		event.type = ButtonPress;
+	if (type == "release")
+		event.type = ButtonRelease;
+		
+	event.display = display;
+	event.window = currentWindow;
+	event.root = rootDisplayWindow;
+	event.time = CurrentTime;
+	event.same_screen = True;
+	event.button = Button1;
+	event.state = Button1Mask;
+}
+
 void CommandInterpreter::handleCommand(TACommand command)
 {
     //printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
@@ -45,21 +57,12 @@ void CommandInterpreter::handleCommand(TACommand command)
 	{
         case TACommandTouchStart:
             click(command);
-			if (pointerGrabbed == false)
-			{
-				if (XGrabPointer(display, PointerWindow, True, ButtonPressMask, GrabModeAsync, GrabModeAsync, PointerWindow, None, CurrentTime) != GrabSuccess)
-				{
-					pointerGrabbed = false;
-					printf("Error on grabbing the pointer.");
-				}
-			}
             break;
         case TACommandTouchMove:
             moveMouse(command);
             break;
 		case TACommandTouchEnd:
             releaseMouse(command);
-			XUngrabPointer(display, CurrentTime);
             break;
         default:
             break;
@@ -70,24 +73,20 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {	
-	XEvent event;
-	memset(&event, 0x00, sizeof(&event));
-	event.xbutton.button = ButtonPress;
-	event.xbutton.same_screen = True;
-
-	printf("Sending click.\n");
-	XSendEvent(display, PointerWindow, True, ButtonPressMask, &event);
+	XButtonEvent event;
+	XGetInputFocus(display, &currentWindow, RevertToNone);
+	createPointer(event, "click");
+	
+	XSendEvent(display, event.window, True, ButtonPressMask,(XEvent *) &event);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
-	XEvent event;
-	memset(&event, 0x00, sizeof(&event));
-	event.xbutton.button = ButtonRelease;
-	event.xbutton.same_screen = True;
+	XButtonEvent event;
+	XGetInputFocus(display, &currentWindow, RevertToNone);
+	createPointer(event, "release");
 	
-	printf("Sending release.\n");
-	XSendEvent(display, PointerWindow, True, ButtonReleaseMask, &event);
+	XSendEvent(display, event.window, True, ButtonPressMask,(XEvent *) &event);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)

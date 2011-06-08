@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
+#include <X11/keysymdef.h>
+#include <X11/keysym.h>
 
 using namespace std;
 
@@ -19,13 +21,15 @@ public:
     CommandInterpreter();
     void handleCommand(TACommand command);
 	void queryResolution();
+	void createPointer(XButtonEvent &event, string type);
     void click(TACommand command);
     void moveMouse(TACommand command);
     void releaseMouse(TACommand command);
     
 private:
     Display *display;
-	bool pointerGrabbed;
+	Window rootDisplayWindow;
+	Window currentWindow;
     int xOrigin;
     int yOrigin;
 };
