@@ -11,7 +11,8 @@
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
 #include <X11/keysymdef.h>
-#include <X11/keysym.h>
+#include <X11/Intrinsic.h>
+#include <X11/extensions/XTest.h>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ public:
     CommandInterpreter();
     void handleCommand(TACommand command);
 	void queryResolution();
-	XKeyEvent createPointer(Display *display, Window &currentWindow, Window &rootDisplayWindow, bool press, int keycode, int modifiers);
+	//XKeyEvent createPointer(Display *display, Window &currentWindow, Window &rootDisplayWindow, bool press, int keycode, int modifiers);
     void click(TACommand command);
     void moveMouse(TACommand command);
     void releaseMouse(TACommand command);

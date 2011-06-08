@@ -32,7 +32,7 @@ void CommandInterpreter::queryResolution()
     yOrigin = (int)height / 2;
 }
 
-XKeyEvent CommandInterpreter::createPointer(Display *display, Window &currentWindow, Window &rootDisplayWindow, bool press, int keycode, int modifiers)
+/*XKeyEvent CommandInterpreter::createPointer(Display *display, Window &currentWindow, Window &rootDisplayWindow, bool press, int keycode, int modifiers)
 {
 	XKeyEvent event;
 	
@@ -51,7 +51,7 @@ XKeyEvent CommandInterpreter::createPointer(Display *display, Window &currentWin
 	event.state = modifiers;
 	
 	return event;
-}
+}*/
 
 void CommandInterpreter::handleCommand(TACommand command)
 {
@@ -76,18 +76,16 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {	
-	int revert;
-	XGetInputFocus(display, &currentWindow, &revert);
-	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, true, XK_Pointer_Button1, 0);
-	XSendEvent(display, currentWindow, True, KeyPressMask, (XEvent *) &event);
+	XTestGrabControl(display, True);
+	XTestFakeKeyEvent(display, XK_Pointer_Button1, True, 0);
+	XSync(display, False);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
-	int revert;
-	XGetInputFocus(display, &currentWindow, &revert);
-	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, XK_Pointer_Button1, 0);
-	XSendEvent(display, currentWindow, True, KeyReleaseMask, (XEvent *) &event);
+	XSync(display, False);
+	XTestFakeKeyEvent(display, XK_Pointer_Button1, True, 0);
+	XTestGrabControl(display, False);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
