@@ -69,6 +69,8 @@ void CommandInterpreter::handleCommand(TACommand command)
         default:
             break;
 	}
+	XFlush(display);
+	usleep(100);
 }
 
 void CommandInterpreter::click(TACommand command)
