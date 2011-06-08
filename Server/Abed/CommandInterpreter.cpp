@@ -54,7 +54,7 @@ XKeyEvent CommandInterpreter::createPointer(Display *display, Window &currentWin
 
 void CommandInterpreter::handleCommand(TACommand command)
 {
-    //printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
+    printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
     switch (command.touch) 
 	{
         case TACommandTouchStart:
@@ -69,20 +69,20 @@ void CommandInterpreter::handleCommand(TACommand command)
         default:
             break;
 	}
-	XFlush(display);
-	usleep(100);
 }
 
 void CommandInterpreter::click(TACommand command)
 {	
-	XGetInputFocus(display, &currentWindow, RevertToNone);
+	int revert;
+	XGetInputFocus(display, &currentWindow, &revert);
 	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, true, XK_A, 0);
 	XSendEvent(display, currentWindow, True, ButtonPressMask, (XEvent *) &event);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
-	XGetInputFocus(display, &currentWindow, RevertToNone);
+	int revert;
+	XGetInputFocus(display, &currentWindow, &revert);
 	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, XK_a, 0);
 	XSendEvent(display, currentWindow, True, ButtonPressMask, (XEvent *) &event);
 }
