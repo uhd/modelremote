@@ -7,8 +7,6 @@
 //
 
 #include "CommandInterpreter.h"
-#define CLICK XK_Pointer_Button1
-#define DRAG XK_Pointer_Drag1
 
 CommandInterpreter::CommandInterpreter()
 {
@@ -78,14 +76,14 @@ void CommandInterpreter::handleCommand(TACommand command)
 void CommandInterpreter::click(TACommand command)
 {	
 	XGetInputFocus(display, &currentWindow, RevertToNone);
-	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, true, CLICK, 0);
+	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, true, XK_A, 0);
 	XSendEvent(display, currentWindow, True, ButtonPressMask, (XEvent *) &event);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
 	XGetInputFocus(display, &currentWindow, RevertToNone);
-	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, CLICK, 0);
+	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, XK_a, 0);
 	XSendEvent(display, currentWindow, True, ButtonPressMask, (XEvent *) &event);
 }
 
