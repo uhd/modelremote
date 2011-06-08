@@ -36,9 +36,9 @@ XKeyEvent CommandInterpreter::createPointer(Display *display, Window &currentWin
 {
 	XKeyEvent event;
 	if (press)
-		event.type = ButtonPress;
+		event.type = KeyPress;
 	else
-		event.type = ButtonRelease;
+		event.type = KeyRelease;
 		
 	event.display = display;
 	event.window = currentWindow;
@@ -70,7 +70,7 @@ void CommandInterpreter::handleCommand(TACommand command)
             break;
 	}
 	XFlush(display);
-	usleep(100);
+
 }
 
 void CommandInterpreter::click(TACommand command)
@@ -78,7 +78,7 @@ void CommandInterpreter::click(TACommand command)
 	int revert;
 	XGetInputFocus(display, &currentWindow, &revert);
 	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, true, XK_Down, 0);
-	XSendEvent(display, currentWindow, True, ButtonPressMask, (XEvent *) &event);
+	XSendEvent(display, currentWindow, True, KeyPressMask, (XEvent *) &event);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
@@ -86,7 +86,7 @@ void CommandInterpreter::releaseMouse(TACommand command)
 	int revert;
 	XGetInputFocus(display, &currentWindow, &revert);
 	XKeyEvent event = createPointer(display, currentWindow, rootDisplayWindow, false, XK_Up, 0);
-	XSendEvent(display, currentWindow, True, ButtonPressMask, (XEvent *) &event);
+	XSendEvent(display, currentWindow, True, KeyPressMask, (XEvent *) &event);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
