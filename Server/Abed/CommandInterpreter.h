@@ -31,6 +31,7 @@ private:
 	Window rootDisplayWindow;
 	Window currentWindow;
 	bool clicked;
+	bool zooming;
     int xOrigin;
     int yOrigin;
 };

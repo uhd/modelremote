@@ -17,6 +17,7 @@ CommandInterpreter::CommandInterpreter()
 	queryResolution();
 	
 	clicked = false;
+	zooming = false;
 }
 
 void CommandInterpreter::queryResolution()
@@ -97,8 +98,18 @@ void CommandInterpreter::releaseMouse(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    int absX = xOrigin + command.xDifference;
+	XEvent event;
+	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+    
+	int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
+	
+	if (zooming == true)
+	{
+		XTestFakeMotionEvent(display, 0, event.xbutton.x, absY, CurrentTime);
+		return;
+	}
+
 	
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
@@ -111,19 +122,22 @@ void CommandInterpreter::zoom(TACommand command)
 
 	printf("Event.x = %i, Event.y = %i\n", event.xbutton.x, event.xbutton.y);
 
-	if (command.zoomValue > 1.0)
+	if ((command.zoomValue > 1.0) && (zooming == false))
 	{
 		XTestGrabControl(display, True);
 		XTestFakeButtonEvent(display, 3, True, CurrentTime);
 		XTestFakeMotionEvent(display, 0, event.xbutton.x, (event.xbutton.y + threshold), CurrentTime);
-		XTestFakeButtonEvent(display, 3, False, CurrentTime);
 	}
 	
-	if (command.zoomValue < 1.0)
+	if ((command.zoomValue < 1.0) && (zooming == false))
 	{
 		XTestGrabControl(display, True);
 		XTestFakeButtonEvent(display, 3, True, CurrentTime);
 		XTestFakeMotionEvent(display, 0, event.xbutton.x, (event.xbutton.y - threshold), CurrentTime);
+	}
+	
+	if (zooming == true)
+	{
 		XTestFakeButtonEvent(display, 3, False, CurrentTime);
 	}
 	
