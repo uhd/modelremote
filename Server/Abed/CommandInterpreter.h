@@ -21,10 +21,10 @@ public:
     CommandInterpreter();
     void handleCommand(TACommand command);
 	void queryResolution();
+	void moveMouse(TACommand command);
     void click(TACommand command);
-    void moveMouse(TACommand command);
-    void releaseMouse(TACommand command);
 	void zoom(TACommand command);
+	void pan(TACommand command);
     
 private:
     Display *display;

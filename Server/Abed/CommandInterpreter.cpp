@@ -48,52 +48,18 @@ void CommandInterpreter::handleCommand(TACommand command)
 	switch(command.type)
 	{
 		case TACommandTypeRotate:
-			switch(command.touch) 
-			{
-				case TACommandTouchStart:
-					click(command);
-					break;
-				case TACommandTouchMove:
-					moveMouse(command);
-					break;
-				case TACommandTouchEnd:
-					releaseMouse(command);
-					break;
-				default:
-					break;
-			}
+			click(command);
 			break;
 		case TACommandTypeZoom:
 			zoom(command);
 			break;
 		case TACommandTypePan:
-			//pan();
+			pan(command);
 			break;
 	}
 	XSync(display, 0);
 	XTestGrabControl(display, False);
 	usleep(1);
-}
-
-void CommandInterpreter::click(TACommand command)
-{	
-	if (clicked == true)
-		return;
-
-	XEvent event;
-	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	XTestFakeButtonEvent(display, 1, True, CurrentTime);
-	
-	clicked = true;
-}
-
-void CommandInterpreter::releaseMouse(TACommand command)
-{
-	if (clicked == true)
-	{
-		XTestFakeButtonEvent(display, 1, False, CurrentTime);
-		clicked = false;
-	}
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
@@ -107,11 +73,32 @@ void CommandInterpreter::moveMouse(TACommand command)
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
 
+void CommandInterpreter::click(TACommand command)
+{	
+	switch (command.touch)
+	{
+		case TACommandTouchStart:
+		{
+			XTestFakeButtonEvent(display, 1, True, CurrentTime);
+		}
+		break;
+		case TACommandTouchMove:
+		{
+			moveMouse(command);
+		}
+		break;
+		case TACommandTouchEnd:
+		{
+			XTestFakeButtonEvent(display, 1, False, CurrentTime);
+		}
+		break;
+		default:
+		break;
+	}
+}
+
 void CommandInterpreter::zoom(TACommand command)
 {
-	XEvent event;
-	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-
 	int threshold = 15;
 
 	switch (command.touch)
@@ -132,6 +119,30 @@ void CommandInterpreter::zoom(TACommand command)
 		case TACommandTouchEnd:
 		{
 			XTestFakeButtonEvent(display, 3, False, CurrentTime);
+		}
+		break;
+		default:
+		break;
+	}
+}
+
+void CommandInterpreter::pan(TACommand command)
+{
+	switch (command.touch)
+	{
+		case TACommandTouchStart:
+		{
+			XTestFakeButtonEvent(display, 2, True, CurrentTime);
+		}
+		break;
+		case TACommandTouchMove:
+		{
+			moveMouse(command);
+		}
+		break;
+		case TACommandTouchEnd:
+		{
+			XTestFakeButtonEvent(display, 2, False, CurrentTime);
 		}
 		break;
 		default:
