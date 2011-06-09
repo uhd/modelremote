@@ -112,7 +112,7 @@ void CommandInterpreter::zoom(TACommand command)
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 
-	int threshold = 5;
+	int threshold = 15;
 
 	switch (command.touch)
 	{
