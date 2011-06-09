@@ -65,6 +65,7 @@ void CommandInterpreter::click(TACommand command)
 	{
 		printf("Attempting to release.\n");
 		XTestFakeButtonEvent(display, 1, False, CurrentTime);
+		released = false;
 		return;
 	}
 	printf("Attempting to click.\n");
