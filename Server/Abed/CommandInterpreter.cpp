@@ -11,12 +11,7 @@
 CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
-	
-	rootDisplayWindow = XDefaultRootWindow(display);\
-	
 	queryResolution();
-	
-	clicked = false;
 }
 
 void CommandInterpreter::queryResolution()
@@ -36,7 +31,7 @@ void CommandInterpreter::queryResolution()
     yOrigin = (int)height / 2;
 	
 	printf("Server Dimensions: %i x %i.\n", xrrs[originalSize].width, xrrs[originalSize].height);
-	printf("Adjusted Dimensions: %i x %i.\n", xOrigin, yOrigin);
+	printf("Origin of Screen %i: %i x %i.\n", DefaultScreen(display), xOrigin, yOrigin);
 }
 
 
@@ -48,7 +43,7 @@ void CommandInterpreter::handleCommand(TACommand command)
 	switch(command.type)
 	{
 		case TACommandTypeRotate:
-			click(command);
+			rotate(command);
 			break;
 		case TACommandTypeZoom:
 			zoom(command);
@@ -64,49 +59,39 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-	XEvent event;
-	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-    
 	int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
 	
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
 
-void CommandInterpreter::click(TACommand command)
+void CommandInterpreter::rotate(TACommand command)
 {	
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
-		{
 			XTestFakeButtonEvent(display, 1, True, CurrentTime);
-		}
 		break;
 		case TACommandTouchMove:
-		{
 			moveMouse(command);
-		}
 		break;
 		case TACommandTouchEnd:
-		{
 			XTestFakeButtonEvent(display, 1, False, CurrentTime);
-		}
 		break;
 		default:
+			printf("Function 'rotate' defaulted.\n");
 		break;
 	}
 }
 
 void CommandInterpreter::zoom(TACommand command)
 {
-	int threshold = 15;
+	int threshold = 12;
 
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
-		{
 			XTestFakeButtonEvent(display, 3, True, CurrentTime);
-		}
 		break;
 		case TACommandTouchMove:
 		{
@@ -117,11 +102,10 @@ void CommandInterpreter::zoom(TACommand command)
 		}
 		break;
 		case TACommandTouchEnd:
-		{
 			XTestFakeButtonEvent(display, 3, False, CurrentTime);
-		}
 		break;
 		default:
+			printf("Function 'zoom' defaulted.\n");
 		break;
 	}
 }
@@ -131,21 +115,16 @@ void CommandInterpreter::pan(TACommand command)
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
-		{
 			XTestFakeButtonEvent(display, 2, True, CurrentTime);
-		}
 		break;
 		case TACommandTouchMove:
-		{
 			moveMouse(command);
-		}
 		break;
 		case TACommandTouchEnd:
-		{
 			XTestFakeButtonEvent(display, 2, False, CurrentTime);
-		}
 		break;
 		default:
+			printf("Function 'pan' defaulted.\n");
 		break;
 	}
 }
