@@ -142,6 +142,6 @@ void CommandInterpreter::zoom(TACommand command)
 		zooming = false;
 	}
 	
-	XTestFakeMotionEvent(display, 0, event.xbutton.x, event.xbutton.y, CurrentTime);
+	//XTestFakeMotionEvent(display, 0, event.xbutton.x, event.xbutton.y, CurrentTime);
 	XTestGrabControl(display, False);
 }
