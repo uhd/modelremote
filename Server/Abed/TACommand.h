@@ -7,9 +7,7 @@
 //
 
 #include <iostream>
-#include <string>
 
-using namespace std;
 
 typedef enum {
     
@@ -38,4 +36,3 @@ typedef struct TACommand {
 } TACommand;
 
 TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int x, int y, float scale, float zoomValue);
-string StringFromTACommand(TACommand command);

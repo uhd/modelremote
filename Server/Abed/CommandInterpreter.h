@@ -7,7 +7,6 @@
 //
 
 #include "TACommand.h"
-#include <unistd.h>
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
 #include <X11/extensions/XTest.h>
