@@ -29,7 +29,7 @@ private:
     Display *display;
 	Window rootDisplayWindow;
 	Window currentWindow;
-	bool released;
+	bool clicked;
     int xOrigin;
     int yOrigin;
 };
