@@ -35,7 +35,7 @@
 		509F5FB7134EE34D0036C676 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		509F5FB9134EE34D0036C676 /* Abed.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Abed.1; sourceTree = "<group>"; };
 		509F5FC1134EE3A50036C676 /* TACommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TACommand.cpp; sourceTree = "<group>"; };
-		509F5FC2134EE3A50036C676 /* TACommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TACommand.h; sourceTree = "<group>"; };
+		509F5FC2134EE3A50036C676 /* TACommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TACommand.h; path = Abed/TACommand.h; sourceTree = "<group>"; };
 		50AEE2B513518EC700AB75E7 /* Server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Server.cpp; sourceTree = "<group>"; };
 		50AEE2B613518EC700AB75E7 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		50AEE2B81351930700AB75E7 /* CommandInterpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandInterpreter.cpp; sourceTree = "<group>"; };
@@ -67,6 +67,7 @@
 				D3ECD33513A13FC700CEB088 /* libXtst.6.dylib */,
 				509F5FB6134EE34D0036C676 /* Abed */,
 				509F5FB4134EE34D0036C676 /* Products */,
+				509F5FC2134EE3A50036C676 /* TACommand.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,7 +96,6 @@
 		509F5FC0134EE3900036C676 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				509F5FC2134EE3A50036C676 /* TACommand.h */,
 				509F5FC1134EE3A50036C676 /* TACommand.cpp */,
 			);
 			name = "Supporting Files";
