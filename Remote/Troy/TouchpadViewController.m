@@ -88,7 +88,7 @@
 #pragma mark touch handling
 - (void)touchpadDidBeginTouchPoint:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchStart, (point.x - 384), (point.y - 512), deviceScale);
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchStart, (point.x - 384), (point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
@@ -96,14 +96,14 @@
 
 - (void)touchpadDidTouchPoint:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, (point.x - 384), (point.y - 512), deviceScale);
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, (point.x - 384), (point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
 
 - (void)touchpadDidEndTouchPoint:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, (point.x - 384), (point.y - 512), deviceScale);
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, (point.x - 384), (point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
@@ -111,21 +111,21 @@
 #pragma mark pinch handling
 - (void)touchpadDidBeginPinch {
     
-    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchStart, 0, 0, deviceScale);
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchStart, 0, 0, deviceScale, 1);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
 
 - (void)touchpadDidPinchWithScale:(float)scale {
 
-    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchMove, 0, 0, deviceScale);
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchMove, 0, 0, deviceScale, scale);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
 
 - (void)touchpadDidEndPinch {
     
-    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchEnd, 0, 0, deviceScale);
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchEnd, 0, 0, deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }

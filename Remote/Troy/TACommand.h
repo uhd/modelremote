@@ -30,8 +30,9 @@ typedef struct TACommand {
     TACommandTouch touch;
     int xDifference;
     int yDifference;
+	float zoomValue;
     
 } TACommand;
 
-TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int x, int y, float scale);
+TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int x, int y, float scale, float zoomValue);
 NSString *NSStringFromTACommand(TACommand command);

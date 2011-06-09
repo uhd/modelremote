@@ -8,13 +8,14 @@
 
 #import "TACommand.h"
 
-TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int x, int y, float scale) {
+TACommand TACommandMake(TACommandType commandType, TACommandTouch touchType, int x, int y, float scale, float zoomValue) {
     
     TACommand newCommand;
     newCommand.type = commandType;
     newCommand.touch = touchType;
     newCommand.xDifference = x * scale;
     newCommand.yDifference = y * scale;
+	newCommand.zoomValue = zoomValue;
     
     return newCommand;
 }
