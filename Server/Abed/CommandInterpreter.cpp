@@ -55,6 +55,7 @@ void CommandInterpreter::handleCommand(TACommand command)
         default:
             break;
 	}
+	XSync(display, 0);
 	usleep(1);
 }
 
@@ -85,5 +86,4 @@ void CommandInterpreter::moveMouse(TACommand command)
 	
 	printf("Sending move command.\n");
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
-	XSync(display, 0);
 }
