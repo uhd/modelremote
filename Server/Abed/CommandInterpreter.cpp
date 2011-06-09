@@ -30,6 +30,9 @@ void CommandInterpreter::queryResolution()
     
     xOrigin = (int)width / 2;
     yOrigin = (int)height / 2;
+	
+	printf("Server Dimensions: %i x %i.\n", xrrs[originalSize].width, xrrs[originalSize].height);
+	printf("Adjusted Dimensions: %i x %i.\n", xOrigin, yOrigin);
 }
 
 
