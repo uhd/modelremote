@@ -13,8 +13,8 @@ using namespace std;
 
 typedef enum {
     
-    TACommandTypePan = 0,
-    TACommandTypeRotate,
+    TACommandTypeRotate = 0,
+    TACommandTypePan,
     TACommandTypeZoom,
     
 } TACommandType;
