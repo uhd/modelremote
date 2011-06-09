@@ -31,7 +31,7 @@ void CommandInterpreter::queryResolution()
     yOrigin = (int)height / 2;
 	
 	printf("Server Dimensions: %i x %i.\n", xrrs[originalSize].width, xrrs[originalSize].height);
-	printf("Origin of Screen %i: %i x %i.\n", DefaultScreen(display), xOrigin, yOrigin);
+	printf("Origin of Screen %i: (%i, %i).\n", DefaultScreen(display), xOrigin, yOrigin);
 }
 
 
