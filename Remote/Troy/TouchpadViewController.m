@@ -125,7 +125,7 @@
 
 - (void)touchpadDidEndPinch {
     
-    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchEnd, 0, 0, deviceScale, 0);
+    TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchEnd, 0, 0, deviceScale, -1);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
