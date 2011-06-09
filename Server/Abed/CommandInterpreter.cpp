@@ -52,9 +52,10 @@ void CommandInterpreter::handleCommand(TACommand command)
 			pan(command);
 			break;
 	}
+	
 	XSync(display, 0);
 	XTestGrabControl(display, False);
-	usleep(1);
+	usleep(10);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
