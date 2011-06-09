@@ -104,6 +104,16 @@ void CommandInterpreter::moveMouse(TACommand command)
     
 	int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
+	
+	if (command.zoomValue > 1.0)
+	{
+		XTestFakeMotionEvent(display, 0, absX, (absY + 10), CurrentTime);
+	}
+	
+	if (command.zoomValue < 1.0)
+	{
+		XTestFakeMotionEvent(display, 0, absX, (absY - 10), CurrentTime);
+	}
 
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
@@ -113,7 +123,7 @@ void CommandInterpreter::zoom(TACommand command)
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 
-	if ((command.zoomValue == -1) || (zooming == true))
+	if ((command.zoomValue == -1.000000) || (zooming == true))
 	{
 		XTestFakeButtonEvent(display, 3, False, CurrentTime);
 		zooming = false;
