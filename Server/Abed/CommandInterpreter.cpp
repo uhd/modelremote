@@ -12,7 +12,9 @@ CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
 	
-	rootDisplayWindow = XDefaultRootWindow(display);
+	rootDisplayWindow = XDefaultRootWindow(display);\
+	
+	queryResolution();
 }
 
 void CommandInterpreter::queryResolution()
