@@ -42,20 +42,31 @@ void CommandInterpreter::queryResolution()
 
 void CommandInterpreter::handleCommand(TACommand command)
 {
-    //printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
-    switch (command.touch) 
+    printf("COMMAND: %i, %i, %i, %i\n", command.type, command.touch, command.xDifference, command.yDifference);
+	switch(command.type)
 	{
-        case TACommandTouchStart:
-            click(command);
-            break;
-        case TACommandTouchMove:
-            moveMouse(command);
-            break;
-		case TACommandTouchEnd:
-            releaseMouse(command);
-            break;
-        default:
-            break;
+		case TACommandTypeRotate:
+			switch(command.touch) 
+			{
+				case TACommandTouchStart:
+					click(command);
+					break;
+				case TACommandTouchMove:
+					moveMouse(command);
+					break;
+				case TACommandTouchEnd:
+					releaseMouse(command);
+					break;
+				default:
+					break;
+			}
+			break;
+		case TACommandTypeZoom:
+			zoom(command);
+			break;
+		case TACommandTypePan:
+			//pan();
+			break;
 	}
 	XSync(display, 0);
 	usleep(1);
@@ -66,7 +77,6 @@ void CommandInterpreter::click(TACommand command)
 	if (clicked == true)
 		return;
 
-	printf("Click.\n");
 	XTestGrabControl(display, True);
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
@@ -88,6 +98,14 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
 	
-	printf("Sending move command.\n");
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
+}
+
+void CommandInterpreter::zoom(TACommand command)
+{
+	XEvent event;
+	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+
+	//if (command.touch > 1.0)
+		
 }

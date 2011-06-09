@@ -10,7 +10,7 @@
 
 void Server::initialize()
 {
-    cout << "Starting server\n";
+    printf("Starting server\n");
     
     socketDesc = socket(AF_INET, SOCK_STREAM, 0);
     if (socketDesc < 0)
@@ -68,7 +68,8 @@ void Server::closeServer(string message)
 {
     close(socketDesc);
     close(newSocketDesc);
-    
-    cout<<"Server closing: "<< message << "\n";
-    
+	
+    cout<<"Closing server: "<<message<<endl;
+	
+	exit(EXIT_FAILURE);
 }

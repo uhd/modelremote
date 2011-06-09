@@ -27,7 +27,7 @@ class Server
     void connectClient();
     void setDelegate(CommandInterpreter dataDelegate);
     void readData();
-    void closeServer(string);
+    void closeServer(string message);
     
     private:
     int socketDesc;

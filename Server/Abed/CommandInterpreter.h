@@ -24,6 +24,7 @@ public:
     void click(TACommand command);
     void moveMouse(TACommand command);
     void releaseMouse(TACommand command);
+	void zoom(TACommand command);
     
 private:
     Display *display;
