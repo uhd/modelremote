@@ -108,12 +108,14 @@ void CommandInterpreter::zoom(TACommand command)
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 
+	printf("Event.x = %i, Event.y = %i\n", event.xbutton.x, event.xbutton.y);
+
 	if (command.zoomValue > 1.0)
 	{
 		XTestGrabControl(display, True);
 		XTestFakeButtonEvent(display, 3, True, CurrentTime);
 		XTestFakeMotionEvent(display, 0, (event.xbutton.x + 10), (event.xbutton.y + 10), CurrentTime);
-		XTestFakeButtonEvent(display, 3, True, CurrentTime);
+		XTestFakeButtonEvent(display, 3, False, CurrentTime);
 	}
 	
 	if (command.zoomValue < 1.0)
@@ -121,7 +123,7 @@ void CommandInterpreter::zoom(TACommand command)
 		XTestGrabControl(display, True);
 		XTestFakeButtonEvent(display, 3, True, CurrentTime);
 		XTestFakeMotionEvent(display, 0, (event.xbutton.x - 10), (event.xbutton.y - 10), CurrentTime);
-		XTestFakeButtonEvent(display, 3, True, CurrentTime);
+		XTestFakeButtonEvent(display, 3, False, CurrentTime);
 	}
 	
 	XTestFakeMotionEvent(display, 0, event.xbutton.x, event.xbutton.y, CurrentTime);
