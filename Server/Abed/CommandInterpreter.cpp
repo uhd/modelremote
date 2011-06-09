@@ -126,14 +126,12 @@ void CommandInterpreter::zoom(TACommand command)
 	{
 		XTestGrabControl(display, True);
 		XTestFakeButtonEvent(display, 3, True, CurrentTime);
-		XTestFakeMotionEvent(display, 0, event.xbutton.x, (event.xbutton.y + threshold), CurrentTime);
 	}
 	
 	if ((command.zoomValue < 1.0) && (zooming == false))
 	{
 		XTestGrabControl(display, True);
 		XTestFakeButtonEvent(display, 3, True, CurrentTime);
-		XTestFakeMotionEvent(display, 0, event.xbutton.x, (event.xbutton.y - threshold), CurrentTime);
 	}
 	
 	if ((command.zoomValue == 0) || (zooming == true))
