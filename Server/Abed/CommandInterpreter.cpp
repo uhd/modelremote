@@ -79,10 +79,7 @@ void CommandInterpreter::moveMouse(TACommand command)
 {
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
-    
-	XEvent event;
-	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	
 	printf("Sending move command.\n");
-    XWarpPointer (display, RootWindow(display, DefaultScreen(display)), None, 0, 0, (xOrigin * 2), (yOrigin * 2), absX, absY);
+	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }

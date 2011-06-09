@@ -14,6 +14,7 @@
 		50AEE2BA1351930700AB75E7 /* CommandInterpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50AEE2B81351930700AB75E7 /* CommandInterpreter.cpp */; };
 		D3C704E7135D4AB50093B357 /* libX11.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C704E6135D4AB50093B357 /* libX11.6.dylib */; };
 		D3C704E9135D4AC50093B357 /* libXrandr.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C704E8135D4AC50093B357 /* libXrandr.2.dylib */; };
+		D3ECD33613A13FC700CEB088 /* libXtst.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3ECD33513A13FC700CEB088 /* libXtst.6.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,7 @@
 		50AEE2B91351930700AB75E7 /* CommandInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandInterpreter.h; sourceTree = "<group>"; };
 		D3C704E6135D4AB50093B357 /* libX11.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libX11.6.dylib; path = ../../../../../../../usr/X11/lib/libX11.6.dylib; sourceTree = "<group>"; };
 		D3C704E8135D4AC50093B357 /* libXrandr.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libXrandr.2.dylib; path = ../../../../../../../usr/X11/lib/libXrandr.2.dylib; sourceTree = "<group>"; };
+		D3ECD33513A13FC700CEB088 /* libXtst.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libXtst.6.dylib; path = ../../../../../../usr/X11/lib/libXtst.6.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			files = (
 				D3C704E9135D4AC50093B357 /* libXrandr.2.dylib in Frameworks */,
 				D3C704E7135D4AB50093B357 /* libX11.6.dylib in Frameworks */,
+				D3ECD33613A13FC700CEB088 /* libXtst.6.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 			children = (
 				D3C704E8135D4AC50093B357 /* libXrandr.2.dylib */,
 				D3C704E6135D4AB50093B357 /* libX11.6.dylib */,
+				D3ECD33513A13FC700CEB088 /* libXtst.6.dylib */,
 				509F5FB6134EE34D0036C676 /* Abed */,
 				509F5FB4134EE34D0036C676 /* Products */,
 			);

@@ -10,9 +10,8 @@
 #include <unistd.h>
 #include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
-#include <X11/keysymdef.h>
-#include <X11/Intrinsic.h>
 #include <X11/extensions/XTest.h>
+
 
 using namespace std;
 
