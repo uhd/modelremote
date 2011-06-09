@@ -43,6 +43,8 @@ void CommandInterpreter::queryResolution()
 
 void CommandInterpreter::handleCommand(TACommand command)
 {
+	XTestGrabControl(display, True);
+
     printf("COMMAND: %i, %i, %i, %i, %f\n", command.type, command.touch, command.xDifference, command.yDifference, command.zoomValue);
 	switch(command.type)
 	{
@@ -70,6 +72,7 @@ void CommandInterpreter::handleCommand(TACommand command)
 			break;
 	}
 	XSync(display, 0);
+	XTestGrabControl(display, False);
 	usleep(1);
 }
 
@@ -78,11 +81,9 @@ void CommandInterpreter::click(TACommand command)
 	if (clicked == true)
 		return;
 
-	XTestGrabControl(display, True);
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	XTestFakeButtonEvent(display, 1, True, CurrentTime);
-	XTestGrabControl(display, False);
 	
 	clicked = true;
 }
@@ -109,39 +110,24 @@ void CommandInterpreter::moveMouse(TACommand command)
 		XTestFakeMotionEvent(display, 0, event.xbutton.x, absY, CurrentTime);
 		return;
 	}
-
 	
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
 
 void CommandInterpreter::zoom(TACommand command)
 {
-	int threshold = 1000000;
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 
-	printf("Event.x = %i, Event.y = %i\n", event.xbutton.x, event.xbutton.y);
-
-	if ((command.zoomValue > 1.0) && (zooming == false))
-	{
-		XTestGrabControl(display, True);
-		XTestFakeButtonEvent(display, 3, True, CurrentTime);
-		zooming = true;
-	}
-	
-	if ((command.zoomValue < 1.0) && (zooming == false))
-	{
-		XTestGrabControl(display, True);
-		XTestFakeButtonEvent(display, 3, True, CurrentTime);
-		zooming = true;
-	}
-	
-	if ((command.zoomValue == 0) || (zooming == true))
+	if ((command.zoomValue == -1) || (zooming == true))
 	{
 		XTestFakeButtonEvent(display, 3, False, CurrentTime);
 		zooming = false;
 	}
 	
-	//XTestFakeMotionEvent(display, 0, event.xbutton.x, event.xbutton.y, CurrentTime);
-	XTestGrabControl(display, False);
+	if (command.zoomValue != 0)
+	{
+		XTestFakeButtonEvent(display, 3, True, CurrentTime);
+		zooming = true;
+	}
 }
