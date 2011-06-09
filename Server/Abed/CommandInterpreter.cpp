@@ -88,6 +88,8 @@ void CommandInterpreter::zoom(TACommand command)
 {
 	int threshold = 12;
 
+	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
@@ -102,7 +104,11 @@ void CommandInterpreter::zoom(TACommand command)
 		}
 		break;
 		case TACommandTouchEnd:
+		{
 			XTestFakeButtonEvent(display, 3, False, CurrentTime);
+			//Resets zoom back to it's original position.
+			XTestFakeMotionEvent(display, 0, event.xbutton.x, event.xbutton.y, CurrentTime);
+		}
 		break;
 		default:
 			printf("Function 'zoom' defaulted.\n");

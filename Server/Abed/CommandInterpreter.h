@@ -28,6 +28,7 @@ public:
     
 private:
     Display *display;
+	XEvent event;
     int xOrigin;
     int yOrigin;
 };
