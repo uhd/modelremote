@@ -63,11 +63,8 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {	
-	if (clicked == false)
-	{
-		XTestFakeButtonEvent(display, 1, False, CurrentTime);
+	if (clicked == true)
 		return;
-	}
 
 	printf("Click.\n");
 	XTestGrabControl(display, True);
@@ -80,7 +77,10 @@ void CommandInterpreter::click(TACommand command)
 void CommandInterpreter::releaseMouse(TACommand command)
 {
 	if (clicked == true)
+	{
+		XTestFakeButtonEvent(display, 1, False, CurrentTime);
 		clicked = false;
+	}
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
