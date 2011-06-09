@@ -104,13 +104,7 @@ void CommandInterpreter::moveMouse(TACommand command)
     
 	int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
-	
-	if (zooming == true)
-	{
-		XTestFakeMotionEvent(display, 0, event.xbutton.x, absY, CurrentTime);
-		return;
-	}
-	
+
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
 
