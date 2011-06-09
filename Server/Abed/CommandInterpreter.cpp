@@ -62,14 +62,13 @@ void CommandInterpreter::click(TACommand command)
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	XTestFakeButtonEvent(display, 1, True, CurrentTime);
-	//XTestFakeButtonEvent(display, 1, False, CurrentTime);
+	if (released == true)
+		XTestFakeButtonEvent(display, 1, False, CurrentTime);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
-	/*XEvent event;
-	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-	XTestFakeButtonEvent(display, XK_Pointer_Button1, False, CurrentTime);*/
+	released = true;
 }
 
 void CommandInterpreter::moveMouse(TACommand command)

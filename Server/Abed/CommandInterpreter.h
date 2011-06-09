@@ -30,6 +30,7 @@ private:
     Display *display;
 	Window rootDisplayWindow;
 	Window currentWindow;
+	bool released;
     int xOrigin;
     int yOrigin;
 };
