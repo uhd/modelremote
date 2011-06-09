@@ -17,7 +17,6 @@ CommandInterpreter::CommandInterpreter()
 	queryResolution();
 	
 	clicked = false;
-	zooming = false;
 }
 
 void CommandInterpreter::queryResolution()
@@ -105,20 +104,6 @@ void CommandInterpreter::moveMouse(TACommand command)
 	int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
 	
-	if (command.zoomValue != 0)
-	{
-		if (command.zoomValue > 1.0)
-		{
-			XTestFakeMotionEvent(display, 0, absX, (absY + 10), CurrentTime);
-		}
-	
-		if (command.zoomValue < 1.0)
-		{
-			XTestFakeMotionEvent(display, 0, absX, (absY - 10), CurrentTime);
-		}
-		return;
-	}
-	
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
 
@@ -127,15 +112,29 @@ void CommandInterpreter::zoom(TACommand command)
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 
-	if (command.zoomValue == -1.000000)
+	int threshold = 5;
+
+	switch (command.touch)
 	{
-		XTestFakeButtonEvent(display, 3, False, CurrentTime);
-		zooming = false;
-	}
-	
-	if (command.zoomValue != 0)
-	{
-		XTestFakeButtonEvent(display, 3, True, CurrentTime);
-		zooming = true;
+		case TACommandTouchStart:
+		{
+			XTestFakeButtonEvent(display, 3, True, CurrentTime);
+		}
+		break;
+		case TACommandTouchMove:
+		{
+			if (command.zoomValue > 1.0)
+				XTestFakeRelativeMotionEvent(display, 0, threshold, CurrentTime);
+			if (command.zoomValue < 1.0)
+				XTestFakeRelativeMotionEvent(display, 0, (-1 * threshold), CurrentTime);
+		}
+		break;
+		case TACommandTouchEnd:
+		{
+			XTestFakeButtonEvent(display, 3, False, CurrentTime);
+		}
+		break;
+		default:
+		break;
 	}
 }
