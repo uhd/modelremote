@@ -63,12 +63,11 @@ void CommandInterpreter::click(TACommand command)
 {	
 	if (released == true)
 	{
-		printf("Attempting to release.\n");
 		XTestFakeButtonEvent(display, 1, False, CurrentTime);
 		released = false;
 		return;
 	}
-	printf("Attempting to click.\n");
+	printf("Click.\n");
 	XTestGrabControl(display, True);
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
@@ -77,7 +76,9 @@ void CommandInterpreter::click(TACommand command)
 
 void CommandInterpreter::releaseMouse(TACommand command)
 {
-	released = true;
+	printf("ReleaseMouse.\n");
+	if (released == false)
+		released = true;
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
