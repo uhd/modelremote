@@ -116,7 +116,7 @@ void CommandInterpreter::moveMouse(TACommand command)
 
 void CommandInterpreter::zoom(TACommand command)
 {
-	int threshold = 100;
+	int threshold = 1000000;
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 
@@ -136,7 +136,7 @@ void CommandInterpreter::zoom(TACommand command)
 		XTestFakeMotionEvent(display, 0, event.xbutton.x, (event.xbutton.y - threshold), CurrentTime);
 	}
 	
-	if (zooming == true)
+	if ((command.zoomValue == 0) || (zooming == true))
 	{
 		XTestFakeButtonEvent(display, 3, False, CurrentTime);
 	}
