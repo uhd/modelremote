@@ -10,8 +10,8 @@
 
 typedef enum {
     
-    TACommandTypeRotate = 0,
-    TACommandTypePan,
+    TACommandTypePan = 0,
+    TACommandTypeRotate,
     TACommandTypeZoom,
     
 } TACommandType;
