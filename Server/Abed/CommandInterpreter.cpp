@@ -57,13 +57,17 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::click(TACommand command)
 {	
+	if (released == true)
+	{
+		printf("Attempting to release.\n");
+		XTestFakeButtonEvent(display, 1, False, CurrentTime);
+		return;
+	}
 	printf("Attempting to click.\n");
 	XTestGrabControl(display, True);
 	XEvent event;
 	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 	XTestFakeButtonEvent(display, 1, True, CurrentTime);
-	if (released == true)
-		XTestFakeButtonEvent(display, 1, False, CurrentTime);
 }
 
 void CommandInterpreter::releaseMouse(TACommand command)
@@ -76,6 +80,9 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     
+	XEvent event;
+	XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+	
 	printf("Sending move command.\n");
-    XWarpPointer (display, None, RootWindow(display, 0), 0, 0, 0, 0, absX, absY);
+    XWarpPointer (display, None, None, xOrigin, yOrigin, (xOrigin * 2), (yOrigin * 2), absX, absY);
 }
