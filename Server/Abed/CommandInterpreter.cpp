@@ -139,6 +139,7 @@ void CommandInterpreter::zoom(TACommand command)
 	if ((command.zoomValue == 0) || (zooming == true))
 	{
 		XTestFakeButtonEvent(display, 3, False, CurrentTime);
+		zooming = false;
 	}
 	
 	XTestFakeMotionEvent(display, 0, event.xbutton.x, event.xbutton.y, CurrentTime);
