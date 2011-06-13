@@ -70,7 +70,7 @@ void CommandInterpreter::moveMouse(TACommand command)
 
 void CommandInterpreter::rotate(TACommand command)
 {	
-	if ((currentEvent != NULL) || (currentEvent == TACommandTypeRotate))
+	if ((currentEvent != NULL) || (currentEvent != TACommandTypeRotate))
 		cancel(command);
 		
 	switch (command.touch)
@@ -97,7 +97,7 @@ void CommandInterpreter::zoom(TACommand command)
 {
 	int threshold = 12;
 	
-	if ((currentEvent != NULL) || (currentEvent == TACommandTypeZoom))
+	if ((currentEvent != NULL) || (currentEvent != TACommandTypeZoom))
 		cancel(command);
 
 	switch (command.touch)
@@ -130,7 +130,7 @@ void CommandInterpreter::zoom(TACommand command)
 
 void CommandInterpreter::pan(TACommand command)
 {
-	if ((currentEvent != NULL) || (currentEvent == TACommandTypePan))
+	if ((currentEvent != NULL) || (currentEvent != TACommandTypePan))
 		cancel(command);
 		
 	switch (command.touch)
