@@ -12,7 +12,7 @@ CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
 	queryResolution();
-	currentEvent = NULL;
+	lastEvent = NULL;
 }
 
 void CommandInterpreter::queryResolution()
@@ -72,13 +72,13 @@ void CommandInterpreter::moveMouse(TACommand command)
 
 void CommandInterpreter::rotate(TACommand command)
 {	
-	if ((currentEvent != NULL) || (currentEvent != TACommandTypeRotate))
-		cancel(command);
-		
+	if (lastEvent != TACommandTypeRotate)		
+		cancel(lastEvent, command.type);
+	
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
-			currentEvent = TACommandTypeRotate;
+			lastEvent = TACommandTypeRotate;
 			XTestFakeButtonEvent(display, 1, True, CurrentTime);
 		break;
 		case TACommandTouchMove:
@@ -86,7 +86,7 @@ void CommandInterpreter::rotate(TACommand command)
 		break;
 		case TACommandTouchEnd:
 			XTestFakeButtonEvent(display, 1, False, CurrentTime);
-			currentEvent = NULL;
+			lastEvent = NULL;
 		break;
 		default:
 		break;
@@ -97,13 +97,13 @@ void CommandInterpreter::zoom(TACommand command)
 {
 	int threshold = 12;
 	
-	if ((currentEvent != NULL) || (currentEvent != TACommandTypeZoom))
-		cancel(command);
+	if (lastEvent != TACommandTypeZoom)
+		cancel(lastEvent, command.type);
 
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
-			currentEvent = TACommandTypeZoom;
+			lastEvent = TACommandTypeZoom;
 			XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 			XTestFakeButtonEvent(display, 3, True, CurrentTime);
 		break;
@@ -120,7 +120,7 @@ void CommandInterpreter::zoom(TACommand command)
 			XTestFakeButtonEvent(display, 3, False, CurrentTime);
 			//Resets zoom back to it's original position.
 			XTestFakeMotionEvent(display, 0, event.xbutton.x, event.xbutton.y, CurrentTime);
-			currentEvent = NULL;
+			lastEvent = NULL;
 		}
 		break;
 		default:
@@ -130,13 +130,13 @@ void CommandInterpreter::zoom(TACommand command)
 
 void CommandInterpreter::pan(TACommand command)
 {
-	if ((currentEvent != NULL) || (currentEvent != TACommandTypePan))
-		cancel(command);
+	if (lastEvent != TACommandTypePan)
+		cancel(lastEvent, command.type);
 		
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
-			currentEvent = TACommandTypePan;
+			lastEvent = TACommandTypePan;
 			XTestFakeButtonEvent(display, 2, True, CurrentTime);
 		break;
 		case TACommandTouchMove:
@@ -144,16 +144,16 @@ void CommandInterpreter::pan(TACommand command)
 		break;
 		case TACommandTouchEnd:
 			XTestFakeButtonEvent(display, 2, False, CurrentTime);
-			currentEvent = NULL;
+			lastEvent = NULL;
 		break;
 		default:
 		break;
 	}
 }
 
-void CommandInterpreter::cancel(TACommand command)
+void CommandInterpreter::cancel(int command, int currentCommand)
 {
-	switch (currentEvent)
+	switch (command)
 	{
 		case TACommandTypeRotate:
 			XTestFakeButtonEvent(display, 1, False, CurrentTime);
@@ -167,5 +167,5 @@ void CommandInterpreter::cancel(TACommand command)
 		default:
 		break;
 	}
-	currentEvent = NULL;
+	lastEvent = currentCommand;
 }
