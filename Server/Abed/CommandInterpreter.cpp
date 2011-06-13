@@ -56,6 +56,8 @@ void CommandInterpreter::handleCommand(TACommand command)
 		break;
 	}
 	
+	XSync(display, 0);
+	
 	XTestGrabControl(display, False);
 	usleep(10);
 }
@@ -89,8 +91,6 @@ void CommandInterpreter::rotate(TACommand command)
 		default:
 		break;
 	}
-	
-	XSync(display, 0);
 }
 
 void CommandInterpreter::zoom(TACommand command)
@@ -149,7 +149,6 @@ void CommandInterpreter::pan(TACommand command)
 		default:
 		break;
 	}
-	XSync(display, 0);
 }
 
 void CommandInterpreter::cancel(TACommand command)
