@@ -56,7 +56,6 @@ void CommandInterpreter::handleCommand(TACommand command)
 		break;
 	}
 	
-	XSync(display, 0);
 	XTestGrabControl(display, False);
 	usleep(10);
 }
@@ -71,7 +70,7 @@ void CommandInterpreter::moveMouse(TACommand command)
 
 void CommandInterpreter::rotate(TACommand command)
 {	
-	if (currentEvent != NULL)
+	if ((currentEvent != NULL) || (currentEvent == TACommandTypeRotate))
 		cancel(command);
 		
 	switch (command.touch)
@@ -90,13 +89,15 @@ void CommandInterpreter::rotate(TACommand command)
 		default:
 		break;
 	}
+	
+	XSync(display, 0);
 }
 
 void CommandInterpreter::zoom(TACommand command)
 {
 	int threshold = 12;
 	
-	if (currentEvent != NULL)
+	if ((currentEvent != NULL) || (currentEvent == TACommandTypeZoom))
 		cancel(command);
 
 	switch (command.touch)
@@ -129,7 +130,7 @@ void CommandInterpreter::zoom(TACommand command)
 
 void CommandInterpreter::pan(TACommand command)
 {
-	if (currentEvent != NULL)
+	if ((currentEvent != NULL) || (currentEvent == TACommandTypePan))
 		cancel(command);
 		
 	switch (command.touch)
@@ -148,6 +149,7 @@ void CommandInterpreter::pan(TACommand command)
 		default:
 		break;
 	}
+	XSync(display, 0);
 }
 
 void CommandInterpreter::cancel(TACommand command)
