@@ -25,10 +25,12 @@ public:
     void rotate(TACommand command);
 	void zoom(TACommand command);
 	void pan(TACommand command);
+	void cancel(TACommand command);
     
 private:
     Display *display;
 	XEvent event;
+	int currentEvent;
     int xOrigin;
     int yOrigin;
 };
