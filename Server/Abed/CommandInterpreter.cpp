@@ -66,6 +66,12 @@ void CommandInterpreter::moveMouse(TACommand command)
 {
 	int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
+    
+    if (lastEvent == TACommandTypePan)
+    {
+        absX = (absX / 4);
+        absY = (absY / 4);
+    }
 	
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
