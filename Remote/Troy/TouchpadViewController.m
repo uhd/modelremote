@@ -139,14 +139,14 @@
 
 - (void)touchpadDidPan:(CGPoint)point {
    //# 
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, 0, 0, deviceScale, 0);
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, (point.x - 384), (point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
 
 - (void)touchpadDidEndPan:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, 0, 0, deviceScale, 0);
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, (point.x - 384), (point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
