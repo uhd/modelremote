@@ -47,6 +47,12 @@
     [[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(twoFingerPinch:)] autorelease];
     [self addGestureRecognizer:twoFingerPinch];
 
+    
+    UIPanGestureRecognizer *pan = 
+    [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)] autorelease];
+    [pan setMinimumNumberOfTouches:2];
+    [self addGestureRecognizer:pan];
+
 }
 
 #pragma mark touch interpretation
@@ -94,6 +100,28 @@
             
         case UIGestureRecognizerStateEnded:
             [delegate touchpadDidEndPinch];
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+- (void)pan:(UIPanGestureRecognizer *)recognizer {
+    
+    CGPoint point = [recognizer locationInView:self];
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            [delegate touchpadDidBeginPan:point];
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+            [delegate touchpadDidPan:point];
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+            [delegate touchpadDidEndPan:point];
             break;
             
         default:

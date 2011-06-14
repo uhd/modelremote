@@ -91,7 +91,7 @@ const NSString *kDefaultHost = @"192.168.10.145";
 - (BOOL)sendCommand:(TACommand)command {
     
 	//Debugging Output.
-	//NSLog(@"Command: %@", NSStringFromTACommand(command));
+	NSLog(@"Command: %@", NSStringFromTACommand(command));
     NSData *data = [NSData dataWithBytes:&command length:sizeof(command)];
     [self sendMessage:data];
     

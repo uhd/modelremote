@@ -117,17 +117,38 @@
 }
 
 - (void)touchpadDidPinchWithScale:(float)scale {
-
+    
     TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchMove, 0, 0, deviceScale, scale);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
-
+    
 }
 
 - (void)touchpadDidEndPinch {
     
     TACommand command = TACommandMake(TACommandTypeZoom, TACommandTouchEnd, 0, 0, deviceScale, -1);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
+    
+}
 
+- (void)touchpadDidBeginPan:(CGPoint)point {
+    
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchStart, (point.x - 384), (point.y - 512), deviceScale, 0);
+    [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
+    
+}
+
+- (void)touchpadDidPan:(CGPoint)point {
+   //# 
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, 0, 0, deviceScale, 0);
+    [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
+    
+}
+
+- (void)touchpadDidEndPan:(CGPoint)point {
+    
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, 0, 0, deviceScale, 0);
+    [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
+    
 }
 
 #pragma mark communication handling
