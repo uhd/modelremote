@@ -12,7 +12,6 @@ CommandInterpreter::CommandInterpreter()
 {
     display = XOpenDisplay(NULL);
 	queryResolution();
-	lastEvent = NULL;
 }
 
 void CommandInterpreter::queryResolution()
@@ -98,7 +97,7 @@ void CommandInterpreter::rotate(TACommand command)
 
 void CommandInterpreter::zoom(TACommand command)
 {
-	int threshold = 12;
+	int threshold = 20;
 	
 	if (lastEvent != TACommandTypeZoom)
 		cancel(lastEvent, command.type);
@@ -128,7 +127,7 @@ void CommandInterpreter::zoom(TACommand command)
 		default:
 		break;
 	}
-    }
+}
 
 void CommandInterpreter::pan(TACommand command)
 {
