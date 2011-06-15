@@ -81,6 +81,8 @@ void CommandInterpreter::rotate(TACommand command)
 	if (lastEvent != TACommandTypeRotate)		
 		cancel(lastEvent, command.type);
 	
+    XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+    
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
@@ -97,6 +99,7 @@ void CommandInterpreter::rotate(TACommand command)
 		default:
 		break;
 	}
+    XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
 }
 
 void CommandInterpreter::zoom(TACommand command)
@@ -106,11 +109,12 @@ void CommandInterpreter::zoom(TACommand command)
 	if (lastEvent != TACommandTypeZoom)
 		cancel(lastEvent, command.type);
 
+    XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+    
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
 			lastEvent = TACommandTypeZoom;
-			XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
 			XTestFakeButtonEvent(display, 3, True, CurrentTime);
 		break;
 		case TACommandTouchMove:
@@ -125,13 +129,14 @@ void CommandInterpreter::zoom(TACommand command)
 		{
 			XTestFakeButtonEvent(display, 3, False, CurrentTime);
 			//Resets zoom back to it's original position.
-			XTestFakeMotionEvent(display, 0, event.xbutton.x, event.xbutton.y, CurrentTime);
 			lastEvent = NULL;
 		}
 		break;
 		default:
 		break;
 	}
+    
+    XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
 }
 
 void CommandInterpreter::pan(TACommand command)
@@ -139,6 +144,8 @@ void CommandInterpreter::pan(TACommand command)
 	if (lastEvent != TACommandTypePan)
 		cancel(lastEvent, command.type);
 		
+    XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.root, &event.xbutton.window, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
+    
 	switch (command.touch)
 	{
 		case TACommandTouchStart:
@@ -155,6 +162,7 @@ void CommandInterpreter::pan(TACommand command)
 		default:
 		break;
 	}
+    XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
 }
 
 void CommandInterpreter::cancel(int command, int currentCommand)
