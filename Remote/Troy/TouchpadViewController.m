@@ -18,14 +18,19 @@
     [touchpad configure];
     self.view = touchpad;
  
+    statusLight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"StatusLightRed.png"]];
+    [self.view addSubview:statusLight];
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
         deviceScale = 2.0;
-        
+        statusLight.frame = CGRectMake(668, 904, 100, 100);
+
     } else {
 
         deviceScale = 1.0;
-        
+        statusLight.frame = CGRectMake(668, 904, 100, 100);
+
     }
 
 }
@@ -58,18 +63,7 @@
     [connectionButton addTarget:[CommunicationCenter sharedCommunicationCenter] action:@selector(connectToDefaultHost) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:connectionButton];
     
-    
-    statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 30)];
-    [connectionButton addSubview:statusLabel];
-    [statusLabel setShadowColor:[UIColor whiteColor]];
-    [statusLabel setShadowOffset:CGSizeMake(0, 2)];
-    [statusLabel setBackgroundColor:[UIColor clearColor]];
-    [statusLabel setTextColor:[UIColor colorWithWhite:0.169 alpha:1.000]];
-    [statusLabel setTextAlignment:UITextAlignmentCenter];
-    [statusLabel setFont:[UIFont boldSystemFontOfSize:18]];
-    
-    statusLabel.text = @"Not Connected";
-    
+        
 }
 
 - (void)viewDidUnload
@@ -154,13 +148,13 @@
 #pragma mark communication handling
 - (void)didConnectToHost:(NSString *)host {
  
-    statusLabel.text = @"Connected to UHD VizWall";
+    statusLight.image = [UIImage imageNamed:@"StatusLightGreen.png"];
 
 }
 
 - (void)didDisconnect {
     
-    statusLabel.text = @"Not Connected";
+    statusLight.image = [UIImage imageNamed:@"StatusLightRed.png"];
 
 }
 

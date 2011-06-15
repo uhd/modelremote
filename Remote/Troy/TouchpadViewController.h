@@ -14,7 +14,7 @@
 @interface TouchpadViewController : UIViewController <TouchpadDelegate, CommunicationCenterDelegate> {
     
     MotionMonitor *motionMonitor;
-    UILabel *statusLabel;
+    UIImageView *statusLight;
     
     float deviceScale;
     
