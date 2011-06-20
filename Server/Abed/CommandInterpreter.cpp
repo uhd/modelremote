@@ -87,12 +87,12 @@ void CommandInterpreter::rotate(TACommand command)
 		break;
 		case TACommandTouchEnd:
 			XTestFakeButtonEvent(display, 1, False, CurrentTime);
+            XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
 			lastEvent = NULL;
 		break;
 		default:
 		break;
 	}
-    XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
 }
 
 void CommandInterpreter::zoom(TACommand command)
