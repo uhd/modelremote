@@ -81,6 +81,7 @@ void CommandInterpreter::rotate(TACommand command)
 		case TACommandTouchStart:
 			lastEvent = TACommandTypeRotate;
 			XTestFakeButtonEvent(display, 1, True, CurrentTime);
+            XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
 		break;
 		case TACommandTouchMove:
 			moveMouse(command);
