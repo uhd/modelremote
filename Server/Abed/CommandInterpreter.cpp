@@ -63,6 +63,8 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
+    int scale = 2;
+    
     if (checkBounds(command) == false)
     {
         cancel(lastEvent, command.type);
@@ -71,8 +73,8 @@ void CommandInterpreter::moveMouse(TACommand command)
         return;
     }
     
-	int absX = xOrigin + command.xDifference;
-    int absY = yOrigin + command.yDifference;
+	int absX = (xOrigin + command.xDifference) / scale;
+    int absY = (yOrigin + command.yDifference) / scale;
     
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
@@ -181,19 +183,15 @@ void CommandInterpreter::cancel(int command, int currentCommand)
 
 bool CommandInterpreter::checkBounds(TACommand command)
 {
-    int horizBound = 50;
     int vertiBound = 50;
-    
-    int rightBound = displayXResolution - horizBound;
-    int leftBound = horizBound;
+
     int upBound = vertiBound;
     int downBound = displayYResolution - vertiBound;
     
-    /*if ( > rightBound) || ( < leftBound))
-        return false;
+    XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.window, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
         
-    if ( > downBound) || ( < upBound))
-        return false;*/
-    
-    return true;
+    if ((event.xbutton.y > downBound) || (event.xbutton.y < upBound))
+        return false;
+    else
+        return true;
 }
