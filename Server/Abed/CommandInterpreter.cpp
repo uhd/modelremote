@@ -24,13 +24,13 @@ void CommandInterpreter::queryResolution()
     XRRScreenConfiguration *configuration = XRRGetScreenInfo(display, RootWindow(display, 0));
     SizeID originalSize = XRRConfigCurrentConfiguration(configuration, &originalRotation);
     
-    int width = xrrs[originalSize].width;
-    int height = xrrs[originalSize].height;
+    displayXResolution = xrrs[originalSize].width;
+    displayYResolution = xrrs[originalSize].height;
     
-    xOrigin = (int)width / 2;
-    yOrigin = (int)height / 2;
+    xOrigin = (int)displayXResolution / 2;
+    yOrigin = (int)displayYResolution / 2;
 	
-	printf("Server Dimensions: %i x %i.\n", xrrs[originalSize].width, xrrs[originalSize].height);
+	printf("Server Dimensions: %i x %i.\n", displayXResolution, displayYResolution);
 	printf("Origin of Screen %i: (%i, %i).\n", DefaultScreen(display), xOrigin, yOrigin);
 }
 
@@ -63,11 +63,17 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
+    if (checkBounds(command) == false)
+    {
+        cancel(lastEvent, command.type);
+        return;
+    }
+    
 	int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
     absX = (absX / 4);
     absY = (absY / 4);
-	
+    
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
 
@@ -171,4 +177,28 @@ void CommandInterpreter::cancel(int command, int currentCommand)
 		break;
 	}
 	lastEvent = currentCommand;
+}
+
+bool CommandInterpreter::checkBounds(TACommand command)
+{
+    int horizBound = 50;
+    int vertiBound = 50;
+    
+    int rightBound = displayXResolution - horizBound;
+    int leftBound = horizBound;
+    int upBound = vertiBound;
+    int downBound = displayYResolution - vertiBound;
+    
+    if ((command.xDifference > rightBound) || (command.xDifference < leftBound))
+    {
+        cancel(lastEvent, command.type);
+        return false;
+    }
+    
+    if ((command.yDifference > downBound) || (command.yDifference < upBound))
+    {
+        cancel(lastEvent, command.type);
+        return false;
+    }
+    return true;
 }
