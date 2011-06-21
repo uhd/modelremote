@@ -189,16 +189,11 @@ bool CommandInterpreter::checkBounds(TACommand command)
     int upBound = vertiBound;
     int downBound = displayYResolution - vertiBound;
     
-    if ((command.xDifference > rightBound) || (command.xDifference < leftBound))
-    {
-        cancel(lastEvent, command.type);
+    if ((abs(command.xDifference) > rightBound) || (abs(command.xDifference) < leftBound))
         return false;
-    }
+        
+    if ((abs(command.yDifference) > downBound) || (abs(command.yDifference) < upBound))
+        return false;
     
-    if ((command.yDifference > downBound) || (command.yDifference < upBound))
-    {
-        cancel(lastEvent, command.type);
-        return false;
-    }
     return true;
 }
