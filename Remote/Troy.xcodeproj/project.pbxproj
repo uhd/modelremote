@@ -26,6 +26,8 @@
 		50CF06DF134FD804002A0468 /* TouchpadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06DD134FD804002A0468 /* TouchpadViewController.m */; };
 		50CF06E0134FD804002A0468 /* TouchpadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CF06DE134FD804002A0468 /* TouchpadViewController.xib */; };
 		50CF06E4134FDB17002A0468 /* TouchpadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CF06E3134FDB17002A0468 /* TouchpadView.m */; };
+		50D671BC13A9000A009FEC40 /* StatusLightRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 50D671BB13A9000A009FEC40 /* StatusLightRed.png */; };
+		50D671BE13A9013B009FEC40 /* StatusLightGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 50D671BD13A9013B009FEC40 /* StatusLightGreen.png */; };
 		50EDBE8913513AC000C5F6C1 /* MotionMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EDBE8813513AC000C5F6C1 /* MotionMonitor.m */; };
 		50FC8E881352B912005A7D06 /* iPadControlPadBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FC8E871352B912005A7D06 /* iPadControlPadBackground.png */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,8 @@
 		50CF06DE134FD804002A0468 /* TouchpadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouchpadViewController.xib; sourceTree = "<group>"; };
 		50CF06E2134FDB17002A0468 /* TouchpadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchpadView.h; sourceTree = "<group>"; };
 		50CF06E3134FDB17002A0468 /* TouchpadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchpadView.m; sourceTree = "<group>"; };
+		50D671BB13A9000A009FEC40 /* StatusLightRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusLightRed.png; sourceTree = "<group>"; };
+		50D671BD13A9013B009FEC40 /* StatusLightGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusLightGreen.png; sourceTree = "<group>"; };
 		50EDBE8713513AC000C5F6C1 /* MotionMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionMonitor.h; sourceTree = "<group>"; };
 		50EDBE8813513AC000C5F6C1 /* MotionMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionMonitor.m; sourceTree = "<group>"; };
 		50FC8E871352B912005A7D06 /* iPadControlPadBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPadControlPadBackground.png; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 		50A7573D135015A80075357F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				50D671BB13A9000A009FEC40 /* StatusLightRed.png */,
+				50D671BD13A9013B009FEC40 /* StatusLightGreen.png */,
 				50AEE2BD1352A72400AB75E7 /* iPhone */,
 				50AEE2BC1352A71800AB75E7 /* iPad */,
 			);
@@ -257,6 +263,8 @@
 				50CF06E0134FD804002A0468 /* TouchpadViewController.xib in Resources */,
 				50AEE2C51352B81F00AB75E7 /* iPhoneControlPadBackground.png in Resources */,
 				50FC8E881352B912005A7D06 /* iPadControlPadBackground.png in Resources */,
+				50D671BC13A9000A009FEC40 /* StatusLightRed.png in Resources */,
+				50D671BE13A9013B009FEC40 /* StatusLightGreen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

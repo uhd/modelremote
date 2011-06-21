@@ -82,7 +82,7 @@
 #pragma mark touch handling
 - (void)touchpadDidBeginTouchPoint:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypeRotate, TACommandTouchStart, (point.x - 384), (point.y - 512), deviceScale, 0);
+    TACommand command = TACommandMake(TACommandTypeRotate, TACommandTouchStart, (point.x - 384), -(point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
@@ -90,14 +90,14 @@
 
 - (void)touchpadDidTouchPoint:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypeRotate, TACommandTouchMove, (point.x - 384), (point.y - 512), deviceScale, 0);
+    TACommand command = TACommandMake(TACommandTypeRotate, TACommandTouchMove, (point.x - 384), -(point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
 
 - (void)touchpadDidEndTouchPoint:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypeRotate, TACommandTouchEnd, (point.x - 384), (point.y - 512), deviceScale, 0);
+    TACommand command = TACommandMake(TACommandTypeRotate, TACommandTouchEnd, (point.x - 384), -(point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
 
 }
@@ -126,21 +126,21 @@
 
 - (void)touchpadDidBeginPan:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchStart, (point.x - 384), (point.y - 512), deviceScale, 0);
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchStart, (point.x - 384), -(point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
 
 - (void)touchpadDidPan:(CGPoint)point {
    //# 
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, (point.x - 384), (point.y - 512), deviceScale, 0);
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchMove, (point.x - 384), -(point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
 
 - (void)touchpadDidEndPan:(CGPoint)point {
     
-    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, (point.x - 384), (point.y - 512), deviceScale, 0);
+    TACommand command = TACommandMake(TACommandTypePan, TACommandTouchEnd, (point.x - 384), -(point.y - 512), deviceScale, 0);
     [[CommunicationCenter sharedCommunicationCenter] sendCommand:command];
     
 }
