@@ -66,6 +66,7 @@ void CommandInterpreter::moveMouse(TACommand command)
     if (checkBounds(command) == false)
     {
         cancel(lastEvent, command.type);
+        printf("Went past bounds.\n");
         return;
     }
     
