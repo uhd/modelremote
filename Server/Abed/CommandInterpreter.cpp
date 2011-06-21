@@ -64,7 +64,7 @@ void CommandInterpreter::handleCommand(TACommand command)
 void CommandInterpreter::moveMouse(TACommand command)
 {
 	int absX = xOrigin + command.xDifference;
-    int absY = yOrigin + -command.yDifference;
+    int absY = yOrigin + (-1 * command.yDifference);
     absX = (absX / 4);
     absY = (absY / 4);
 	
