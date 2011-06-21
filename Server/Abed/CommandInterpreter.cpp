@@ -73,8 +73,6 @@ void CommandInterpreter::moveMouse(TACommand command)
     
 	int absX = xOrigin + command.xDifference;
     int absY = yOrigin + command.yDifference;
-    absX = (absX / 4);
-    absY = (absY / 4);
     
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
@@ -88,7 +86,7 @@ void CommandInterpreter::rotate(TACommand command)
 	{
 		case TACommandTouchStart:
 			lastEvent = TACommandTypeRotate;
-			//XTestFakeButtonEvent(display, 1, True, CurrentTime);
+			XTestFakeButtonEvent(display, 1, True, CurrentTime);
 		break;
 		case TACommandTouchMove:
 			moveMouse(command);
@@ -128,7 +126,7 @@ void CommandInterpreter::zoom(TACommand command)
 		case TACommandTouchEnd:
 		{
 			XTestFakeButtonEvent(display, 3, False, CurrentTime);
-            XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);\
+            XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
 			lastEvent = NULL;
 		}
 		break;
