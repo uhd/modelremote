@@ -67,6 +67,7 @@ void CommandInterpreter::moveMouse(TACommand command)
     {
         cancel(lastEvent, command.type);
         printf("Went past bounds.\n");
+        XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
         return;
     }
     
@@ -190,11 +191,11 @@ bool CommandInterpreter::checkBounds(TACommand command)
     int upBound = vertiBound;
     int downBound = displayYResolution - vertiBound;
     
-    if ((abs(command.xDifference) > rightBound) || (abs(command.xDifference) < leftBound))
+    /*if ( > rightBound) || ( < leftBound))
         return false;
         
-    if ((abs(command.yDifference) > downBound) || (abs(command.yDifference) < upBound))
-        return false;
+    if ( > downBound) || ( < upBound))
+        return false;*/
     
     return true;
 }
