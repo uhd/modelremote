@@ -29,6 +29,9 @@ void CommandInterpreter::queryResolution()
     
     xOrigin = displayXResolution / 2;
     yOrigin = displayYResolution / 2;
+    
+    upBound = 70;
+    downBound = displayYResolution - 70;
 	
 	printf("Server Dimensions: %i x %i.\n", displayXResolution, displayYResolution);
 	printf("Origin of Screen %i: (%i, %i).\n", DefaultScreen(display), xOrigin, yOrigin);
@@ -68,6 +71,9 @@ void CommandInterpreter::moveMouse(TACommand command)
 	int absX = (xOrigin + command.xDifference) / scale;
     int absY = (yOrigin + command.yDifference) / scale;
     
+    if ((absY < upBound) || (absY > downBound))
+        cancel(lastEvent, command.type);
+    
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
 
@@ -87,6 +93,7 @@ void CommandInterpreter::rotate(TACommand command)
 		break;
 		case TACommandTouchEnd:
 			XTestFakeButtonEvent(display, 1, False, CurrentTime);
+            XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
  			lastEvent = NULL;
 		break;
 		default:

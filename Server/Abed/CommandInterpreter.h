@@ -26,6 +26,7 @@ public:
 	void zoom(TACommand command);
 	void pan(TACommand command);
 	void cancel(int command, int currentCommand);
+    void checkBound(TACOmmand command);
     
 private:
     Display *display;
@@ -35,4 +36,6 @@ private:
     int yOrigin;
     int displayXResolution;
     int displayYResolution;
+    int upBound;
+    int downBound;
 };
