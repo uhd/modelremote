@@ -66,7 +66,7 @@ void CommandInterpreter::handleCommand(TACommand command)
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    int scale = 1;
+    int scale = 2;
     
 	int absX = (xOrigin + command.xDifference) / scale;
     int absY = (yOrigin + command.yDifference) / scale;
