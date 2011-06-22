@@ -27,8 +27,8 @@ void CommandInterpreter::queryResolution()
     displayXResolution = xrrs[originalSize].width;
     displayYResolution = xrrs[originalSize].height;
     
-    xOrigin = (int)displayXResolution / 2;
-    yOrigin = (int)displayYResolution / 2;
+    xOrigin = displayXResolution / 2;
+    yOrigin = displayYResolution / 2;
 	
 	printf("Server Dimensions: %i x %i.\n", displayXResolution, displayYResolution);
 	printf("Origin of Screen %i: (%i, %i).\n", DefaultScreen(display), xOrigin, yOrigin);
@@ -94,7 +94,7 @@ void CommandInterpreter::rotate(TACommand command)
 		break;
 		case TACommandTouchEnd:
 			XTestFakeButtonEvent(display, 1, False, CurrentTime);
-            //XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
+            XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
 			lastEvent = NULL;
 		break;
 		default:
