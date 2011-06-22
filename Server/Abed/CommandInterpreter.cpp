@@ -203,7 +203,9 @@ bool CommandInterpreter::checkBounds(TACommand command)
     int downBound = displayYResolution - vertiBound;
     
     XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.window, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
-        
+    
+    printf("Checking for bounds: (%i, %i)", event.xbutton.x, event.xbutton.y);
+    
     if ((event.xbutton.y > downBound) || (event.xbutton.y < upBound))
         return false;
     else
