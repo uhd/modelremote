@@ -72,8 +72,11 @@ void CommandInterpreter::moveMouse(TACommand command)
     int absY = (yOrigin + command.yDifference) / scale;
     
     if ((absY < upBound) || (absY > downBound))
+    {
+        printf("Out of bounds.\n");
         cancel(lastEvent, command.type);
-    
+    }
+        
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
 }
 
