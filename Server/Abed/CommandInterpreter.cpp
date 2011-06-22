@@ -58,20 +58,12 @@ void CommandInterpreter::handleCommand(TACommand command)
 	XSync(display, 0);
 	
 	XTestGrabControl(display, False);
-	usleep(10);
+	usleep(100);
 }
 
 void CommandInterpreter::moveMouse(TACommand command)
 {
-    int scale = 2;
-    
-    if (checkBounds(command) == false)
-    {
-        cancel(lastEvent, command.type);
-        printf("Went past bounds.\n");
-        XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
-        return;
-    }
+    int scale = 1;
     
 	int absX = (xOrigin + command.xDifference) / scale;
     int absY = (yOrigin + command.yDifference) / scale;
@@ -83,6 +75,13 @@ void CommandInterpreter::rotate(TACommand command)
 {	
 	if (lastEvent != TACommandTypeRotate)		
 		cancel(lastEvent, command.type);
+    
+    if (checkBounds(command) == false)
+    {
+        cancel(lastEvent, command.type);
+        printf("Went past bounds.\n");
+        return;
+    }
 	    
 	switch (command.touch)
 	{
@@ -109,6 +108,13 @@ void CommandInterpreter::zoom(TACommand command)
 	
 	if (lastEvent != TACommandTypeZoom)
 		cancel(lastEvent, command.type);
+    
+    if (checkBounds(command) == false)
+    {
+        cancel(lastEvent, command.type);
+        printf("Went past bounds.\n");
+        return;
+    }
     
 	switch (command.touch)
 	{
@@ -141,6 +147,14 @@ void CommandInterpreter::pan(TACommand command)
 {
 	if (lastEvent != TACommandTypePan)
 		cancel(lastEvent, command.type);
+    
+    
+    if (checkBounds(command) == false)
+    {
+        cancel(lastEvent, command.type);
+        printf("Went past bounds.\n");
+        return;
+    }
 		    
 	switch (command.touch)
 	{
@@ -183,7 +197,7 @@ void CommandInterpreter::cancel(int command, int currentCommand)
 
 bool CommandInterpreter::checkBounds(TACommand command)
 {
-    int vertiBound = 50;
+    int vertiBound = 70;
 
     int upBound = vertiBound;
     int downBound = displayYResolution - vertiBound;
