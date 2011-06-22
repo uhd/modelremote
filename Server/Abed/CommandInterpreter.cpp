@@ -75,6 +75,7 @@ void CommandInterpreter::moveMouse(TACommand command)
     {
         printf("Out of bounds.\n");
         cancel(lastEvent, command.type);
+        XTestFakeMotionEvent(display, 0, xOrigin, yOrigin, CurrentTime);
     }
         
 	XTestFakeMotionEvent(display, 0, absX, absY, CurrentTime);
