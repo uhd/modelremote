@@ -26,7 +26,6 @@ public:
 	void zoom(TACommand command);
 	void pan(TACommand command);
 	void cancel(int command, int currentCommand);
-    bool checkBounds();
     
 private:
     Display *display;
