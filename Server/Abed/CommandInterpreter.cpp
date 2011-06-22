@@ -76,7 +76,7 @@ void CommandInterpreter::rotate(TACommand command)
 	if (lastEvent != TACommandTypeRotate)		
 		cancel(lastEvent, command.type);
     
-    if (checkBounds(command) == false)
+    if (checkBounds() == false)
     {
         cancel(lastEvent, command.type);
         printf("Went past bounds.\n");
@@ -109,7 +109,7 @@ void CommandInterpreter::zoom(TACommand command)
 	if (lastEvent != TACommandTypeZoom)
 		cancel(lastEvent, command.type);
     
-    if (checkBounds(command) == false)
+    if (checkBounds() == false)
     {
         cancel(lastEvent, command.type);
         printf("Went past bounds.\n");
@@ -149,7 +149,7 @@ void CommandInterpreter::pan(TACommand command)
 		cancel(lastEvent, command.type);
     
     
-    if (checkBounds(command) == false)
+    if (checkBounds() == false)
     {
         cancel(lastEvent, command.type);
         printf("Went past bounds.\n");
@@ -195,7 +195,7 @@ void CommandInterpreter::cancel(int command, int currentCommand)
 	lastEvent = currentCommand;
 }
 
-bool CommandInterpreter::checkBounds(TACommand command)
+bool CommandInterpreter::checkBounds()
 {
     int vertiBound = 70;
 
@@ -204,7 +204,7 @@ bool CommandInterpreter::checkBounds(TACommand command)
     
     XQueryPointer(display, RootWindow(display, DefaultScreen(display)), &event.xbutton.window, &event.xbutton.subwindow, &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
     
-    printf("Checking for bounds: (%i, %i)", event.xbutton.x, event.xbutton.y);
+    printf("Checking for bounds: (%i, %i)\n", event.xbutton.x, event.xbutton.y);
     
     if ((event.xbutton.y > downBound) || (event.xbutton.y < upBound))
         return false;
