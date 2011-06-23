@@ -16,7 +16,7 @@ static CommunicationCenter *instance;
 
 //Static host/port for now
 const NSUInteger kPortNumber = 1254;
-const NSString *kDefaultHost = @"192.168.10.145";
+const NSString *kDefaultHost = @"172.17.234.154";
 //const NSString *kDefaultHost = @"192.168.10.145";
 
 + (CommunicationCenter *)sharedCommunicationCenter {
