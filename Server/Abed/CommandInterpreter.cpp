@@ -68,8 +68,8 @@ void CommandInterpreter::moveMouse(TACommand command)
 {
     int scale = 2;
     
-	int absX = (xOrigin + command.xDifference) / scale;
-    int absY = (yOrigin + command.yDifference) / scale;
+	int absX = xOrigin + (command.xDifference / scale);
+    int absY = yOrigin + (command.yDifference / scale);
     
     if ((absY < upBound) || (absY > downBound))
     {
